@@ -1,3 +1,7 @@
+# python docs
+
+https://docs.python.org/3/
+
 # python3 installation
 
 download and complete installation prompts from:
