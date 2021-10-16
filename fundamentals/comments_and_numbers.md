@@ -67,3 +67,9 @@ s = subtraction
 ex:
 1 + 9 * 10 = 91
 (1 + 9) * 10 = 100
+
+# round(variable, num_decimal_positions)
+
+The round() function returns a floating point number that is a rounded version of the specified number, with the specified number of decimals.
+
+https://www.w3schools.com/python/ref_func_round.asp
