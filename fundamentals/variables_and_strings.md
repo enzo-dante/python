@@ -179,3 +179,7 @@ print('Your favorite show is ' + answer)
 # str and foreign languages
 
 if it's Unicode, it's a valid str
+
+# .lower() or .upper()
+
+return string is converted to all lower or upper case which is helpful for error handling

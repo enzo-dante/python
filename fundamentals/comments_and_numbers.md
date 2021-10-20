@@ -73,3 +73,13 @@ ex:
 The round() function returns a floating point number that is a rounded version of the specified number, with the specified number of decimals.
 
 https://www.w3schools.com/python/ref_func_round.asp
+
+# randint(a, b)
+
+generate a random number between a and b inclusive
+
+ex)
+
+import random
+
+random.randint(0, 2) # random integer between 0, 1, or 2
