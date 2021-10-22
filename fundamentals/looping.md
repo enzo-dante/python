@@ -61,5 +61,36 @@ iterate over each character in a string
 for letter in 'coffee':
 	print(letter)
 
+# while loops
 
+while loops continue to execute while a certain condition is truthy
 
+while <boolean>
+    # executed code block
+
+ex:
+
+user_res = None
+while user_res != 'please':
+    user_res = input('you didn't say the magic word...\n')
+
+# break
+
+the keyword break gives us the ability to exit a while or for loop on command
+
+ex:
+
+while True:
+    command = input('Type exit, to exit:\n')
+    if command.lower() == 'exit':
+        break
+
+ex 2:
+
+times = int(input('How many times do I have to tell you to clean your room?'))
+
+for time in range(times):
+    print('clean your room')
+    if time >= 4:
+        print('do you even listen anymore')
+        break
