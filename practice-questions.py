@@ -88,3 +88,52 @@
 #         sentence = input()
 #         print(sentence)
 
+# exercise 4: create list called nums that contains 1-99 (including 99)
+
+nums = []
+for n in range(1, 100):
+    nums.append(n)
+    n += 1
+
+# alternative solution
+nums = []
+for n in range(99)
+    n += 1
+    nums.append(n)
+
+# exercise 5: access elements in the provided list to correct strings
+
+# DON'T TOUCH THIS PLEASE!
+people = ["Hanna","Louisa","Claudia", "Angela","Geoffrey", "aparna"]
+# DON'T TOUCH THIS PLEASE!
+
+#Change "Hanna" to "Hannah"
+people[0] = 'Hannah'
+#Change "Geoffrey" to "Jeffrey"
+people[-2] = 'Jeffrey'
+#Change "aparna" to "Aparna" (capitalize it)
+people[-1] = 'Aparna'
+
+# exercise 6: add list items together into a single sentence that is capitalized
+sounds = ["super", "cali", "fragil", "istic", "expi", "ali", "docious"]
+
+result = ''
+# Define your code below:
+for n in sounds:
+    result += n.upper()
+
+# exercise 7: add list of items to a pre-existing list
+
+# Create a list called instructors
+instructors = []
+# Add the following strings to the instructors list 
+    # "Colt"
+    # "Blue"
+    # "Lisa"
+instructors.extend(['Colt', 'Blue', 'Lisa'])
+
+# alternative solution
+instructors.append("Colt")
+instructors.append("Blue")
+instructors.append("Lisa")
+
