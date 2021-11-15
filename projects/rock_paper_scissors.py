@@ -10,7 +10,8 @@ winning_score = 3
 
 # OPTION 2: loop with win tracking
 while player_score < winning_score and computer_score < winning_score:
-    print(f"\nPlayer Score: {player_score}\nComputer Score: {computer_score}\n")
+    print(
+        f"\nPlayer Score: {player_score}\nComputer Score: {computer_score}\n")
 
 # OPTION 1: loop with no win tracking
 # for each round in a range of 3 epochs
