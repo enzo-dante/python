@@ -45,7 +45,7 @@ range(3): gives you integers from 0, 1, 2
 
 range(1,8): gives you integers from 1-7
 
-__*3rd param = step/how many to skip and up or down count with +/-__
+__3rd param = step/how many to skip and up or down count with +/-__
 range(1, 10, 2): will give you odds from 1-10
 
 range(7, 0, -1): will give you integers from 7 to 1
@@ -65,7 +65,7 @@ for letter in 'coffee':
 
 # while loops
 
-while loops are more flexible than for loops since you explicitely set the start and end conditions, but they require more setup than for loops
+while loops are more flexible than for loops since you explicitly set the start and end conditions, but they require more setup than for loops
 
 while loops continue to execute while a certain condition is truthy
 
@@ -107,11 +107,11 @@ ex:
 
 tasks = ['install python', 'learn python', 'take a break']
 
-# list(range(a, b)) = create list of defined indecies of numbers
+# list(range(a, b)) = create list of defined indices of numbers
 
 demo_list = list(range(1, 4))
 
-# list access = lists are organized by indecies that always start at 0
+# list access = lists are organized by indices that always start at 0
 
 ex:
 
@@ -139,7 +139,7 @@ __capitalization matters__
 colors = ['teal', 'purple', 'red']
 'ashley' in colors # false
 
-# access all values in a list simultaneously
+# access all values IN a list simultaneously
 
 __use a loop__
 
@@ -208,7 +208,7 @@ Given a list numbers = [1,2,3] what would the result of numbers.pop(5) be?
 
 IndexError
 
-# remove(variable) = checks for first match variable in a list and removes or throws error
+# remove(variable) = checks for first match variable in a list and removes or throws error if passed argument is not in the list
 
 __does not return removed value__
 
@@ -217,3 +217,146 @@ ex:
 nums = [1, 2, 3, 4, 2]
 nums.remove(2)
 print(nums) # [1,3,4,2] 
+
+# index(variable) 
+
+> returns the index of the specified item in the list
+
+nums = [5,6,7,8,9,10]
+
+nums.index(6) # 1
+nums.index(9) # 4
+
+> can also return the index of the specified item after a specified start
+
+nums = [5,5,6,7,5,8,8,9,10]
+
+numbers.index(5, 1) # 1
+numbers.index(5, 2) # 4 
+
+# [].count(x)
+
+> return the number of times x appears in the list and will return 0 if not in the list
+
+nums = [5,5,6,7,5,8,8,9,10]
+nums.count(5) # 3
+
+# [].reverse()
+
+> reverse the elements of the list (in-place)
+
+first_list = [1, 2, 3, 4]
+first_list.reverse() # [4,3,2,1]
+
+# [].sort()
+
+> sort the items of the list (in-place)
+
+another_list = [6,5,4,3,2,1]
+another_list.sort() # [1,2,3,4,5,6]
+
+# " ".join(var)
+
+> String method that takes an iterable argument and concatenates the base String between each item of the iterable
+
+words = ["coding","is","fun!"]
+
+" ".join(words) # "coding is fun"
+
+# Slicing
+
+> make new list using slices of the old list
+>
+> syntax: some_list[start:end:step]
+>
+> Slicing always requires the use of a colon (:) even if only using 1 argument 
+
+__start: what index to start slicing from until the end__
+
+> if you pass start a non-existent index, it will return an empty list
+
+first_list = [1,2,3,4]
+
+first_list[1:] # [2,3,4]
+first_list[3:] # [4]
+
+first_list[-1:] # [4] 
+first_list[-3:] # [2,3,4] 
+
+copy_of_first_list = first_list[0:]
+
+first_list == copy_of_first_list # False
+
+__end: the index to copy up to (exclusive counting meaning not includes provided)__
+
+first_list = [1, 2, 3, 4]
+
+> [:2] = implied start at index 0 and slice until index 2, but not include index 2
+
+first_list[:2] # [1,2]
+first_list[:4] # [1,2,3,4]
+
+> [:2] = start at index 1 and slice until index 3, but not include index 3 (value 4)
+
+first_list[1:3] #[2,3]
+
+> [:-1] = how many items to exclude from end with indexing counting backwards
+
+first_list[:-1] # [1,2,3]
+first_list[1:-1] # [2,3]
+
+__step: in Python, the number to count/skip at a time (like in range)__
+
+first_list = [1,2,3,4,5,6]
+
+> [1::2] = start at index 1: iterate until the end: a step of 2 counts every other number
+
+first_list[1::2] # [2,4,6] 
+
+> [::2] = start at index 0: iterate until the end: a step of 2 counts every other number
+
+first_list[::2] # [1,3,5]
+
+> [1::-1] = start at index 1: iterate until the end: a step that goes backwards direction in list from start index 1
+
+first_list[1::-1] # [2,1]
+
+> [:1:-1] = start at index end (because step = -1): iterate until index 1: a step that goes backwards direction in list from end of list
+
+first_list[:1:-1] # [6,5,4,3]
+
+> [2::-1] = start at index 2: iterate until the end: a step that goes backwards direction in list from start index 2
+
+first_list[2::-1] # [3,2,1]
+
+> String reverse with Slices
+
+string = "This is fun!"
+
+string[::-1] # "!nuf si sihT"
+
+numbers = [1,2,3]
+
+numbers[::-1] # [3,2,1]
+
+__modify portions of a list by setting with Slices__
+
+numbers = [1,2,3,4,5]
+
+numbers[1:3] = ["a", "b", "c] # [1,"a","b","c",4,5]
+
+__chain Slices together__
+
+colors = ["red","blue","yellow"]
+
+> [2][::-1] = access value at index 2 in list and then reverse step value (String in example)
+
+colors[2][::-1] # "wolley"
+
+# Swapping Values
+
+> swap values in a list when shuffling, sorting (in-place and not a new list), algorithms 
+
+names = ["James","Michelle"]
+
+names[0], names[1] = names[1], names[0] # ["Michelle","James"]

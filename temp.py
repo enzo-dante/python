@@ -1,5 +1,6 @@
-colors = ['red', 'yellow', 'white']
-print(colors)
+colors = ["purple", "teal", "magenta", "red"]
+index = 0
 
-colors.insert(3, 44)
-print(colors)
+while index < len(colors):
+	print(f"{index} is {colors[index]}")
+	index += 1
