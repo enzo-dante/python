@@ -5,6 +5,7 @@ Python ranges start at zero by default and count up to, but not including, the e
 ranges are generate ordered sequences of numbers
 
 to view range in python3, save range to var and list(var)
+
 - printing range does not print out all the numbers in the range.
 
 ex:
@@ -355,8 +356,88 @@ colors[2][::-1] # "wolley"
 
 # Swapping Values
 
-> swap values in a list when shuffling, sorting (in-place and not a new list), algorithms 
+> swap values in a list when shuffling, sorting (in-place and not a new list), algorithms.
 
 names = ["James","Michelle"]
 
 names[0], names[1] = names[1], names[0] # ["Michelle","James"]
+
+# list comprehension syntax
+
+list comprehension functions like a normal for loop, but in a single line:
+
+> [__ for __ in ___]
+>
+> EXPLANATION: [LOGIC for EACH_VARIABLE in PROVIDED_LIST]
+
+__numbers example__
+
+nums = [1,2,3]
+
+[x*10 for x in nums] # [10,20,30]
+
+__str example__
+
+name = "enzo"
+
+[char.upper() for char in name] # ["E", "N", "Z", "O"]
+
+__str example__
+
+friends = ["enzo", "stone", "mojo"]
+
+[friend[0].upper()+friend[1::] for friend in friends] # ['Enzo', 'Stone', 'Mojo']
+
+__truthy example__
+
+test = [0, [], ""]
+
+[bool(val) for val in test] # [false, false, false]
+
+__data type conversion/casting example__
+
+numbers = [1, 2, 3, 4, 5]
+
+string_numbers_list = [str(num) for num in numbers]
+
+print(string_numbers_list) # ["1", "2", "3", "4", "5"]
+
+# list comprehension conditional logic
+
+__if example__
+
+numbers = [1, 2, 3, 4, 5]
+
+evens = [num for num in numbers if num % 2 == 0]
+odds = [num for num in numbers if num % 2 != 0]
+
+__if/else example__
+
+numbers = [1, 2, 3, 4, 5]
+
+[n for n in numbers if n % 2 == 0 else n/2 for n in numbers] # [0.5, 4, 1.5, 8, 2.5, 12]
+
+__check in str example__
+
+> if char is not in string list "aeiou", than return to list and then join chars in new list to form new str
+
+with_vowels = "This is so much fun!"
+
+"".join(char for char in with_vowels if char not in "aeiou") # "Ths s s mch fn!"
+
+# nested lists
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

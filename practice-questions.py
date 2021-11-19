@@ -137,3 +137,59 @@ instructors.append("Colt")
 instructors.append("Blue")
 instructors.append("Lisa")
 
+# exercise 8: get first letter of str vars in list and get only even numbers
+
+answer = [person[0] for person in ["Elie", "Tim", "Matt"]]
+answer2 = [val for val in [1,2,3,4,5,6] if val % 2 == 0]
+
+# exercise 8 for loop alt solution
+
+answer = []
+for person in ["Elie", "Tim", "Matt"]:
+    answer.append(person[0])
+answer2 = []
+for num in [1,2,3,4,5,6]:
+    if num % 2 == 0:
+        answer2.append(num)
+
+# exercise 9: get intersercting numbers in 2 different lists and reverse and lowercase list of names
+
+nums1 = [1,2,3,4]
+nums2 = [3,4,5,6]
+
+answer = [n for n in nums1 if n in nums1 and n in nums2]
+
+names = ["Elie", "Tim", "Matt"]
+answer2 = [name[::-1].lower() for name in names]
+
+
+# exercise 9 for loop alt solution
+
+answer = []
+for x in [1,2,3,4]:
+    if x in [3,4,5,6]:
+        answer.append(x)
+answer2 = []
+for name in ["Elie", "Tim", "Matt"]:
+    answer2.append(name[::-1].lower())
+
+# exercise 10: get numbers divisible by 12 in range 1-100
+
+answer = [val for val in range(1,101) if val % 12 == 0] 
+
+# exercise 10 for loop alt solution
+
+numbers = []
+
+for n in range(1, 101):
+    numbers.append(n)
+    
+answer = [n for n in numbers if n % 12 == 0]
+
+# exercise 11: get string excluding vowels from "amazing"
+
+answer = [char for char in "amazing" if char not in "aeiou"]
+
+# exercise 11 list alt solution
+
+answer = [char for char in "amazing" if char not in ["a", "e", "i", "o", "u"]]
