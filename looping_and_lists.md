@@ -425,19 +425,36 @@ with_vowels = "This is so much fun!"
 
 "".join(char for char in with_vowels if char not in "aeiou") # "Ths s s mch fn!"
 
-# nested lists
+# nested lists/multi-dimensional list
 
+> one or more lists within a list, which is very common in data science
 
+nested_list = [[1,2,3], [4,5,6], [7,8,9]]
 
+nested_list[0][1] # 2
 
+nested_list[1][-1] # 6
 
+> use multiple for loops to iterate a nested list
 
+nested_list = [[1,2,3], [4,5,6], [7,8,9]]
 
+for list in nested_list:
+    for val in list:
+        print(val)
 
+> nested list comprehension
 
+nested_list = [[1,2,3], [4,5,6], [7,8,9]]
 
+[[print(val) for val in list] for list in nested_list]
 
+board game ex: 
 
+board = [[num for num in range(1,4)] for val in range(1,4)]
 
+print(board) # [[1,2,3],[1,2,3]],[1,2,3]]
 
+> nested list comprehension with conditional logic
 
+[["x" if num % 2 != 0 else "o" for num in range(1,4)] for val in range(1,4)] # [["x", "o", "x"]["x", "o", "x"]["x", "o", "x"]]

@@ -193,3 +193,12 @@ answer = [char for char in "amazing" if char not in "aeiou"]
 # exercise 11 list alt solution
 
 answer = [char for char in "amazing" if char not in ["a", "e", "i", "o", "u"]]
+
+# exercise 12: write out nested_list that returns [[0,1,2], [0,1,2], [0,1,2]]
+
+nested_list = [0,1,2]
+answer = [[nested_list for nested_list in range(0,3)] for nested_list in range(0,3)]
+
+# exercise 13: write out 10x10 nested list and each inner list holds numbers 0-10
+
+answer = [[i for i in range(0,10)] for num in range(0,10)] 
