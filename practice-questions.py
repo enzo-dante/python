@@ -97,7 +97,7 @@ for n in range(1, 100):
 
 # alternative solution
 nums = []
-for n in range(99)
+for n in range(99):
     n += 1
     nums.append(n)
 
@@ -202,3 +202,64 @@ answer = [[nested_list for nested_list in range(0,3)] for nested_list in range(0
 # exercise 13: write out 10x10 nested list and each inner list holds numbers 0-10
 
 answer = [[i for i in range(0,10)] for num in range(0,10)] 
+
+# exercise 14: print out artist full name using dictionary
+
+# superior option 1: f-string in python 3.6+
+
+artist = {
+    "first": "Neil",
+    "last": "Young",
+}
+ 
+full_name = f"{artist['first']} {artist['last']}"
+
+# inferior option 2: "{}".format() 
+
+artist = {
+    "first": "Neil",
+    "last": "Young",
+}
+ 
+full_name = "{} {}".format(artist["first"],artist["last"])
+
+# exercise 15: use a loop to add together all the donations and store the resulting number in a variable called total_donations
+
+# DON'T TOUCH PLEASE!
+donations = dict(sam=25.0, lena=88.99, chuck=13.0, linus=99.5, stan=150.0, lisa=50.25, harrison=10.0)
+# DON'T TOUCH PLEASE!
+
+total_donations = 0
+
+for value in donations.values():
+    total_donations += value
+
+# exercise 16: use dictionary to print out either '3 left' if toffee cookie, '1 left' if morning bun, or 'We don't make that' if not in dict
+
+# This code picks a random food item:
+from random import choice #DON'T CHANGE!
+food = choice(["cheese pizza", "quiche","morning bun","gummy bear","tea cake"]) #DON'T CHANGE!
+
+#DON'T CHANGE THIS DICTIONARY EITHER!
+bakery_stock = {
+    "almond croissant" : 12,
+    "toffee cookie": 3,
+    "morning bun": 1,
+    "chocolate chunk cookie": 9,
+    "tea cake": 25
+}
+
+# YOUR CODE GOES BELOW:
+
+# get() option:
+quantity = bakery_stock.get(food)
+if quantity:
+    print("{} left".format(quantity))
+else:
+    print("we don't make that")
+
+# IN option:
+if food in bakery_stock:
+    print("{} left".format(bakery_stock[food]))
+else:
+    print("We don't make that")
