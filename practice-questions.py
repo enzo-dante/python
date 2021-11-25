@@ -124,18 +124,18 @@ for n in sounds:
 
 # exercise 7: add list of items to a pre-existing list
 
-# Create a list called instructors
-instructors = []
-# Add the following strings to the instructors list 
+# Create a list called instructor
+instructor = []
+# Add the following strings to the instructor list 
     # "Colt"
     # "Blue"
     # "Lisa"
-instructors.extend(['Colt', 'Blue', 'Lisa'])
+instructor.extend(['Colt', 'Blue', 'Lisa'])
 
 # alternative solution
-instructors.append("Colt")
-instructors.append("Blue")
-instructors.append("Lisa")
+instructor.append("Colt")
+instructor.append("Blue")
+instructor.append("Lisa")
 
 # exercise 8: get first letter of str vars in list and get only even numbers
 
@@ -263,3 +263,73 @@ if food in bakery_stock:
     print("{} left".format(bakery_stock[food]))
 else:
     print("We don't make that")
+
+# exercise 17: use the game_properties list and dict.fromkeys() to generate a dictionary with all values set to 0. Save the result to a variable called initial_game_state
+
+#DO NOT TOUCH game_properties!
+game_properties = ["current_score", "high_score", "number_of_lives", "items_in_inventory", "power_ups", "ammo", "enemies_on_screen", "enemy_kills", "enemy_kill_streaks", "minutes_played", "notifications", "achievements"] 
+
+initial_game_state = {}.fromkeys(game_properties, 0)
+
+# exercise 18: update inventory copy
+
+inventory = {'croissant': 19, 'bagel': 4, 'muffin': 8, 'cake': 1} #DON'T CHANGE THIS LINE!
+
+# Make a copy of inventory and save it to a variable called stock_list USE A DICTIONARY METHOD
+
+stock_list = inventory.copy()
+
+# add the value 18 to stock_list under the key "cookie"
+
+stock_list["cookie"] = 18
+
+# remove 'cake' from stock_list USE A DICTIONARY METHOD
+
+stock_list.pop("cake")
+
+list1 = ["CA", "NJ", "RI"]
+list2 = ["California", "New Jersey", "Rhode Island"]
+
+# exercise 18: use the game_properties list and dict.fromkeys() to generate a dictionary with all values set to 0. Save the result to a variable called initial_game_state
+
+# make sure your solution is assigned to the answer variable so the tests can work!
+# {key@index : value@index iterate for each index starting at 0 to length of list 1
+
+answer = {list1[i]: list2[i] for i in range(0,len(list1))}
+
+person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
+
+# exercise 19: 
+
+# use the person variable in your answer to get this output: 
+#   {'name': 'Jared', 'job': 'Musician', 'city': 'Bern'}
+
+# option 1
+answer = {person[i][0] : person[i][1] for i in range(0, len(person))}
+
+# option 2
+person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
+answer = {k:v for k,v in person}
+
+# option 3
+person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
+answer = dict(person)
+
+# exercise 20: 
+
+# make sure your solution is assigned to the answer variable so the tests can work!
+# get this output: {'a': 0, 'e':0, 'i':0, 'o':0, 'u':0}
+
+# option 1
+answer = {}.fromkeys("aeiou", 0)
+
+# option 1.5
+answer = dict.fromkeys("aeiou", 0) 
+
+# option 2
+answer = {key : 0 for key in "aeiou"}
+
+# exercise 21: use chr(num) to get ASCII uppercase letter value A-Z (65-90) and create dictionary with corresponding ASCII code - letter value
+
+# make sure your solution is assigned to the answer variable so the tests can work!
+answer = {count: chr(count) for count in range(65,91)} 
