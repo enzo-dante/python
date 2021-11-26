@@ -333,3 +333,26 @@ answer = {key : 0 for key in "aeiou"}
 
 # make sure your solution is assigned to the answer variable so the tests can work!
 answer = {count: chr(count) for count in range(65,91)} 
+
+# exercise 22: tuples & sets exercises
+
+# 1 - Create a variable called numbers which is a tuple with the the values 1, 2, 3 and 4 inside.
+numbers = (1,2,3,4)
+
+# 2 - Create a variable called value which is a tuple with the the value 1 inside.
+# Hint: you can use slicing with tuples
+
+# option 1
+value = (1,)
+# option 2
+value = numbers[0:1]
+
+# 3 - Given the following variable:
+values = [10,20,30]
+# Create a variable called static_values which is the result of the values variable converted to a tuple
+static_values = tuple(values)
+
+# 4 - Given the following variable
+stuff = [1,3,1,5,2,5,1,2,5]
+# Create a variable called unique_stuff which is a set of only the unique values in the stuff list
+unique_stuff = set(stuff)
