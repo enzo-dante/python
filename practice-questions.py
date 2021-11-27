@@ -356,3 +356,55 @@ static_values = tuple(values)
 stuff = [1,3,1,5,2,5,1,2,5]
 # Create a variable called unique_stuff which is a set of only the unique values in the stuff list
 unique_stuff = set(stuff)
+
+# exercise 23: Define your make_noise function below, then call make_noise once:
+# make_noise() prints 'THE CROWD GOES WILD'
+
+def make_noise():
+    print("the crowd goes wild".upper())
+
+make_noise()
+
+# exercise 23: Define a function called generate_evens
+# it should return a list of even numbers between 1 and 50(not including 50)        
+
+# option 1: for loop
+def generate_evens():
+    even_nums = []
+    
+    for n in range(1, 50):
+        if n % 2 == 0:
+            even_nums.append(n)
+
+    return even_nums
+
+generate_evens()
+
+# option 2: list comprehension
+def generate_evens():
+    evens = [n for n in range(1,50) if n % 2 == 0]
+    return evens
+
+generate_evens()
+
+# exercise 24: without adding any new lines of code, make count_dollar_signs work as intended
+
+# original:
+    # def count_dollar_signs(word):
+    #     count = 0
+    #     for char in word:
+    #         if char == '$':
+    #             count += 1
+    #         return count
+
+# solution:
+    # The problem is that the function returns the very first time through the loop because of the way return is indented.
+    # To fix it, all we have to do is outdent the return statement so that it now only returns after the loop finishes running
+
+def count_dollar_signs(word):
+    count = 0
+    for char in word:
+        if char == '$':
+            count += 1
+    return count
+
