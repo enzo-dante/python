@@ -408,3 +408,24 @@ def count_dollar_signs(word):
             count += 1
     return count
 
+# exercise 25: redefine speak to get the same functionality but with less code
+
+# original:
+
+# def speak(animal="dog"):
+#     if animal == "pig":
+#         return "oink"
+#     elif animal == "duck":
+#          return "quack"
+#     elif animal == "cat":
+#         return "meow"
+#     elif animal == "dog":
+#         return "woof"
+#     else:
+#         return "?"
+
+# solution:
+
+def speak(animal='dog'):
+    noises = {'pig':'oink', 'duck':'quack', 'cat':'meow', 'dog':'woof'}
+    return noises.get(animal, '?')
