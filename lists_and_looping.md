@@ -153,13 +153,11 @@ for num in numbers:
 
 ex:
 
-```
 index = 0 
 
 while index < len(numbers):
     print(numbers(i))
     i += 1
-```
 
 # [].extend() = add multiple items to a list that are on the same level (not a nested list) at the end of a list
 

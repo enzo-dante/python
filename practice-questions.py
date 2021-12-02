@@ -429,3 +429,326 @@ def count_dollar_signs(word):
 def speak(animal='dog'):
     noises = {'pig':'oink', 'duck':'quack', 'cat':'meow', 'dog':'woof'}
     return noises.get(animal, '?')
+
+# exercise 26: define a function contains_purple that accepts any number of arguments;
+    # it should return True if any of the arguments are "purple" (all lower case), otherwise False
+
+purple = "Purple".lower()
+
+def contains_purple(*args):
+    if purple in args:
+        return True
+    
+    # short circuit implied else = cleaner simplified code
+    return False
+        
+# exercise 27: define a function combine_words that accepts word and any number of arguments;
+    # if prefix == True, "{prefix_value}{word}"
+    # if suffix == True, "{word}{suffix_value}"
+    # else word
+
+prefix = "prefix"
+suffix = "suffix"
+
+# Define combine_words below:
+def combine_words(word, **kwargs):
+    if prefix in kwargs:
+        # return f"{kwargs[prefix]}{word}"
+        return "{}{}".format(kwargs[prefix], word)
+    elif suffix in kwargs:
+        # return f"{word}{kwargs[suffix]}"
+        return "{}{}".format(word, kwargs[suffix])
+    
+    # short circuit implied else = cleaner simplified code
+    return word
+
+
+# exercise 28: use list/tuple unpacking to get individual values
+    # Instead of passing in a single item (the list), pass in 121 separate arguments
+
+# NO TOUCHING! =================================================================
+def count_sevens(*args):
+    return args.count(7)
+
+nums = [90,1,35,67,89,20,3,1,2,3,4,5,6,9,34,46,57,68,79,12,23,34,55,1,90,54,34,76,8,23,34,45,56,67,78,12,23,34,45,56,67,768,23,4,5,6,7,8,9,12,34,14,15,16,17,11,7,11,8,4,6,2,5,8,7,10,12,13,14,15,7,8,7,7,345,23,34,45,56,67,1,7,3,6,7,2,3,4,5,6,7,8,9,8,7,6,5,4,2,1,2,3,4,5,6,7,8,9,0,9,8,7,8,7,6,5,4,3,2,1,7]
+# NO TOUCHING! =================================================================
+
+# Write your code below:
+
+result1 = count_sevens(1,4,7)
+
+result2 = count_sevens(*nums)
+
+# exercise 29: function exercises
+
+# Define a function product that returns the product of two numbers
+
+def product(a,b):
+    return a*b
+
+# Define a function product that returns the product of two numbers
+
+'''
+return_day(1) # "Sunday"
+return_day(2) # "Monday"
+return_day(3) # "Tuesday"
+return_day(4) # "Wednesday"
+return_day(5) # "Thursday"
+return_day(6) # "Friday"
+return_day(7) # "Saturday"
+return_day(41) # None
+'''
+
+# option 1: dictionary
+def return_day(num):
+    days = {
+        1: "Sunday",
+        2: "Monday",
+        3: "Tuesday",
+        4: "Wednesday",
+        5: "Thursday",
+        6: "Friday",
+        7: "Saturday"
+    }
+    
+    if num < 1 or num > 7:
+        return None
+    elif num in days.keys():
+        return days[num]
+        
+# option 2: list
+def return_day(num):
+    days = ["Sunday","Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    # Check to see if num valid
+    if num > 0 and num <= len(days):
+        # use num - 1 because lists start at 0 
+        return days[num-1]
+    return None
+
+# option 3: error handling
+def return_day(num):
+    try:
+        return ["Sunday","Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"][num-1]
+    except IndexError as e:
+        return None    
+
+# First check to see if the list exists (if it has data in it).  If it does, return the -1 item (last item).  Otherwise, return None.
+
+'''
+last_element([1,2,3]) # 3
+last_element([]) # None
+'''
+
+def last_element(elements):
+    if not elements:
+        return None
+    
+    return elements[-1]            
+
+
+# count the number of times letter appears in string and the function should be case insensitive
+
+def single_letter_count(word,letter):
+    return word.lower().count(letter.lower())
+
+# count the number of times letter appears in string as a dictionary and the function with 1 arg
+
+'''
+multiple_letter_count("awesome") # {'a': 1, 'e': 2, 'm': 1, 'o': 1, 's': 1, 'w': 1}
+'''
+
+# solution explanation:
+'''
+For each letter in the input string,
+make the key the letter itself ("a" for example),
+the corresponding value is the result of running count() of that letter in the string.
+'''
+
+# option 1:
+def multiple_letter_count(msg):
+    return {msg[i] : msg.count(msg[i]) for i in range(0, len(msg))}
+
+# option 2:
+def multiple_letter_count(string):
+    return {letter: string.count(letter) for letter in string}    
+
+# produce the desired results below for the function list_manipulation()
+
+'''
+list_manipulation([1,2,3], "remove", "end") # 3
+list_manipulation([1,2,3], "remove", "beginning") #  1
+list_manipulation([1,2,3], "add", "beginning", 20) #  [20,1,2,3]
+list_manipulation([1,2,3], "add", "end", 30) #  [1,2,3,30]
+'''
+
+add = "add"
+remove = "remove"
+end = "end"
+beginning = "beginning"
+
+def list_manipulation(the_list, command, location, value=None):
+    if command == remove and location == end:
+        return the_list.pop()
+    elif command == remove and location == beginning:
+        return the_list.pop(0)
+    elif command == add and location == beginning:
+        # must make copy of the list before adding to it, it will return None if you try to add to argument
+        new_list = [value]
+        new_list.extend(the_list)
+        return new_list
+    elif command == add and location == end:
+        # must make copy of the list before adding to it, it will return None if you try to add to argument
+        list_copy = the_list
+        list_copy.append(value)
+        return list_copy
+
+print(list_manipulation([1,2,3], "add", "end", 30))
+
+# write a function that checks if a single argument is a palindrome
+
+'''
+is_palindrome('testing') # False
+is_palindrome('tacocat') # True
+is_palindrome('hannah') # True
+is_palindrome('robert') # False
+is_palindrome('amanaplanacanalpanama') # True
+'''
+
+# option 1:
+def is_palindrome(sentence):
+    # use slicing to check if sentence is the same backwards as it is forwards
+        # [::-1] = start at beginning: go until end: go in reverse order
+    return sentence == sentence[::-1]
+
+# option 2: advanced
+def is_palindrome(string):
+    # replace all spaces(" ") with empty strings ("")
+    stripped = string.replace(" ", "")
+    # use slicing to check if sentence is the same backwards as it is forwards
+    return stripped == stripped[::-1]    
+
+# write a function that takes two arguments to check how often arg_b is in the list arg_a
+
+'''
+frequency([1,2,3,4,4,4], 4) # 3
+frequency([True, False, True, True], False) # 1
+'''
+
+def frequency(a_list, search_term):
+    search_count = a_list.count(search_term)
+    return search_count    
+
+# write a function that multiplies all the even numbers in a list arg and returns the total
+
+'''
+multiply_even_numbers([2,3,4,5,6]) # 48
+'''
+
+def multiply_even_numbers(num_list):
+    # use list comprehension to get even numbers
+        # current n for each n in number_list
+        # return if the remaineder of current n divided by 2 = 0
+    even_nums = [n for n in num_list if n % 2 == 0]
+    # start with 1 since you are multiplying
+    total = 1
+    for n in even_nums:
+        total *= n
+
+    return total    
+
+# write a function that multiplies all the even numbers in a list arg and returns the total
+
+'''
+capitalize("tim") # "Tim"
+capitalize("matt") # "Matt"
+'''
+
+# option 1: python 3.5 and below
+# def capitalize(s):
+#     # Slicing the first character (up to index 1) and capitalizing it
+#     # Adding that to the rest of the string (from index 1 onward)
+#     return s[:1].upper() + s[1:]
+
+# option 2
+# def capitalize(s):
+#     # Slicing the first character (up to index 1) and capitalizing it
+#     # Adding that to the rest of the string (from index 1 onward)
+#    return f"{s[:1].upper()}{s[1:]}"
+
+# write a function that returns only Truthy values in a list arg
+
+'''
+compact([0,1,2,"",[], False, {}, None, "All done"]) # [1,2, "All done"]
+'''
+
+# option 1: list comprehension
+def compact(values):
+    # the current value for each value in values list
+        # return if the value is Truthy
+    return [v for v in values if v]
+
+# option 2:
+def compact(l):
+    truthy_vals = []
+    for val in l:
+        if val: truthy_vals.append(val)
+    return truthy_vals
+
+# write a function that returns a list of values where the values are present in both list arguments
+
+# option 1: list comprehension
+def intersection(list_a, list_b):
+    # the current value for each value in list_a
+        # return v if v is in list_b too
+    return [v for v in list_a if v in list_b]
+
+# option 2: 
+def intersection(l1, l2):
+    in_common = []
+    for val in l1:
+        if val in l2:
+            in_common.append(val)
+    return in_common
+
+# option 3: sets
+    # It converts the lists to sets, which removes duplicate values, and then finds the intersection of them using &.  
+def intersection(list1, list2):
+    return [val for val in set(list1) & set(list2)]
+
+# write a function that returns a list of values where the values are seperated by the callback function argument 
+
+'''
+def isEven(num):
+    return num % 2 == 0
+
+partition([1,2,3,4], isEven) # [[2,4],[1,3]]
+'''
+
+# option 1: list comprehension
+def partition(a_list, callback):
+    truthy_list = [v for v in a_list if callback(v)]
+    falsy_list = [v for v in a_list if callback(v) == False]
+    
+    final_list = []
+    final_list.append(truthy_list)
+    final_list.append(falsy_list)
+    return final_list
+
+# option 2: nested list comprehension
+def partition(lst, fn):
+    return [[val for val in lst if fn(val)], [val for val in lst if not fn(val)]]
+
+# option 3: for loop
+def partition(lst, fn):
+    trues = []
+    falses = []
+    for val in lst:
+        if fn(val):
+            trues.append(val)
+        else:
+            falses.append(val)
+    return [trues, falses]
+
+# option 4:
+def partition(l, callback):
+    return [[l.pop(l.index(i)) for i in l if callback(i)],l]

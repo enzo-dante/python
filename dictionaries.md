@@ -174,11 +174,11 @@ second.update({}) # {'a': 1, 'b': 2}
 
 # dictionary comprehension
 
-> synatx explaination = access key : value_logic for key, value in dictionary.items()
+> synatx explaination = key : value_logic for key, value in dictionary.items()
 >
 > {__:__for__in__}
 
-__iterate over keys by default, but can use dictionary.items()__
+__iterate over dictionary.keys() by default, but can use dictionary.items()__
 
 numbers = dict(a=1, b=2)
 

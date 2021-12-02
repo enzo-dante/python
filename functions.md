@@ -179,3 +179,171 @@ def full_name(first="A", last="Test"):
 
 full_name() # 'A Test'
 full_name(last="Santa", first="Bad")
+
+# *args = (pronounced star_args), a special operator we can pass to functions to gather ANY NUMBER of remaining arguments as a tuple
+
+> conventional approach is limited by number of parameters defined
+
+def sum_all_nums(num1, num2, num3):
+    return num1 + num2 + num3
+
+print(sum_all_nums(4,6,9)) # 19
+
+__*args is just another parameter that can called on-demand__
+
+def sum_all_nums(*args):
+    total = 0
+    for num in args:
+        total += num
+
+    return total
+
+print(sum_all_nums(4,6)) # (4,6)
+
+> *args has to come after other named parameters
+
+def sum_all_nums(num1, *args):
+    print(num1)
+
+    total = 0
+    for num in args:
+        total += num
+
+    return total
+
+__note that *args does not include 4, since that is the named parameter in the example which is why the total is 29__
+
+print(sum_all_nums(4,6,9,4,10)) # (4, 29)
+
+> *args can be used with conditional logic
+
+def ensure_correct_info(*args):
+    if "Colt" in args and "Steele" in args:
+        return "Welcome back Colt!"
+
+__note the use of an implied short circuit "else" with the second return which exemplifies simplified cleaner code__
+
+    return "Not sure who you are"
+
+print(ensure_correct_info()) # 'Not sure who you are'
+
+__since "Colt" and "Steel" are both present in the arguments, *args conditional logic will return 'Welcome back Colt!'__
+
+print(ensure_correct_info(1, "Colt", True, "Steele"))
+
+
+# **kwargs = (pronounced QWARGS), a special operator we can pass to functions to gather ANY NUMBER of key words as a dictionary
+
+> **kwargs represents an infinite number of arguments as key-value pairs in a dictionary
+
+def fav_colors(**kwargs):
+    print(kwargs)
+
+    for key, value in kwargs.items():
+        print(f"{key}'s favorite color is {value}")
+
+fav_colors(colt="purple", ruby="red", ethel="teal") # {"colt":"purple, "ruby":"red", "ethel":"teal}
+
+> **kwargs can be used with conditional logic
+
+david = "David"
+special = "special"
+no_idea = "Not sure who this is..."
+
+def special_greeting(**kwargs):
+    if david in kwargs and kwargs[david] == special:
+        return f"{special} greeting {david}!"
+    elif david in kwargs:
+        return f"{kwargs[david]} for you, {david}!"
+
+    return no_idea
+
+print(special_greeting(David="Hello")) # Hello for you, David!
+print(special_greeting(Bob="oh no")) # Not sure who this is...
+print(special_greeting(David="special")) # special greeting David!
+
+__per function definition, it doesn't matter to **kwargs if other key-value arguments are found__
+
+print(special_greeting(Gary="hello", David="special")) # special greeting David!
+
+# function parameter order matters
+
+> you need to use all four types of parameters when defining a function
+
+1. named parameters
+2. *args
+3. default parameters
+4. **kwargs
+
+def display_info(a, b, *args, instructor="Colt", **kwargs):
+    return [a,b,args, instructor, kwargs]
+
+print(display_info(1,2,3, last_name="Steel", job="Instructor"))
+
+> a - 1
+> b - 2
+> args - (3,) aka single item tuple
+> instructor - "Colt"
+> kwargs - {"last_name": "Steel", "job": "Instructor"}
+
+# * as an argument = tuple unpacking values
+
+> conventional approach
+
+def sum_all_values(*args):
+    total = 0
+    for n in args:
+        total += n
+    print(total)
+
+    return total
+
+sum_all_values(1,30,2,5,6) # 44
+
+> tuple unpacking to split values to pass as individual args
+
+__* as an argument works with both tuples and lists__
+
+def sum_all_values(*args):
+    print(args) # (1, 30, 2, 5, 6)
+    total = 0
+    for n in args:
+        total += n
+    print(total)
+
+    return total
+
+sum_all_values(1,30,2,5,6) # 44
+
+__adding a * = take collection and iterate over & pass as seperate argument__
+
+nums = (1,2,3,4,5,6)
+sum_all_values(*nums) # 21
+
+# ** as an argument = dictionary key-value unpacking
+
+> pass ** as an argument to unpack the key-value pairs of a dictionary
+
+def display_names(first, last):
+
+    print(f"{first} says hello to {second}")
+    return f"{first} says hello to {second}"
+
+names = {"first": "Colt", "second": "Rusty"}
+
+display_names(first="Charlie", second="Sue") # "Charlie says hello to Sue"
+
+display_names(**names) # "Colt says hello to Rusty"
+
+> **dictionary with **kwargs
+
+def add_and_multiply_nums(a,b,c, **kwargs):
+    print(a + b * c)
+    print("OTHER STUFF...")
+    print(kwargs)
+
+data = dict(a=1,b=2,c=3, name="Enzo", favorite_number=77.7)
+
+__this also shows that you can pass other named parameters with **dictionary__
+
+add_and_multiply_nums(**data, cat="Blue")
