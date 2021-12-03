@@ -752,3 +752,35 @@ def partition(lst, fn):
 # option 4:
 def partition(l, callback):
     return [[l.pop(l.index(i)) for i in l if callback(i)],l]
+
+# exercise 30: 
+def calculate(**kwargs):
+    # defined a dictionary called operation_lookup  that maps a string like "add" to an actual mathematical operation involving the values of 'first' and 'second'
+    operation_lookup = {
+        'add': kwargs.get('first', 0) + kwargs.get('second', 0),
+        'subtract': kwargs.get('first', 0) - kwargs.get('second', 0),
+        'divide': kwargs.get('first', 0) / kwargs.get('second', 0),
+        'multiply': kwargs.get('first', 0) * kwargs.get('second', 0)
+    }
+    # create a boolean variable called is_float, which is True if kwargs contains 'make_float', otherwise it's false
+    is_float = kwargs.get('make_float', False)
+    # lookup the correct value from the operation_lookup dict using the operation that was specified in kwargs
+    operation_value = operation_lookup[kwargs.get('operation', '')]
+    # return a string containing either the specified message or the default 'The result is' string.  
+    if is_float:
+        final = "{} {}".format(kwargs.get('message','The result is'), float(operation_value))
+    else:
+        final = "{} {}".format(kwargs.get('message','The result is'), int(operation_value))
+    return final    
+
+# exercise 31: write a lambda that accepts a single number and cubes it. Save it in a variable called cube.
+
+cube = lambda n: n**3
+
+# exercise 32:
+
+# define the function decrement_list that accepts a list of nums and decrements each value by 1
+    # hint: use a map that returns a list
+
+def decrement_list(nums):
+    return list(map(lambda n: n-1, nums))
