@@ -777,10 +777,25 @@ def calculate(**kwargs):
 
 cube = lambda n: n**3
 
-# exercise 32:
-
-# define the function decrement_list that accepts a list of nums and decrements each value by 1
+# exercise 32: define the function decrement_list that accepts a list of nums and decrements each value by 1
     # hint: use a map that returns a list
 
 def decrement_list(nums):
     return list(map(lambda n: n-1, nums))
+
+# exercise 32: define the function using filter that takes a single list parameter and removes all the negatives from a list and returns a list
+
+def remove_negatives(nums):
+    positives = list(filter(lambda n : n >= 0, nums))
+    return positives
+
+# exercise 32: Implement your is_all_strings function below that checks that list of values only contains str data type
+
+def is_all_strings(collection):
+    return all([type(s) == str for s in collection])    
+
+# exercise 33: define extremes function that takes 1 arg and returns a tuple of min & max values
+    # hint: tuples() only takes 1 arg
+
+def extremes(values):
+    return tuple([min(values), max(values)])
