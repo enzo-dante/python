@@ -799,3 +799,38 @@ def is_all_strings(collection):
 
 def extremes(values):
     return tuple([min(values), max(values)])
+
+# exercise 34: write function that gets number with largest magnitude (farthest away from 0) from list
+def max_magnitude(nums):
+    abs_nums = [abs(n) for n in nums]
+    return max(abs_nums)
+
+# exercise 35: write sum_even_values function that accepts any number of arguments and if not arg list is not False, returns sum of list values
+
+'''
+sum_even_values(1,2,3,4,5,6) # 12
+sum_even_values(4,2,1,10) # 16
+sum_even_values(1) # 0
+'''
+
+def sum_even_values(*args):
+    evens = [n for n in args if n % 2 == 0]
+    if not evens: return 0
+    
+    return sum(evens)
+
+# exercise 36: write sum_floats function that accepts any number of arguments that must be floats
+    # if not arg list is not False, returns sum of list values else 0
+
+'''
+sum_floats(1.5, 2.4, 'awesome', [], 1) # 3.9
+sum_floats(1,2,3,4,5) # 0
+'''
+
+def sum_floats(*args):
+    float_nums = [f for f in args if type(f) == float]
+    if sum(float_nums) is False:
+        return 0
+    
+    return sum(float_nums)
+

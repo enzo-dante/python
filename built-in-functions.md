@@ -201,3 +201,70 @@ list(reversed(nums)) # [1,2,3,4]
 
 for char in "Hello world":
     print(char) # "dlrow olleh"
+
+# len()
+
+> return length of argument
+>
+> in the background, len() is actually calling object.__len__()
+
+len("test") # 4
+
+# abs()
+
+> return the absolute value of an integer or floating point number
+
+abs(-5) # 5
+
+# math.fabs()
+
+> return the absolute value of an integer or floating point number, but treats the arg as a float
+
+math.fabs(-5) # 5.0
+
+# sum(iterable, optional_start)
+
+> takes an iterable and optional start and returns the sum of start and the items of an iterable from let to right and returs the total
+
+__default start is 0__
+
+sum([1,2,3]) # 6
+
+sum([1,2,3], 10) # 16
+
+# round(number, digit_percision)
+
+> return rounded to ndigits precision after the decimal point, if ndigits is omitted or is None, it returns the nearest integer to its input
+
+round(10.2) # 10
+round(10.2, None) # 10
+
+round(6.8) # 7
+
+round(1.212121, 2) # 1.21
+
+# zip()
+
+> pairs up two numbers from two different lists in sequential order respective of index position in each list
+
+__if lists have different length, zip will stop once there are no more pairs to zip__
+
+nums1 = [1,2,3]
+nums2 = [5,6]
+
+list(zip(nums1, nums2)) # [(1,5), (2,6)]
+
+__order matter in respective list, left to right__
+
+first_zip = zip([1,2,3], [4,5,6]) # returns zip object
+
+__convert zip object into a list or dictionary__
+
+list(first_zip) # [(1,4), (2,5), (3,6)] 
+dict(first_zip) # {1:4, 2:5, 3:6}
+
+> use * operator on zipped object to unpack a zipped list (essentially reverse zip)
+
+my_list = [(0,1), (5,2), (6, 4)]
+
+list(zip(*my_list)) # [(0,5, 6), (1,2,4)]
