@@ -834,3 +834,76 @@ def sum_floats(*args):
     
     return sum(float_nums)
 
+# exercise 37: use zip to get each student's highest grade
+
+'''
+data is respective to each other per position
+'''
+
+midterms = [80,91,78]
+finals = [98,89,53]
+students = ["dan", "ang", "kate"]
+
+# option 1: list comprehension with zip()
+final_grades = [max(pair) for pair in zip(midterms, finals)]
+print(final_grades)
+
+# option 2: dictionary comprehension with zip()
+final_grades = {tup[0] : max(tup[1], tup[2]) for tup in zip(midterms, finals)}
+print(final_grades) # {"dan": 98, "ang": 91, "kate": 78}
+
+# option 3: map lambda with zip()
+scores = list(
+    map(
+        lambda pair: max(pair),
+        zip(midterms, finals)
+    )
+)
+
+student_scores = dict(
+    zip(
+        students,
+        scores
+    )
+)
+
+print(scores) # {"dan": 98, "ang": 91, "kate": 78}
+
+# exercise 38: use zip to get interleave words 
+    # interleave('hi', 'no') = "hnio"
+
+# option 1:
+def interleave(word1, word2):
+    w1_list = [letter for letter in word1]
+    w2_list = [letter for letter in word2]
+    z_list = list(zip(w1_list, w2_list))
+    i_word = ""
+    for t in z_list:
+        i_word += "".join(t)
+    
+    # .strip() = removes whitespace
+    return i_word.strip()
+
+# option 2:
+def interleave(str1,str2):
+    # Zip the two strings together, which returns a list of tuples like: [('h','n'), ('i','o')] 
+    # First join the individual tuples into strings, which is what the first
+    # Finally, join all the remaining strings into one large string
+
+    return ''.join(''.join(x) for x in (zip(str1,str2)))
+    
+# exercise 39: write function that accepts a list filters out numbers divisible by 4 and returns a new list with each value tripled
+
+'''
+triple_and_filter([1,2,3,4]) # [12]
+triple_and_filter([6,8,10,12]) # [24,36]
+'''
+
+# option 1: filter(), lambdas, and .map()
+def triple_and_filter(lst):
+    return list(filter(lambda x: x % 4 == 0, map(lambda x: x*3, lst)))
+
+# option 2: list comprhension
+def triple_and_filter(nums):
+    div_list = [n for n in nums if n % 4 == 0]
+    return [value*3 for value in div_list]

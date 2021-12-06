@@ -245,14 +245,14 @@ round(1.212121, 2) # 1.21
 
 # zip()
 
-> pairs up two numbers from two different lists in sequential order respective of index position in each list
+> pairs up two values from two different lists in sequential order respective of index position in each list
 
 __if lists have different length, zip will stop once there are no more pairs to zip__
 
-nums1 = [1,2,3]
-nums2 = [5,6]
+nums1 = [1,2,3,4]
+nums2 = [5,6,7]
 
-list(zip(nums1, nums2)) # [(1,5), (2,6)]
+list(zip(nums1, nums2)) # [(1,5), (2,6), (3,7)]
 
 __order matter in respective list, left to right__
 
