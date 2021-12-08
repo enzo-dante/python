@@ -942,4 +942,56 @@ def divide(num1, num2):
 
     # return result (commented out to showcase else block)
 
+# exercise 41: Use math.sqrt() to find the square root of 15129 and save it to variable called answer:
+
+import math
+
+answer = math.sqrt(15129)
+print(answer)
+
+# exercise 42: using keyword module, write a function that takes any number of str arguments and returns True/False based on if any of the values are True
+    # google search keyword module
+
+from keyword import iskeyword as ikw
+
+def contains_keyword(*args):
+    
+    # keywords = []
+    # for a in args:
+        
+    #     if ikw(a):
+    #         keywords.append(True)
+    #     else:
+    #         keywords.append(False)
+    
+    keywords = [ikw(a) for a in args]
+    
+    if any(keywords):
+        return True
+    
+    return False
+
+# exercise 42: pretend you are using two separate files exercise.py and helpers.py
+
+# in the helpers.py, define a function in here called lucky_number that always returns 37
+def lucky_number():
+    return 37
+    
+# in the exercise.py, import your helpers module here.
+    # Do not use the 'from' or 'as' syntax, just use a plain old 'import'
+    # call the lucky_number function from your helpers module, and save the result to a variable called num
+
+import helpers
+
+num = helpers.lucky_number()
+
+# exercise 43: What's the difference between these two import statements?
+
+'''
+1. import random 
+2. from random import * 
+'''
+
+# once imports everything as an attribute on random, the other imports everything into the current namespace
+
 
