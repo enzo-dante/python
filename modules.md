@@ -59,3 +59,21 @@ file2.py
 import file1
 
 file1.test() # 'test some stuff'
+
+# external modules
+
+> external modules that exist online on a server can be installed via pip
+>
+> python3 -m pip install {package_name}
+
+ex:
+
+in terminal, execute: python3 -m pip install termcolor
+
+import termcolor
+
+text = termcolor.colored("hi there".upper(), color="magenta", on_color="on_green", attrs=["blink"])
+print(text)
+
+__help(termcolor) = help() gets documentation for arg package__
+
