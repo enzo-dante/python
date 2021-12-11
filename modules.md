@@ -62,7 +62,7 @@ file1.test() # 'test some stuff'
 
 # external modules
 
-> external modules that exist online on a server can be installed via pip
+> external modules that exist online on a server can be installed via pip (package management system for python that is included with python 3.4+)
 >
 > python3 -m pip install {package_name}
 
@@ -76,4 +76,21 @@ text = termcolor.colored("hi there".upper(), color="magenta", on_color="on_green
 print(text)
 
 __help(termcolor) = help() gets documentation for arg package__
+
+# autopep8 terminal command
+
+> python3 -m pip install autopep8
+
+__autopep8 is a terminal linter command that will remove whitespace and simplify boolean logic__
+
+autopep8 --in-place -a --aggressive {file_name}
+
+# __name__
+
+> the value of the __name__ variable in a python file will be equal to __main__ when you run the file directly, otherwise it would be the file name
+
+__ignorning code with __name__ when you want to prevent a block of code from running on an import__
+
+if __name__ == "__main__":
+    # this code will only run
 
