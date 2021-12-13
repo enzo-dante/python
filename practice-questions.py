@@ -1021,3 +1021,12 @@ def print_art(msg, color):
 
 print_art(message, color)
 
+# exercise 44: Define the Comment class below with username, text, and likes that has a default of 0:
+
+class Comment:
+    
+    def __init__(self, username, text, likes=0):
+        self.username = username
+        self.text = text
+        self.likes = likes
+
