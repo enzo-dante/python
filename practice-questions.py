@@ -1030,3 +1030,41 @@ class Comment:
         self.text = text
         self.likes = likes
 
+# exercise 45: Define the BankAccount class that has an owner and balance with a get_balance, withdraw, and deposit method
+
+class BankAccount:
+ 
+    def __init__(self, name):
+        self.owner = name
+        self.balance = 0.0
+ 
+    def getBalance(self):
+        return self.balance
+ 
+    def withdraw(self, amount):
+        self.balance -= amount
+        return self.balance
+ 
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+# exercise 46: Define the Pet class that only allows a set number of species 
+
+class Pet:
+    
+    allowed_species = ["cat", "dog", "fish", "rat"]
+
+    def __init__(self, name, species):
+        if species not in Pet.allowed_species:
+            raise ValueError(f"You cannot have a {species} pet")
+        self.name = name
+        self.species = species
+
+    def set_species(self, species):
+        if species not in Pet.allowed_species:
+            raise ValueError(f"You cannot have a {species} pet")
+        self.species = species
+
+cat = Pet("blue", "cat")
+dog = Pet("stone", "dog")
