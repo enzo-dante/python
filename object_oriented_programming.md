@@ -35,7 +35,7 @@ __classes can have methods (which are object functions) associated with them and
         return f"{a} gallons of gas was added to {self.model}"
 
     def get_model_initials(self):
-        return f"{self.model[0]}{self.year[2:]}" 
+        return f"{self.model[0]}{self.year[2:]}"
 
     def is_old(self):
         return self.year >= 65
@@ -66,10 +66,10 @@ print(Vehicle.active_users)
 
 # class attributes
 
-> class attributes are defined once and placed at the top of the class object and can be used for validation
+> class attributes/variables are defined once and placed at the top of the class object and can be used for validation
 
 class Pet:
-    
+
     allowed_species = ["cat", "dog", "fish", "rat"]
 
     def __init__(self, name, species):
@@ -85,3 +85,62 @@ class Pet:
 
 cat = Pet("blue", "cat")
 dog = Pet("stone", "dog")
+
+# class methods
+
+> class methods are methods (that use the @classmethod decorator) that are only concerned with the class itself and not the instances
+>
+> rare compared to instance methods
+
+class Person:
+
+    thought = "I am alive"
+
+    def __init__(self, name):
+        self.name = name
+
+__conventional to use cls (class and not instance of the class) for class method arguments__
+
+    @classmethod
+    def display_thought(cls):
+        return cls.thought
+
+print(Person.display_thought())
+
+> the most common use case for class method is to handle csv (comma-seperated-values)
+
+dict.fromkeys(["name", "age"], "unknown") # {"name": "unknown", "age": "unknown"}
+
+class User:
+
+    active_users = 0
+
+    def __init__(self, first, last, age):
+        self.first = first
+        self.last = last
+        self.age = age
+        User.active_users += 1
+
+> __repr__ is a dunder method that allows for formatting a class into a string representation
+
+    def __repr__(self):
+        return f"{self.first} is {self.age}"
+
+    @classmethod
+    def from_string(cls, data_string):
+        first, last, age = data_string.split(",")
+        return cls(first, last, int(age))
+
+    def get_full_name(self):
+        return f"{self.first} {self.last}"
+
+tom = User.from_string("Tom,Jones,89")
+print(tom.first)
+print(tom.get_full_name()) # "Tom Jones"
+
+> __repr__ displaying the respective dunder method that shows a string instead of the class object
+
+kate = User("kate", "vernon", 18)
+print(str(kate)) # 'kate is 18'
+
+# inheritance
