@@ -1068,3 +1068,367 @@ class Pet:
 
 cat = Pet("blue", "cat")
 dog = Pet("stone", "dog")
+
+# exercise 47: use OOP inheritance to create instances of User class and Moderator class
+    # moderators are essentially Users with some additional functionality
+
+class User:
+    # class variable
+    active_users = 0
+    
+    @classmethod
+    def display_active_users(cls):
+        return f"There are currently {cls.active_users} active users"
+    
+    @classmethod
+    def from_string(cls, data_str):
+        first, last, age = data_str.split(",")
+        return cls(first, last, int(age))
+    
+    def __init__(self, first, last, age):
+        self.first = first
+        self.last = last
+        self.age = age
+
+        # for each instance of User, increment active_users class variable
+        User.active_users += 1
+    
+    def logout(self):
+        User.active_users -= 1
+        return f"{self.first} has logged out"
+        
+    def full_name(self):
+        return f"{self.first} {self.last}"
+    
+    def initials(self):
+        return f"{self.first[0]}.{self.last[0]}."
+    
+    def likes(self, thing):
+        return f"{self.first} likes {thing}"
+    
+    def is_senior(self):
+        return self.age >= 65
+    
+    def birthday(self):
+        return f"{self.age}th, {self.first}"
+    
+class Moderator(User):
+    # class variable
+    total_moderators = 0
+
+    @classmethod
+    def display_active_moderators(cls):
+        return f"There are currently {cls.total_moderators} active moderators" 
+    
+    def __init__(self, first, last, age, community):
+        # since a User class is being created for every moderator, active_users class variable is automatically incremented for each moderator with super() inheritance
+        super().__init__(first, last, age)
+        self.community = community
+
+        Moderator.total_moderators += 1
+
+    def remove_post(self):
+        # even though full_name() is defined in User parent class, Moderator child class still has access
+        return f"{self.full_name()} removed a post from {self.community}."
+    
+print(User.display_active_users())
+
+user_1 = User("Tom", "Garcia", 35)
+print(User.display_active_users())
+
+jay = Moderator("Jay", "Beal", 42, "Piano Community")
+ben = Moderator("Ben", "Steel", 61, "Piano Community")
+print(jay.full_name())
+print(jay.community)
+print(User.display_active_users())
+print(Moderator.display_active_moderators())
+
+
+# exercise 48: trace path of multiple inheritance
+
+class Aquatic:
+    def __init__(self, name):
+        print("Aquatic init")
+        self.name = name
+    
+    def swim(self):
+        return f"{self.name} is swimming" 
+    
+    def greet(self):
+        return f"I am {self.name} of the sea!"
+    
+class Ambulatory:
+    def __init__(self, name):
+        print("Ambulatory init")
+        self.name = name
+    
+    def walk(self):
+        return f"{self.name} is walking"
+    
+    def greet(self):
+        return f"I am {self.name} of the land!"
+
+# since Ambulatory is 1st class argument, it takes precedence in inheritance order
+class Penguin(Ambulatory, Aquatic):
+    def __init__(self, name):
+        print("Penguin init")
+
+        # when using multiple inheritance, its better to be explicit with the parent class 
+        Ambulatory.__init__(self, name=name)
+        Aquatic.__init__(self, name=name)
+
+        # super().__init__(name=name)
+
+
+jaws = Aquatic("Jaws")
+lassie = Ambulatory("Lassie")
+captain_hook = Penguin("Captain Hook")
+
+print(isinstance(captain_hook, Penguin)) # True
+print(isinstance(captain_hook, Aquatic)) # True
+print(isinstance(captain_hook, Ambulatory)) # True
+
+print(captain_hook.swim())
+print(captain_hook.walk())
+
+# .greet() inherits from Ambulatory not Aquatic class due to class argument inheritance order
+print(captain_hook.greet())
+
+# exercise 48: Define your Mother, Father, Child classes that shows MRO (Method Resolution Order) and Mother is prioritized below:
+        
+class Mother:
+    
+    # def __init__(self, eye_color, hair_color, hair_type):
+    #     super().__init__(eye_color, hair_color, hair_type)
+        
+    def __init__(self, eye_color="brown", hair_color="dark brown", hair_type="curly"):
+        self.eye_color = eye_color
+        self.hair_color = hair_color
+        self.hair_type = hair_type
+        
+class Father:
+    
+    # def __init__(self, eye_color, hair_color, hair_type):
+    #     super().__init__(eye_color, hair_color, hair_type)
+        
+    def __init__(self, eye_color="blue", hair_color="blond", hair_type="straight"):
+        self.eye_color = eye_color
+        self.hair_color = hair_color
+        self.hair_type = hair_type
+
+class Child(Mother, Father):
+    pass
+    # def __init__(self, eye_color, hair_color, hair_type):
+    #     Mother.__init__(eye_color=eye_color, hair_color=hair_color, hair_type=hair_type)
+    #     Father.__init__(eye_color=eye_color, hair_color=hair_color, hair_type=hair_type)
+
+# exercise 49: create a class that demonstrates overriding built-in methods for a dictionary 
+    # magic built-in methods can be found in documentation
+    # override __setitem__(), __repr__(), __missing__(), __contains__()
+
+class GrumpyDict(dict):
+    # we don't need to define our own __init__() because we can inherit the existing dict__init__()
+    
+    def __repr__(self):
+        # return f"none of your business".upper()
+        print("none of your business".upper())
+        return super().__repr__()
+    
+    def __missing__(self, key):
+        return f"you want a {key} that isn't here"
+
+    def __setitem__(self, key, value):
+        print("you want to change dictionary?".upper())
+        print("fine!".upper())
+        super().__setitem__(key, value)
+        
+    def __contains__(self, item):
+        print("nope it isn't here".upper())
+        return False
+
+data = GrumpyDict({"first": "Tom", "animal": "cat"})
+print(data)
+data["city"] = "Tokyo"
+print(data['city'])
+
+"city" in data # __contains__ overridden and will return False despite key being there
+
+# exercise 48: Define the generator function week  which has a list of days.
+    # Iterate over the days and yield each day. After "Sunday", the generator is exhausted. It does not start over.
+
+# option 1: 
+def week():
+    days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ]
+    for day in days:
+        yield day
+
+# option 2:
+'''
+days = week()
+next(days) # 'Monday'
+next(days) # 'Tuesday'
+next(days) # 'Wednesday'
+next(days) # 'Thursday'
+next(days) # 'Friday'
+next(days) # 'Saturday'
+next(days) # 'Sunday'
+next(days) # StopIteration
+'''
+
+def week():
+    day = 1
+    while day <= 7:
+        yield "Monday"
+        day += day
+        yield "Tuesday"
+        day += day
+        yield "Wednesday"
+        day += day
+        yield "Thursday"
+        day += day
+        yield "Friday"
+        day += day
+        yield "Saturday"
+        day += day
+        yield "Sunday"
+        day += day
+    
+# exercise 48: yes_or_no loops forever (while True) and yields answer, and then toggles answer from yes to no, or vice versa.
+
+# option 1:
+def yes_or_no():
+    answer = "yes"
+    while True:
+        yield answer
+        answer = "no" if answer == "yes" else "yes"
+    
+# option 2: inferior method
+
+'''
+gen = yes_or_no()
+next(gen) # 'yes'
+next(gen) # 'no'
+next(gen) # 'yes'
+next(gen) # 'no'
+'''
+
+def inner_yes_or_no():
+    count = 0
+    
+    while count <= 3:
+        yield "yes"
+        yield "no"
+        yield "yes"
+        yield "no"
+        
+def yes_or_no():
+    return inner_yes_or_no()
+    
+# exercise 49: make_song takes a verses count and beverage parameter and returns a generator
+    # the default verse count = 99 and the default bevergage is soda
+
+'''
+kombucha_song = make_song(5, "kombucha")
+next(kombucha_song) # '5 bottles of kombucha on the wall.'
+next(kombucha_song) # '4 bottles of kombucha on the wall.'
+next(kombucha_song) # '3 bottles of kombucha on the wall.'
+next(kombucha_song) # '2 bottles of kombucha on the wall.'
+next(kombucha_song) # 'Only 1 bottle of kombucha left!'
+next(kombucha_song) # 'No more kombucha!'
+next(kombucha_song) # StopIteration
+
+default_song = make_song()
+next(default_song) # '99 bottles of soda on the wall.'
+'''
+
+def make_song(verses=99, beverage="soda"):
+    
+    # list that has number of specified verses, goes until -1, and starts at the end and goes backwards
+    for num in range(verses, -1, -1):
+        if num == 0:
+            yield 'No more {}!'.format(beverage)
+        elif num == 1:
+            yield 'Only {} bottle of {} left!'.format(verses, beverage)
+        else:
+            yield '{} bottles of {} on the wall.'.format(verses, beverage)
+            
+        verses -= 1
+
+# exercise 50: show how using generators versus a list saves computational processing when generating a fibonacci sequence
+    # WARNING: using lists is generally superior unless you only need 1 variable at a time
+    # fib sequence = [0,1,1,2,3,5,8,13]
+        # to get next number, add previous 2 = a, b , a+b, b + (a+b)...
+
+def fib_list(max):
+    nums = []
+    a, b = 0, 1
+
+    while len(nums) < max:
+        nums.append(b)
+        # to get next number, add previous 2 
+        a, b = b, a+b
+    return nums
+
+def fib_generator(max):
+    x = 0
+    y = 1
+    
+    count = 0
+    while count < max:
+        # to get next number, add previous 2 
+        x, y = y, x+y
+        yield x
+        count += 1
+
+for n in fib_list(1000000):
+    print(n)
+
+# exercise 51: produce the below for get_multiples()
+
+'''
+evens = get_multiples(2, 3)
+next(evens) # 2
+next(evens) # 4
+next(evens) # 6
+next(evens) # StopIteration
+
+default_multiples = get_multiples()
+list(default_multiples) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+'''
+
+def get_multiples(number=1, count=10):
+    next_number = number
+    
+    while count > 0:
+        yield next_number
+        count -= 1
+        next_number += number
+        
+# exercise 52: produce the below for get_unlimited_multiples()
+
+'''
+sevens = get_unlimited_multiples(7)
+[next(sevens) for i in range(15)] 
+# [7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105]
+
+ones = get_unlimited_multiples()
+[next(ones) for i in range(20)]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+'''
+
+# !We just loop forever (while True) instead of checking to see how many times we've looped.
+
+def get_unlimited_multiples(number=1):
+    
+    next_number = number
+    while True:
+        yield next_number
+        next_number += number

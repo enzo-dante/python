@@ -70,6 +70,17 @@ class Deck:
         #     for value in values:
         #         self.cards.append(Card(suit, value))
 
+    def __iter__(self):
+        # iter() = returns an iterable object
+        # return iter(self.cards)
+
+        # generator method
+        for card in self.cards:
+            yield card
+
+for card in Deck:
+    print(card)
+
     def __repr__(self):
         # return f"Deck of {self.count()} cards"
         return "Deck of {} cards".format(self.count())
@@ -111,3 +122,4 @@ class Deck:
 
 
 deck = Deck()
+deck.shuffle_deck()

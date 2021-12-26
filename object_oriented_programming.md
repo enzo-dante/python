@@ -144,3 +144,285 @@ kate = User("kate", "vernon", 18)
 print(str(kate)) # 'kate is 18'
 
 # inheritance
+
+> inheritance is the ability to define a class which inherits from another class, the parent/base class
+
+__in python, inheritance works by assessing the parent class as an argument to the definition of a child class__
+
+class Animal:
+
+    def make_sound(self, sound):
+        print(sound)
+
+    cool = True
+
+class Cat(Animal):
+    pass
+
+gandalf = Cat()
+gandalf.make_sound("meow") # meow
+gandalf.cool # True
+
+__isinstance(variable, data_type) will verify class hierarchy__
+
+isinstance(gandalf, Cat) # True
+isinstance(gandalf, Animal) # True
+isinstance(gandalf, object) # True
+
+# @property
+
+> use @property decorator to define properties that work as setters and getters
+
+__use @property decorator to set up a setter and getter age and fullname properties for human class__
+
+class Human:
+    def __init__(self, first, last, age):
+        self.first = first
+        self.last = last
+        self._age = age
+
+    @property # getter
+    def age(self):
+        return self._age
+
+    @age.setter # setter are helpful for value validation
+    def age(self, value):
+        if value >= 0:
+            self._age = value
+        else:
+            raise ValueError("age cannot be negative")
+
+    @property
+    def full_name(self):
+        return f"{self.first} {self.last}"
+
+    @full_name.setter
+    def full_name(self, value):
+        if value:
+            self.first, self.last = value.strip().split(" ")
+        else:
+            raise ValueError("full name must be a valid str")
+
+enzo = Human("Enzo", "Dante", 49)
+
+__when getting properties, you don't need paranthesis even though its a method__
+
+print(enzo.age) # 49
+
+> the @property is interfacing with the "private" variable self._age -- remember that python technically doesn't manage public and private access
+
+enzo.age = 21
+print(enzo.age) # 21
+    print(enzo.full_name) # Enzo Dante
+
+# super()
+
+> avoid duplication by using inheritance with super()
+
+class Animal:
+
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+
+    def __repr__(self):
+        return f"{self.name} is a {self.species}"
+
+    def make_sound(self, sound):
+        print(f"this animal says {sound}")
+
+class Cat(Animal):
+
+    def __init__(self, name, species, breed, toy):
+
+__superior option: use super() for inheritance which doesn't require self in definition and can use default parameters__
+        super().__init__(name, species="Cat")
+
+__inferior option: use parent class init with child class init__
+        Animal.__init__(self, name, species)
+
+        self.breed = breed
+        self.toy = toy
+
+    def play(self):
+        return f"{self.name} plays with {self.toy}"
+
+blue = Cat("Blue", "Scottish Fold", "String")
+print(blue.play()) # Blue plays with String
+
+# multiple inheritance
+
+> multiple inheritance generally makes tracing Method Resolution Order (MRO) confusing between classes
+>
+> the application of multiple inheritance is rare in production but helps with understanding how python works
+
+class Aquatic:
+    def __init__(self, name):
+        print("Aquatic init")
+        self.name = name
+
+    def swim(self):
+        return f"{self.name} is swimming"
+
+    def greet(self):
+        return f"I am {self.name} of the sea!"
+
+class Ambulatory:
+    def __init__(self, name):
+        print("Ambulatory init")
+        self.name = name
+
+    def walk(self):
+        return f"{self.name} is walking"
+
+    def greet(self):
+        return f"I am {self.name} of the land!"
+
+class Penguin(Ambulatory, Aquatic):
+    # since Ambulatory is 1st class argument, it takes precedence in inheritance order
+
+    def __init__(self, name):
+        print("Penguin init")
+
+        # when using multiple inheritance, its better to be explicit with the parent class
+        Ambulatory.__init__(self, name=name)
+        Aquatic.__init__(self, name=name)
+
+        # super().__init__(name=name)
+
+jaws = Aquatic("Jaws")
+lassie = Ambulatory("Lassie")
+captain_hook = Penguin("Captain Hook")
+
+print(isinstance(captain_hook, Penguin)) # True
+print(isinstance(captain_hook, Aquatic)) # True
+print(isinstance(captain_hook, Ambulatory)) # True
+
+print(captain_hook.swim())
+print(captain_hook.walk())
+
+    # .greet() inherits from Ambulatory not Aquatic class due to class argument inheritance order
+print(captain_hook.greet())
+
+> method resolution order (MRO) is the order in which Python will look for methods on instances of that class aka a hierarchy, which is how super() chooses it's order if there methods with the same name
+
+class A:
+    def do_something(self):
+        print("Method Defined In: A")
+
+class B(A):
+    def do_something(self):
+        print("Method Defined In: B")
+
+class C(C):
+    def do_something(self):
+        print("Method Defined In: C")
+
+class D(B,C):
+    def do_something(self):
+        print("Method Defined In: D")
+
+thing = D()
+thing.do_something()
+
+__ambiguous inheritance between classes, but order is D, B, C, A, Object__
+
+__help(D) will print out mro for class D__
+
+help(D)
+
+>    A
+>   / \
+>  B   C
+>   \ /
+>    D
+
+# polymorphism
+
+> a key principle in OOP is the idea of polymorphism - an object can take on many (poly) forms (morph)
+
+__application 1: the same method works in a similar way for different classes__
+
+> "method overriding" is a common example where a parent method is overridden by the child method of the same name
+
+class Animal:
+    def speak(self):
+        raise NotImplementError("Subclass needs to implement this method")
+
+class Dog(Animal):
+    def speak(self):
+        return "woof"
+
+class Cat(Animal):
+    def speak(self):
+        return "meow"
+
+class Human(Animal):
+    pass
+
+Cat.speak() # 'meow'
+Dog.speak() # 'woof'
+Human.speak() 'Subclass needs to implement this method'
+
+__application 2: the same operation works for different kinds of objects__
+
+sample_list = [1,2,3]
+sample_tuple = (1,2,3)
+sample_string = "awesome"
+
+len(sample_list)
+len(sample_tuple)
+len(sample_string)
+
+# built-in magic dunder methods can be overridden
+
+> __add__(self, var) = "+" operator
+
+8 + 2 = 10
+8 + "2" = 82
+
+> __len__(self, var) = len()
+
+test = [1,2,3]
+len(test) # 3
+
+__the below Human class demonstrates how a lot of built-in dunder methods can be overridden manually__
+
+from copy import copy
+
+class Human:
+
+    def __init__(self, first, last,age):
+        self.first = first
+        self.last = last
+        self.age = age
+
+    def __repr__(self):
+        return f"Human named {self.first} {self.last} with age {self.age}"
+
+    def __len__(self):
+        return self.age
+
+    def __add__(self, other):
+        if isinstance(other, Human):
+            return Human(first="newborn", last=self.last, age=0)
+        
+        raise TypeError("You cannot add that!)
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            return [copy(self) for i in range(other)]
+        
+        raise TypeError("You cannot multiply")
+
+j = Human("Jenny", "Owen", 47)
+k = Human("Kenny", "Richards", 91)
+print(j)
+
+print(j + k)
+print(len(j)) # 47 instead of a TypeError
+
+print(j * 2) # "YOU ARE MULTIPLYING HUMANS"
+
+> overriding a dictionary
+
