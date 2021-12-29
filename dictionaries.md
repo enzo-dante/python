@@ -104,7 +104,7 @@ person_copy is person # False because each dict is alloted to unique space in me
 
 person_copy == person # True because == tests for equality of values
 
-> dictionary.fromkeys() = creates key-value pairs from comma seperated values
+> dictionary.fromkeys() = creates key-value pairs from comma separated values
 
 __used for setting default/initial state dictionaries__
 

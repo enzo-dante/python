@@ -126,7 +126,7 @@ for n in sounds:
 
 # Create a list called instructor
 instructor = []
-# Add the following strings to the instructor list 
+# Add the following strings to the instructor list
     # "Colt"
     # "Blue"
     # "Lisa"
@@ -175,7 +175,7 @@ for name in ["Elie", "Tim", "Matt"]:
 
 # exercise 10: get numbers divisible by 12 in range 1-100
 
-answer = [val for val in range(1,101) if val % 12 == 0] 
+answer = [val for val in range(1,101) if val % 12 == 0]
 
 # exercise 10 for loop alt solution
 
@@ -183,7 +183,7 @@ numbers = []
 
 for n in range(1, 101):
     numbers.append(n)
-    
+
 answer = [n for n in numbers if n % 12 == 0]
 
 # exercise 11: get string excluding vowels from "amazing"
@@ -201,7 +201,7 @@ answer = [[nested_list for nested_list in range(0,3)] for nested_list in range(0
 
 # exercise 13: write out 10x10 nested list and each inner list holds numbers 0-10
 
-answer = [[i for i in range(0,10)] for num in range(0,10)] 
+answer = [[i for i in range(0,10)] for num in range(0,10)]
 
 # exercise 14: print out artist full name using dictionary
 
@@ -211,16 +211,16 @@ artist = {
     "first": "Neil",
     "last": "Young",
 }
- 
+
 full_name = f"{artist['first']} {artist['last']}"
 
-# inferior option 2: "{}".format() 
+# inferior option 2: "{}".format()
 
 artist = {
     "first": "Neil",
     "last": "Young",
 }
- 
+
 full_name = "{} {}".format(artist["first"],artist["last"])
 
 # exercise 15: use a loop to add together all the donations and store the resulting number in a variable called total_donations
@@ -267,7 +267,7 @@ else:
 # exercise 17: use the game_properties list and dict.fromkeys() to generate a dictionary with all values set to 0. Save the result to a variable called initial_game_state
 
 #DO NOT TOUCH game_properties!
-game_properties = ["current_score", "high_score", "number_of_lives", "items_in_inventory", "power_ups", "ammo", "enemies_on_screen", "enemy_kills", "enemy_kill_streaks", "minutes_played", "notifications", "achievements"] 
+game_properties = ["current_score", "high_score", "number_of_lives", "items_in_inventory", "power_ups", "ammo", "enemies_on_screen", "enemy_kills", "enemy_kill_streaks", "minutes_played", "notifications", "achievements"]
 
 initial_game_state = {}.fromkeys(game_properties, 0)
 
@@ -299,9 +299,9 @@ answer = {list1[i]: list2[i] for i in range(0,len(list1))}
 
 person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
 
-# exercise 19: 
+# exercise 19:
 
-# use the person variable in your answer to get this output: 
+# use the person variable in your answer to get this output:
 #   {'name': 'Jared', 'job': 'Musician', 'city': 'Bern'}
 
 # option 1
@@ -315,7 +315,7 @@ answer = {k:v for k,v in person}
 person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
 answer = dict(person)
 
-# exercise 20: 
+# exercise 20:
 
 # make sure your solution is assigned to the answer variable so the tests can work!
 # get this output: {'a': 0, 'e':0, 'i':0, 'o':0, 'u':0}
@@ -324,7 +324,7 @@ answer = dict(person)
 answer = {}.fromkeys("aeiou", 0)
 
 # option 1.5
-answer = dict.fromkeys("aeiou", 0) 
+answer = dict.fromkeys("aeiou", 0)
 
 # option 2
 answer = {key : 0 for key in "aeiou"}
@@ -332,7 +332,7 @@ answer = {key : 0 for key in "aeiou"}
 # exercise 21: use chr(num) to get ASCII uppercase letter value A-Z (65-90) and create dictionary with corresponding ASCII code - letter value
 
 # make sure your solution is assigned to the answer variable so the tests can work!
-answer = {count: chr(count) for count in range(65,91)} 
+answer = {count: chr(count) for count in range(65,91)}
 
 # exercise 22: tuples & sets exercises
 
@@ -366,12 +366,12 @@ def make_noise():
 make_noise()
 
 # exercise 23: Define a function called generate_evens
-# it should return a list of even numbers between 1 and 50(not including 50)        
+# it should return a list of even numbers between 1 and 50(not including 50)
 
 # option 1: for loop
 def generate_evens():
     even_nums = []
-    
+
     for n in range(1, 50):
         if n % 2 == 0:
             even_nums.append(n)
@@ -438,10 +438,10 @@ purple = "Purple".lower()
 def contains_purple(*args):
     if purple in args:
         return True
-    
+
     # short circuit implied else = cleaner simplified code
     return False
-        
+
 # exercise 27: define a function combine_words that accepts word and any number of arguments;
     # if prefix == True, "{prefix_value}{word}"
     # if suffix == True, "{word}{suffix_value}"
@@ -458,7 +458,7 @@ def combine_words(word, **kwargs):
     elif suffix in kwargs:
         # return f"{word}{kwargs[suffix]}"
         return "{}{}".format(word, kwargs[suffix])
-    
+
     # short circuit implied else = cleaner simplified code
     return word
 
@@ -510,18 +510,18 @@ def return_day(num):
         6: "Friday",
         7: "Saturday"
     }
-    
+
     if num < 1 or num > 7:
         return None
     elif num in days.keys():
         return days[num]
-        
+
 # option 2: list
 def return_day(num):
     days = ["Sunday","Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"]
     # Check to see if num valid
     if num > 0 and num <= len(days):
-        # use num - 1 because lists start at 0 
+        # use num - 1 because lists start at 0
         return days[num-1]
     return None
 
@@ -530,7 +530,7 @@ def return_day(num):
     try:
         return ["Sunday","Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"][num-1]
     except IndexError as e:
-        return None    
+        return None
 
 # First check to see if the list exists (if it has data in it).  If it does, return the -1 item (last item).  Otherwise, return None.
 
@@ -542,8 +542,8 @@ last_element([]) # None
 def last_element(elements):
     if not elements:
         return None
-    
-    return elements[-1]            
+
+    return elements[-1]
 
 
 # count the number of times letter appears in string and the function should be case insensitive
@@ -570,7 +570,7 @@ def multiple_letter_count(msg):
 
 # option 2:
 def multiple_letter_count(string):
-    return {letter: string.count(letter) for letter in string}    
+    return {letter: string.count(letter) for letter in string}
 
 # produce the desired results below for the function list_manipulation()
 
@@ -625,7 +625,7 @@ def is_palindrome(string):
     # replace all spaces(" ") with empty strings ("")
     stripped = string.replace(" ", "")
     # use slicing to check if sentence is the same backwards as it is forwards
-    return stripped == stripped[::-1]    
+    return stripped == stripped[::-1]
 
 # write a function that takes two arguments to check how often arg_b is in the list arg_a
 
@@ -636,7 +636,7 @@ frequency([True, False, True, True], False) # 1
 
 def frequency(a_list, search_term):
     search_count = a_list.count(search_term)
-    return search_count    
+    return search_count
 
 # write a function that multiplies all the even numbers in a list arg and returns the total
 
@@ -654,7 +654,7 @@ def multiply_even_numbers(num_list):
     for n in even_nums:
         total *= n
 
-    return total    
+    return total
 
 # write a function that multiplies all the even numbers in a list arg and returns the total
 
@@ -702,7 +702,7 @@ def intersection(list_a, list_b):
         # return v if v is in list_b too
     return [v for v in list_a if v in list_b]
 
-# option 2: 
+# option 2:
 def intersection(l1, l2):
     in_common = []
     for val in l1:
@@ -711,11 +711,11 @@ def intersection(l1, l2):
     return in_common
 
 # option 3: sets
-    # It converts the lists to sets, which removes duplicate values, and then finds the intersection of them using &.  
+    # It converts the lists to sets, which removes duplicate values, and then finds the intersection of them using &.
 def intersection(list1, list2):
     return [val for val in set(list1) & set(list2)]
 
-# write a function that returns a list of values where the values are seperated by the callback function argument 
+# write a function that returns a list of values where the values are seperated by the callback function argument
 
 '''
 def isEven(num):
@@ -728,7 +728,7 @@ partition([1,2,3,4], isEven) # [[2,4],[1,3]]
 def partition(a_list, callback):
     truthy_list = [v for v in a_list if callback(v)]
     falsy_list = [v for v in a_list if callback(v) == False]
-    
+
     final_list = []
     final_list.append(truthy_list)
     final_list.append(falsy_list)
@@ -753,7 +753,7 @@ def partition(lst, fn):
 def partition(l, callback):
     return [[l.pop(l.index(i)) for i in l if callback(i)],l]
 
-# exercise 30: 
+# exercise 30:
 def calculate(**kwargs):
     # defined a dictionary called operation_lookup  that maps a string like "add" to an actual mathematical operation involving the values of 'first' and 'second'
     operation_lookup = {
@@ -766,12 +766,12 @@ def calculate(**kwargs):
     is_float = kwargs.get('make_float', False)
     # lookup the correct value from the operation_lookup dict using the operation that was specified in kwargs
     operation_value = operation_lookup[kwargs.get('operation', '')]
-    # return a string containing either the specified message or the default 'The result is' string.  
+    # return a string containing either the specified message or the default 'The result is' string.
     if is_float:
         final = "{} {}".format(kwargs.get('message','The result is'), float(operation_value))
     else:
         final = "{} {}".format(kwargs.get('message','The result is'), int(operation_value))
-    return final    
+    return final
 
 # exercise 31: write a lambda that accepts a single number and cubes it. Save it in a variable called cube.
 
@@ -792,7 +792,7 @@ def remove_negatives(nums):
 # exercise 32: Implement your is_all_strings function below that checks that list of values only contains str data type
 
 def is_all_strings(collection):
-    return all([type(s) == str for s in collection])    
+    return all([type(s) == str for s in collection])
 
 # exercise 33: define extremes function that takes 1 arg and returns a tuple of min & max values
     # hint: tuples() only takes 1 arg
@@ -816,7 +816,7 @@ sum_even_values(1) # 0
 def sum_even_values(*args):
     evens = [n for n in args if n % 2 == 0]
     if not evens: return 0
-    
+
     return sum(evens)
 
 # exercise 36: write sum_floats function that accepts any number of arguments that must be floats
@@ -831,7 +831,7 @@ def sum_floats(*args):
     float_nums = [f for f in args if type(f) == float]
     if sum(float_nums) is False:
         return 0
-    
+
     return sum(float_nums)
 
 # exercise 37: use zip to get each student's highest grade
@@ -869,7 +869,7 @@ student_scores = dict(
 
 print(scores) # {"dan": 98, "ang": 91, "kate": 78}
 
-# exercise 38: use zip to get interleave words 
+# exercise 38: use zip to get interleave words
     # interleave('hi', 'no') = "hnio"
 
 # option 1:
@@ -880,18 +880,18 @@ def interleave(word1, word2):
     i_word = ""
     for t in z_list:
         i_word += "".join(t)
-    
+
     # .strip() = removes whitespace
     return i_word.strip()
 
 # option 2:
 def interleave(str1,str2):
-    # Zip the two strings together, which returns a list of tuples like: [('h','n'), ('i','o')] 
+    # Zip the two strings together, which returns a list of tuples like: [('h','n'), ('i','o')]
     # First join the individual tuples into strings, which is what the first
     # Finally, join all the remaining strings into one large string
 
     return ''.join(''.join(x) for x in (zip(str1,str2)))
-    
+
 # exercise 39: write function that accepts a list filters out numbers divisible by 4 and returns a new list with each value tripled
 
 '''
@@ -912,14 +912,14 @@ def triple_and_filter(nums):
 
 def add(a,b):
   return a+b
- 
- 
+
+
 add(1) # TypeError: the missing arg is interpreted as None
 
 # exercise 41: Write a function called divide, which accepts two parameters (you can call them num1 and num2). The function should return the result of num1 divided by num2. If you do not pass the correct type of arguments to the function, it should return the string "Please provide two integers or floats". If you pass as the second argument a 0, Python will raise a ZeroDivisionError, so if this function is invoked with a 0 as the value of num2, return the string "Please do not divide by zero"
 
     # Examples
-    
+
     # divide(4,2)  2
     # divide([],"1")  "Please provide two integers or floats"
     # divide(1,0)  "Please do not divide by zero"
@@ -955,20 +955,20 @@ print(answer)
 from keyword import iskeyword as ikw
 
 def contains_keyword(*args):
-    
+
     # keywords = []
     # for a in args:
-        
+
     #     if ikw(a):
     #         keywords.append(True)
     #     else:
     #         keywords.append(False)
-    
+
     keywords = [ikw(a) for a in args]
-    
+
     if any(keywords):
         return True
-    
+
     return False
 
 # exercise 42: pretend you are using two separate files exercise.py and helpers.py
@@ -976,7 +976,7 @@ def contains_keyword(*args):
 # in the helpers.py, define a function in here called lucky_number that always returns 37
 def lucky_number():
     return 37
-    
+
 # in the exercise.py, import your helpers module here.
     # Do not use the 'from' or 'as' syntax, just use a plain old 'import'
     # call the lucky_number function from your helpers module, and save the result to a variable called num
@@ -988,8 +988,8 @@ num = helpers.lucky_number()
 # exercise 43: What's the difference between these two import statements?
 
 '''
-1. import random 
-2. from random import * 
+1. import random
+2. from random import *
 '''
 
 # once imports everything as an attribute on random, the other imports everything into the current namespace
@@ -1024,7 +1024,7 @@ print_art(message, color)
 # exercise 44: Define the Comment class below with username, text, and likes that has a default of 0:
 
 class Comment:
-    
+
     def __init__(self, username, text, likes=0):
         self.username = username
         self.text = text
@@ -1033,26 +1033,26 @@ class Comment:
 # exercise 45: Define the BankAccount class that has an owner and balance with a get_balance, withdraw, and deposit method
 
 class BankAccount:
- 
+
     def __init__(self, name):
         self.owner = name
         self.balance = 0.0
- 
+
     def getBalance(self):
         return self.balance
- 
+
     def withdraw(self, amount):
         self.balance -= amount
         return self.balance
- 
+
     def deposit(self, amount):
         self.balance += amount
         return self.balance
 
-# exercise 46: Define the Pet class that only allows a set number of species 
+# exercise 46: Define the Pet class that only allows a set number of species
 
 class Pet:
-    
+
     allowed_species = ["cat", "dog", "fish", "rat"]
 
     def __init__(self, name, species):
@@ -1075,16 +1075,16 @@ dog = Pet("stone", "dog")
 class User:
     # class variable
     active_users = 0
-    
+
     @classmethod
     def display_active_users(cls):
         return f"There are currently {cls.active_users} active users"
-    
+
     @classmethod
     def from_string(cls, data_str):
         first, last, age = data_str.split(",")
         return cls(first, last, int(age))
-    
+
     def __init__(self, first, last, age):
         self.first = first
         self.last = last
@@ -1092,34 +1092,34 @@ class User:
 
         # for each instance of User, increment active_users class variable
         User.active_users += 1
-    
+
     def logout(self):
         User.active_users -= 1
         return f"{self.first} has logged out"
-        
+
     def full_name(self):
         return f"{self.first} {self.last}"
-    
+
     def initials(self):
         return f"{self.first[0]}.{self.last[0]}."
-    
+
     def likes(self, thing):
         return f"{self.first} likes {thing}"
-    
+
     def is_senior(self):
         return self.age >= 65
-    
+
     def birthday(self):
         return f"{self.age}th, {self.first}"
-    
+
 class Moderator(User):
     # class variable
     total_moderators = 0
 
     @classmethod
     def display_active_moderators(cls):
-        return f"There are currently {cls.total_moderators} active moderators" 
-    
+        return f"There are currently {cls.total_moderators} active moderators"
+
     def __init__(self, first, last, age, community):
         # since a User class is being created for every moderator, active_users class variable is automatically incremented for each moderator with super() inheritance
         super().__init__(first, last, age)
@@ -1130,7 +1130,7 @@ class Moderator(User):
     def remove_post(self):
         # even though full_name() is defined in User parent class, Moderator child class still has access
         return f"{self.full_name()} removed a post from {self.community}."
-    
+
 print(User.display_active_users())
 
 user_1 = User("Tom", "Garcia", 35)
@@ -1150,21 +1150,21 @@ class Aquatic:
     def __init__(self, name):
         print("Aquatic init")
         self.name = name
-    
+
     def swim(self):
-        return f"{self.name} is swimming" 
-    
+        return f"{self.name} is swimming"
+
     def greet(self):
         return f"I am {self.name} of the sea!"
-    
+
 class Ambulatory:
     def __init__(self, name):
         print("Ambulatory init")
         self.name = name
-    
+
     def walk(self):
         return f"{self.name} is walking"
-    
+
     def greet(self):
         return f"I am {self.name} of the land!"
 
@@ -1173,7 +1173,7 @@ class Penguin(Ambulatory, Aquatic):
     def __init__(self, name):
         print("Penguin init")
 
-        # when using multiple inheritance, its better to be explicit with the parent class 
+        # when using multiple inheritance, its better to be explicit with the parent class
         Ambulatory.__init__(self, name=name)
         Aquatic.__init__(self, name=name)
 
@@ -1195,22 +1195,22 @@ print(captain_hook.walk())
 print(captain_hook.greet())
 
 # exercise 48: Define your Mother, Father, Child classes that shows MRO (Method Resolution Order) and Mother is prioritized below:
-        
+
 class Mother:
-    
+
     # def __init__(self, eye_color, hair_color, hair_type):
     #     super().__init__(eye_color, hair_color, hair_type)
-        
+
     def __init__(self, eye_color="brown", hair_color="dark brown", hair_type="curly"):
         self.eye_color = eye_color
         self.hair_color = hair_color
         self.hair_type = hair_type
-        
+
 class Father:
-    
+
     # def __init__(self, eye_color, hair_color, hair_type):
     #     super().__init__(eye_color, hair_color, hair_type)
-        
+
     def __init__(self, eye_color="blue", hair_color="blond", hair_type="straight"):
         self.eye_color = eye_color
         self.hair_color = hair_color
@@ -1222,18 +1222,18 @@ class Child(Mother, Father):
     #     Mother.__init__(eye_color=eye_color, hair_color=hair_color, hair_type=hair_type)
     #     Father.__init__(eye_color=eye_color, hair_color=hair_color, hair_type=hair_type)
 
-# exercise 49: create a class that demonstrates overriding built-in methods for a dictionary 
+# exercise 49: create a class that demonstrates overriding built-in methods for a dictionary
     # magic built-in methods can be found in documentation
     # override __setitem__(), __repr__(), __missing__(), __contains__()
 
 class GrumpyDict(dict):
     # we don't need to define our own __init__() because we can inherit the existing dict__init__()
-    
+
     def __repr__(self):
         # return f"none of your business".upper()
         print("none of your business".upper())
         return super().__repr__()
-    
+
     def __missing__(self, key):
         return f"you want a {key} that isn't here"
 
@@ -1241,7 +1241,7 @@ class GrumpyDict(dict):
         print("you want to change dictionary?".upper())
         print("fine!".upper())
         super().__setitem__(key, value)
-        
+
     def __contains__(self, item):
         print("nope it isn't here".upper())
         return False
@@ -1256,7 +1256,7 @@ print(data['city'])
 # exercise 48: Define the generator function week  which has a list of days.
     # Iterate over the days and yield each day. After "Sunday", the generator is exhausted. It does not start over.
 
-# option 1: 
+# option 1:
 def week():
     days = [
         "Monday",
@@ -1300,7 +1300,7 @@ def week():
         day += day
         yield "Sunday"
         day += day
-    
+
 # exercise 48: yes_or_no loops forever (while True) and yields answer, and then toggles answer from yes to no, or vice versa.
 
 # option 1:
@@ -1309,7 +1309,7 @@ def yes_or_no():
     while True:
         yield answer
         answer = "no" if answer == "yes" else "yes"
-    
+
 # option 2: inferior method
 
 '''
@@ -1322,16 +1322,16 @@ next(gen) # 'no'
 
 def inner_yes_or_no():
     count = 0
-    
+
     while count <= 3:
         yield "yes"
         yield "no"
         yield "yes"
         yield "no"
-        
+
 def yes_or_no():
     return inner_yes_or_no()
-    
+
 # exercise 49: make_song takes a verses count and beverage parameter and returns a generator
     # the default verse count = 99 and the default bevergage is soda
 
@@ -1350,7 +1350,7 @@ next(default_song) # '99 bottles of soda on the wall.'
 '''
 
 def make_song(verses=99, beverage="soda"):
-    
+
     # list that has number of specified verses, goes until -1, and starts at the end and goes backwards
     for num in range(verses, -1, -1):
         if num == 0:
@@ -1359,7 +1359,7 @@ def make_song(verses=99, beverage="soda"):
             yield 'Only {} bottle of {} left!'.format(verses, beverage)
         else:
             yield '{} bottles of {} on the wall.'.format(verses, beverage)
-            
+
         verses -= 1
 
 # exercise 50: show how using generators versus a list saves computational processing when generating a fibonacci sequence
@@ -1373,17 +1373,17 @@ def fib_list(max):
 
     while len(nums) < max:
         nums.append(b)
-        # to get next number, add previous 2 
+        # to get next number, add previous 2
         a, b = b, a+b
     return nums
 
 def fib_generator(max):
     x = 0
     y = 1
-    
+
     count = 0
     while count < max:
-        # to get next number, add previous 2 
+        # to get next number, add previous 2
         x, y = y, x+y
         yield x
         count += 1
@@ -1406,17 +1406,17 @@ list(default_multiples) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def get_multiples(number=1, count=10):
     next_number = number
-    
+
     while count > 0:
         yield next_number
         count -= 1
         next_number += number
-        
+
 # exercise 52: produce the below for get_unlimited_multiples()
 
 '''
 sevens = get_unlimited_multiples(7)
-[next(sevens) for i in range(15)] 
+[next(sevens) for i in range(15)]
 # [7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105]
 
 ones = get_unlimited_multiples()
@@ -1427,8 +1427,280 @@ ones = get_unlimited_multiples()
 # !We just loop forever (while True) instead of checking to see how many times we've looped.
 
 def get_unlimited_multiples(number=1):
-    
+
     next_number = number
     while True:
         yield next_number
         next_number += number
+
+# exercise 53: take decorator quiz
+
+'''
+1. Decorators are functions?
+True or False?
+
+    True, they are higher order functions, because they take functions as arguments.
+
+2. To implement decorator functionality, you need to use the "@" symbol.
+True or False?
+
+    False! The "@" symbol is widely used, but it just syntactic sugar over some variable reassignment.
+
+3. Why do you typically see *args  and **kwargs  inside of a decorator?
+
+    You may not know how many arguments the function you're going to decorate requires.
+
+4. What does functools wraps  do?
+
+    functools wraps preserves the name and docstring of the function being decorated
+'''
+
+# exercise 54: build a speed-test decorator
+
+# ! original speed-test code without decorator
+'''
+    import time
+
+    start_time = time.time()
+    sum([x for x in range(100)])
+    total_time = time.time() - start_time
+
+    sum(x for x in range(100))
+'''
+
+from functools import wraps
+from time import time
+
+def speed_test(fn):
+
+    @wraps(fn) # wraps preserve "fn" metadata
+    def wrapper(*args, **kwargs):
+        start_time = time()
+        result = fn(*args, **kwargs)
+        end_time = time()
+        print(f"Time Elapsed: {end_time - start_time}")
+        return result
+
+    return wrapper
+
+@speed_test
+def sum_nums_generator():
+    return sum(x for x in range(1000000))
+
+@speed_test
+def sum_nums_list():
+    return sum([x for x in range(1000000)])
+
+print(sum_nums_generator())
+print(sum_nums_list())
+
+'''
+    Time Elapsed: 0.052384138107299805
+    499999500000
+    Time Elapsed: 0.07418513298034668
+    499999500000
+'''
+
+# exercise 55: write a function called show_args that accepts a function and returns another function,
+    # before invoking the function, show_args should be responsible for printing tow things:
+        # a tuple of positional arguments, and a dictionary of keyword arguments
+
+'''
+@show_args
+def do_nothing(*args, **kwargs):
+    pass
+
+do_nothing(1, 2, 3,a="hi",b="bye")
+
+# Should print (on two lines):
+# Here are the args: (1, 2, 3)
+# Here are the kwargs: {"a": "hi", "b": "bye"}
+'''
+
+from functools import wraps
+
+def show_args(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        print("Here are the args:", args)
+        print("Here are the kwargs:", kwargs)
+        return fn(*args, **kwargs)
+    return wrapper
+
+# exercise 56: This wrapper function simply runs the function, and returns a list containing the result twice
+
+'''
+@double_return
+def add(x, y):
+    return x + y
+
+add(1, 2) # [3, 3]
+
+@double_return
+def greet(name):
+    return "Hi, I'm " + name
+
+greet("Colt") # ["Hi, I'm Colt", "Hi, I'm Colt"]
+'''
+
+from functools import wraps
+
+def double_return(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        val = fn(*args, **kwargs)
+        return [val, val]
+    return wrapper
+
+# exercise 57: write a function which accepts a function and returns another function
+    # the function passed to it should only be invoked if there are fewer than three positional arguments passed to it, otherwise return "Too many arguments!"
+
+'''
+@ensure_fewer_than_three_args
+def add_all(*nums):
+    return sum(nums)
+
+add_all() # 0
+add_all(1) # 1
+add_all(1,2) # 3
+add_all(1,2,3) # "Too many arguments!"
+add_all(1,2,3,4,5,6) # "Too many arguments!"
+'''
+
+from functools import wraps
+
+def ensure_fewer_than_three_args(fn):
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+
+        if len(args) < 3:
+            return fn(*args, **kwargs) # return any number of args and kwargs
+
+        return "Too many arguments!"
+
+    return wrapper
+
+# exercise 58: write a function only_ints which accepts a function and returns another function
+    # the function passed to it should only be invoked if all of the arguments passed to it are integers
+        # otherwise return 'Please only invoke with integers.'
+
+'''
+@only_ints
+def add(x, y):
+    return x + y
+
+add(1, 2) # 3
+add("1", "2") # "Please only invoke with integers."
+'''
+
+# inferior option:
+
+from functools import wraps
+
+def only_ints(fn):
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        is_integers = []
+        for v in args:
+            if type(v) == int:
+                is_integers.append(True)
+            else:
+                is_integers.append(False)
+
+        if all(is_integers):
+            return fn(*args, **kwargs)
+
+        return "Please only invoke with integers."
+
+    return wrapper
+
+# superior option:
+
+from functools import wraps
+
+def only_ints(fn):
+    @wraps(fn)
+    def inner(*args, **kwargs):
+        if any([arg for arg in args if type(arg) != int]):
+            return "Please only invoke with integers."
+        return fn(*args, **kwargs)
+    return inner
+
+# exercise 59: write a function that accepts a function and returns another function
+    # the function passed to it should only be invoked if there exists a keword argument with a name of "role"  and a value of "admin"
+        # otherwise return "Unauthorized"
+
+'''
+@ensure_authorized
+def show_secrets(*args, **kwargs):
+    return "Shh! Don't tell anybody!"
+
+show_secrets(role="admin") # "Shh! Don't tell anybody!"
+show_secrets(role="nobody") # "Unauthorized"
+show_secrets(a="b") # "Unauthorized"
+'''
+
+# inferior option:
+
+from functools import wraps
+
+def ensure_authorized(fn):
+
+    @wraps(fn)
+    def inner(*args, **kwargs):
+
+        if kwargs.get("role") and kwargs["role"] == "admin":
+            return fn(*args, **kwargs)
+
+        return "Unauthorized"
+
+    return inner
+
+# superior option:
+
+from functools import wraps
+
+def ensure_authorized(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        if kwargs.get("role") == "admin":
+            return fn(*args, **kwargs)
+        return "Unauthorized"
+    return wrapper
+
+
+# exercise 60: write a function called delay which accepts a time and returns an inner function that accepts a function
+    # when used as a decorator, delay will wait to execute the function being decorated by the amount of time passed into it
+        # before starting the timer, delay will print a message to user notifying length of delay
+
+'''
+@delay(3)
+def say_hi():
+    return "hi"
+
+say_hi()
+# should print the message "Waiting 3s before running say_hi" to the console
+# should then wait 3 seconds
+# finally, should invoke say_hi and return "hi"
+'''
+
+from functools import wraps
+from time import sleep
+
+def delay(timer):
+
+    def inner_decorator(fn):
+
+        @wraps(fn) # @wraps preserves the metadata
+        def wrapper(*args, **kwargs):
+
+            print("Waiting {}s before running {}".format(timer, fn.__name__))
+            sleep(timer)
+
+            return fn(*args, **kwargs)
+
+        return wrapper
+
+    return inner_decorator

@@ -1,22 +1,25 @@
-from pyfiglet import figlet_format as ff
-from termcolor import colored
 
-# help(figlet_format)
-# help(termcolor)
-    # available: red, green, yellow, blue, magenta, cyan, white
+from functools import wraps
+from time import time
+def speed_test(fn):
+    
+    @wraps(fn) # wraps preserve "fn" metadata
+    def wrapper(*args, **kwargs):
+        start_time = time()
+        result = fn(*args, **kwargs)
+        end_time = time()
+        print(f"Time Elapsed: {end_time - start_time}")
+        return result
+        
+    return wrapper
 
-valid_colors = ("red", "green", "yellow", "blue", "magenta", "cyan", "white")
+@speed_test
+def sum_nums_generator():
+    return sum(x for x in range(1000000))
 
-message = input("what message do you want to print? Python!!!!\n")
-color = input("what color?\n")
+@speed_test
+def sum_nums_list():
+    return sum([x for x in range(1000000)])
 
-def print_art(msg, color):
-    if color not in valid_colors:
-        color = "magenta"
-
-    ascii_msg = ff(message)
-    colored_ascii = colored(ascii_msg, color=color)
-
-    print(colored_ascii)
-
-print_art(message, color)
+print(sum_nums_generator())
+print(sum_nums_list())
