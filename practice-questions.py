@@ -1704,3 +1704,59 @@ def delay(timer):
         return wrapper
 
     return inner_decorator
+    
+# exercise 61: write a Robot class that utilizes a before test hook
+
+# Robot.py
+class Robot:
+    def __init__(self, name, battery=100, skills=[]):
+        self.name = name
+        self.battery=battery
+        self.skills = skills
+    
+    def charge(self):
+        self.battery = 100
+        return self
+    
+    def say_name(self):
+        if self.battery > 0:
+            self.battery -= 1
+            return f"I am {self.name}"
+        return "low power. Please charge"
+    
+    def learn_skill(self, new_skill, cost_to_learn):
+        if self.battery >= cost_to_learn:
+            self.battery -= cost_to_learn
+            self.skills.append(new_skill)
+            return f"whoah! i know {new_skill}".upper()
+        return "insufficient battery."
+            
+    
+# RobotTests.py
+
+import unittest
+from robot import Robot
+
+class RobotTests(unittest.TestCase):
+
+    # with setUp, it re-runs the code so you wouldn't be using an already modified instance
+    def setUp(self):
+        self.mega_man = Robot("Mega Man", battery=50)
+
+    def test_charge(self):
+        self.mega_man.charge()
+        self.assertEqual(self.mega_man.battery, 100)
+    
+    def test_say_name(self):
+        self.assertEqual(
+            self.mega_man.say_name(),
+            "I am Mega Man"
+        )
+        self.assertEqual(
+            self.mega_man.battery,
+            49
+        )
+    
+if __name__ == "__main__":
+    unittest.main()
+    

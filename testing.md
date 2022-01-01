@@ -351,3 +351,28 @@ def eat(food, is_healthy):
     return f"I'm eating {food}, {ending}"
 
 __execute: python3 test.py -v__
+
+# unittests: before and after hooks
+
+setUp is a shared state that is run before each test method
+
+tearDown is a function that removes a state after each test
+- adding/removing data from a test database
+- creating instances of a class
+
+import unittest
+
+class SomeTests(unittest.TestCase):
+
+    def setUp(self):
+        # do setup here
+        pass
+    
+    def test_first(self):
+        # setUp runs before
+        # tearDown runs after
+        pass
+    
+    def tearDown(self):
+        # do teardown here
+        pass
