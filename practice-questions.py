@@ -1760,3 +1760,20 @@ class RobotTests(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
     
+# exercise 62: using TDD (test driven development) and unittest, write out deck of cards application
+
+# exercise 63: file management quiz
+
+'''
+# ! what's the difference between file.readlines and file.read?
+
+    file.readlines reads the file into memory as a list of strings, while file.read reads the file into memory as a single string
+
+# ! what's one benefit to using a 'with' block statement to open files?
+
+    you don't need to manually close the file
+
+# ! what does the seek method do?
+
+    it lets you move your cursor anywhere in an open file
+'''
