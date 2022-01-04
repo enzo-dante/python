@@ -4,7 +4,7 @@ python is highly flexible about reassigning variables to different types, unlike
 
 Dynamic-typing just refers to the ability for variables to flexibly learn their types during assignment.
 
-ex) 
+ex)
 
 a = 'test'
 a = 5
@@ -169,7 +169,7 @@ ex:
 text = 'help'
 text[-1] = 'p'
 
-# input() 
+# input()
 
 the input() will prompt user and store the str result to a variable
 
@@ -183,3 +183,10 @@ if it's Unicode, it's a valid str
 # .lower() or .upper()
 
 return string is converted to all lower or upper case which is helpful for error handling
+
+# String reverse with Slices
+
+string = "This is fun!"
+
+string[::-1] # "!nuf si sihT"
+

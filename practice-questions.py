@@ -1777,3 +1777,103 @@ if __name__ == "__main__":
 
     it lets you move your cursor anywhere in an open file
 '''
+
+# exercise 64: copy() takes in a file name and a new file name and copies the contents of the first file to the second file
+
+'''
+copy('story.txt', 'story_copy.txt') # None
+# expect the contents of story.txt and story_copy.txt to be the same
+'''
+
+# option 1: SUPERIOR
+
+copy('story.txt', 'story_copy.txt') # None
+
+# option 1: INFERIOR
+
+def copy(file_name, new_file_name):
+    
+    # do not nest multiple open commands: open and close asynchronously for computational optimzation
+    with open(file_name) as file_one:
+        data = file_one.read()
+    
+    # w = override existing content
+    with open(new_file_name, "w") as new_file:
+        new_file.write(data)
+        
+    
+# exercise 65: copy_and_reverse takes in a file name and a new file name and copies the reversed contents of the first file to the second file
+
+'''
+copy_and_reverse('story.txt', 'story_reversed.txt') # None
+# expect the contents of story_reversed.txt to be the reverse of the contents of story.txt
+'''
+
+def copy_and_reverse(file_name, new_file_name):
+    
+    # do not nest multiple open commands: open and close asynchronously for computational optimzation
+    with open(file_name) as original_file:
+        data = original_file.read()
+    
+    # String reverse with Slices [from_start:from_end:backwards_direction_from_end_start]
+        r = data[::-1]
+
+    # w = override existing content
+    with open(new_file_name, "w") as new_file:
+        new_file.write(r)
+        
+# exercise 66: the statistics function takes in a file name and returns a dictionary with the num_lines, words, chars in the file
+
+'''
+statistics('story.txt') 
+# {'lines': 172, 'words': 2145, 'characters': 11227}
+'''
+
+# option 1:
+
+def statistics(file_name):
+    
+    with open(file_name) as file:
+        data = file.read()
+        
+    num_chars = len(data)
+    num_words = len(data.split())
+    num_lines = len(data.split("\n"))
+    
+    return {'lines': num_lines, 'words': num_words, 'characters': num_chars} 
+
+# option 2:
+
+def statistics(file_name):
+    with open(file_name) as file:
+        lines = file.readlines()
+ 
+    return { "lines": len(lines),
+             "words": sum(len(line.split(" ")) for line in lines),
+             "characters": sum(len(line) for line in lines) }
+
+
+# exercise 67: replace all instances of the word in the file with the replacement word
+
+'''
+find_and_replace('story.txt', 'Alice', 'Colt') 
+# story.txt now contains the first chapter of my new book,
+# Colt's Adventures in Wonderland
+'''
+
+def find_and_replace(file_name, search_word, replacement_word):
+    
+    # "r+" = read and write in pre-existing file
+    with open(file_name, "r+") as file:
+        # read file content and store to data var
+        data = file.read()
+        # cursor seek beginning of file to prepare for write
+        file.seek(0)
+        # replace the searched_word with replacement_word
+        updated_data = data.replace(search_word, replacement_word)
+        # write the new content over the old content
+        file.write(updated_data)
+        # Truncate() method truncate the file’s size. If the optional size argument is present, the file is truncated to (at most) that size. The size defaults to the current position. The current file position is not changed. 
+        file.truncate()
+        
+                 

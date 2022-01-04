@@ -144,13 +144,25 @@ file.closed # True
 
 __to test write, go into terminal run: python3 file_name__
 
-# R+ = read and write based on cursor position in PRE-EXISTING file
+# r+ = read and write based on cursor position in PRE-EXISTING file
 
 > r+ (read & write default at beginning) REQUIRES a pre-existing and you still have to open() a file
 
 > SUPERIOR write option:
 
-__add -r+ flag to append in open()__
+__"r+" arg in open() = read and write in pre-existing file__
+
+with open(file_name, "r+") as file:
+    # read file content and store to data var
+    data = file.read()
+    # cursor seek beginning of file to prepare for write
+    file.seek(0)
+    # replace the searched_word with replacement_word
+    updated_data = data.replace(search_word, replacement_word)
+    # write the new content over the old content
+    file.write(updated_data)
+    # Truncate() method truncate the file’s size. If the optional size argument is present, the file is truncated to (at most) that size. The size defaults to the current position. The current file position is not changed.
+    file.truncate()
 
 __-r+ flag will remove/override orginal content cursor position already has content__
 
@@ -163,7 +175,13 @@ with open("temp.py", "r+") as file:
 
 with open("temp.py", "r+") as file:
     file.write("The beginning by default")
-    file.seek(10) 
+    file.seek(10)
     file.write("Went to position 10")
 
 __to test write, go into terminal run: python3 file_name__
+
+# copy
+
+> Copy should copy contents from one file to another.
+
+copy('story.txt', 'story_copy.txt') # None
