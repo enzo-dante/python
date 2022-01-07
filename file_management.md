@@ -185,3 +185,109 @@ __to test write, go into terminal run: python3 file_name__
 > Copy should copy contents from one file to another.
 
 copy('story.txt', 'story_copy.txt') # None
+
+# CSV module reader
+
+> reader - lets you iterate over rows of the CSV as lists
+
+from csv import reader
+with open("fighters.csv") as file:
+    csv_reader = reader(file)
+
+__the csv file will start with the header row, so use next() to start on row with values__
+    next(csv_reader)
+
+    for row in csv_reader:
+__accessing values requires using indecies__
+        print(f"{fighter[0]} is from {fighter[1]}")
+
+        # each row in a list!
+        print(row)
+
+__if you try and call csv_reader again, it will be at the end of the CSV and cannot call next()__
+    for row in csv_reader:
+        print(f"{fighter[0]} is from {fighter[1]}")
+
+        # each row in a list!
+        print(row)
+
+> reader - iterating with a CSV converted list
+
+from csv import reader
+with open("fighters.csv") as file:
+    csv_reader = reader(file)
+    data = list(csv_reader)
+    print(data)
+
+> DictReader - lets you iterate over rows of the CSV as OrderedDicts
+
+from csv import DictReader as dread
+
+with open("fighters.csv") as file:
+    csv_reader = dread(file)
+
+    for row in csv_reader:
+        # each row is an OrderedDict (a dictionary with an order)
+
+__each row has the headers interspersed as keys__
+        print(row["Name"])
+
+> readers allow for specifying a delimiter kwarg in case your data isn't separated by commas
+
+from csv import reader
+
+with open("fighters.csv") as file:
+    csv_reader = reader(file, delimiter="|")
+    for row in csv_reader:
+        # each row is a list!
+        print(row)
+
+# writing CSV files (LISTS)
+
+> the writer creates a writer_object fro writing a csv
+
+> writer.py
+
+from csv import writer
+
+__writerow(["a", "b"]) will add a row to a csv_file__
+
+with open("cats.csv", "w") as file:
+    csv_writer = writer(file)
+
+__to add headers, simply write another row with writer_object__
+    csv_writer.writerow(["Name", "Age"]) # headers
+
+__to add data, simply write another row with writer_object__
+    csv_writer.writerow(["Blue", 3])
+    csv_writer.writerow(["Unnamed Kitty", 1])
+
+__to run, execute: python3 writer.py__
+
+> update an existing file using reader and writer
+
+> writer.py
+
+from csv import reader, writer
+
+with open("fighters.csv") as file:
+    csv_reader = reader(file)
+
+    # use list comprehension to build uppercase data, csv = nested list
+    fighters = [[s.upper() for s in row] for row in csv_reader]
+
+    for row in fighters:
+        print(row)
+
+with open("screaming_fighters", "w") as file:
+    csv_writer = writer(file)
+
+__loop through list (that includes headers) and writerow(["a", "b"]) will add a row to a csv_file__
+
+    for fighter in fighters:
+        csv_writer.writerow(fighter)
+
+
+# writing CSV files (DICTITIONARIES)
+
+> DictWriter - creates a writer object for writing using dictionaries
