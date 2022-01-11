@@ -271,6 +271,9 @@ __to run, execute: python3 writer.py__
 from csv import reader, writer
 
 with open("fighters.csv") as file:
+
+__reader() is the CSV method that lets you read CSV rows into memory as lists__
+
     csv_reader = reader(file)
 
     # use list comprehension to build uppercase data, csv = nested list
@@ -288,6 +291,97 @@ __loop through list (that includes headers) and writerow(["a", "b"]) will add a 
         csv_writer.writerow(fighter)
 
 
-# writing CSV files (DICTITIONARIES)
+# writing CSV files (DICTIONARIES)
 
-> DictWriter - creates a writer object for writing using dictionaries
+> example 1
+
+__DictWriter - creates a writer object for writing using dictionaries__
+
+from csv import DictWriter
+
+with open("example.csv", "w") as file:
+    headers = ["Character", "Move"]
+__fieldnames - kwarg for the DictWriter specifying headers__
+    csv_writer = DictWriter(file, fieldnames=headers)
+__writeheader - method on a writer to write header row__
+    csv_writer.writeheader()
+__writerow - method ona writer to write a row based on a dictionary__
+    csv_writer.writerow({
+__headers & respective insert data don't have to be in a specific order__
+        "Character":"Ryu",
+        "Move": "Hadouken"
+    })
+
+> example 2
+
+from csv import DictWriter
+
+with open("cats.csv", "w") as file:
+    headers = ["Name", "Breed", "Age"]
+    csv_writer = DictWriter(file, filename=headers)
+    csv_writer.writeheader()
+    csv_writer.writerow({
+        "Age": 20
+        "Breed": "Orange",
+        "Name": "Garfield",
+    })
+
+> example 3: using DictReader & DictWriter with target updating
+
+from csv import DictReader, DictWriter
+
+def cm_to_in(cm):
+    return float(cm)*0.393701
+
+with open("fighters.csv") as file:
+    csv_reader = DictReader(file)
+    fighters = list(csv_reader)
+
+with open("inches_fighters.csv", "w") as file:
+    headers = ["Name","Country","Height"]
+    csv_writer = DictWriter(file, fieldnames=headers)
+    csv_writer.writeheader()
+
+__loop through each row and set height with defined function__
+    for f in fighters:
+        csv_writer.writerow({
+            "Name": f["Name"],
+            "Country": f["Country"],
+            "Height": cm_to_in(
+                    f["Height (in cm)"]
+                )
+        })
+
+# pickling
+
+> pickle external module will convert into a byte stream -- akin to putting it into a jar for storage
+
+ex:
+
+> pickiling is for dumping data & loading it quickly
+
+__when the data is pickled, it will be unreadable to the human eye__
+
+blue = Cat("Blue", "Scottish Fold", "String")
+
+with open("pets.pickle", "wb")as file:
+    pickle.dump(blue, file)
+
+__when the data uses tuples and is pickled, it will be returned in that order__
+
+blue = Cat("Blue", "Scottish Fold", "String")
+
+with open("pets.pickle", "wb")as file:
+    pickle.dump(("Blue", "Rusty"), file)
+
+with open("pets.pickle", "rb") as file:
+    zombie_blue, zombie_rusty = pickle.load(file)
+    print(zombie_blue)
+    print(zombie_blue.play())
+
+> unpickiling
+
+with open("pets.pickle", "rb") as file:
+    zombie_blue = pickle.load(file)
+    print(zombie_blue)
+    print(zombie_blue.play())

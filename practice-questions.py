@@ -1876,4 +1876,184 @@ def find_and_replace(file_name, search_word, replacement_word):
         # Truncate() method truncate the file’s size. If the optional size argument is present, the file is truncated to (at most) that size. The size defaults to the current position. The current file position is not changed. 
         file.truncate()
         
-                 
+ # exercise 65: file management quiz 2
+
+'''
+# ! what csv method lets you read csv rows into memory as lists? 
+
+    from csv import reader
+
+    with open("example.csv") as file:
+        csv_reader = reader(file)
+
+# ! what csv method lets you read csv rows into memory as dictionaries? 
+
+ 
+    from csv import DictReader
+
+    with open("example.csv") as file:
+        csv_reader = DictReader(file)
+
+
+# ! what is a delimiter?
+
+    a character used to separate values
+    
+# ! what csv method creates an object that lets you take lists of data & write rows into a csv? 
+
+    from csv import writer
+    
+    with open("example.csv", "w") as file:
+        csv_writer = writer(file)
+    
+# ! what csv method creates an object that lets you take dictionaries of data & write rows into a csv? 
+
+    from csv import DictWriter
+    
+    with open("example.csv", "w") as file:
+        csv_writer = DictWriter(file)
+'''
+                
+# exercise 68: with users.csv, write add_user function that replicates the below output 
+
+'''
+add_user("Dwayne", "Johnson") # None
+# CSV now has two data rows:
+
+# First Name,Last Name
+# Colt,Steele
+# Dwayne,Johnson
+'''
+
+# superior solution: 
+
+# import external csv module
+import csv
+ 
+def add_user(first_name, last_name):
+
+    # a - append to a file (previous content will NOT be removed)
+    with open("users.csv", "a") as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow([first_name, last_name])
+
+# inferior solution:
+
+# import methods from external csv module
+from csv import reader, writer
+
+def add_user(first_name, last_name):
+    
+    f_column = "First Name"
+    l_column = "Last Name"
+    file_name = "users.csv"
+    
+    # read csv with reader_ojbect to get existing data, convert data into nested list, add new list/row
+    with open(file_name) as file:
+        
+        csv_reader = reader(file)
+        users = [user for user in csv_reader]
+        users.append([first_name, last_name])
+
+    # write to csv with writer_object by looping through the created reader list
+    with open(file_name, "w") as file:
+        
+        csv_writer = writer(file)
+        for user in users:
+            csv_writer.writerow(user)
+
+# exercise 69: with users.csv, write print_users function that replicates the below output 
+
+'''
+print_users() # None
+# prints to the console:
+# Colt Steele
+'''
+
+# option 1: using lists
+
+# import reader from external csv module
+from csv import reader
+
+def print_users():
+    
+    with open("users.csv") as file:
+        csv_reader = reader(file)
+        
+        # skip headers row with next()
+        next(csv_reader)
+        # since user name is broken up by first and last in a list, need to format into full name string
+        for user in csv_reader:
+            print("{first_name} {last_name}".format(first_name=user[0], last_name=user[1]))
+    
+# option 2: using dictionaries with DictReader
+
+from csv import DictReader 
+
+def print_users():
+    with open("users.csv") as csvfile:
+        csv_reader = DictReader(csvfile)
+        for row in csv_reader: 
+            print("{} {}".format(row['First Name'], row['Last Name'])) 
+
+
+# exercise 70: with users.csv, replicate the output below:
+
+'''
+find_user("Colt", "Steele") # 1
+find_user("Alan", "Turing") # 3
+find_user("Not", "Here") # 'Not Here not found.'
+'''
+
+import csv
+ 
+def find_user(first_name, last_name):
+    with open("users.csv") as csvfile:
+        csv_reader = csv.reader(csvfile)
+        for (index, row) in enumerate(csv_reader):
+            first_name_match = first_name == row[0]
+            last_name_match = last_name == row[1]
+            if first_name_match and last_name_match:
+                return index
+        return "{} {} not found.".format(first_name, last_name)
+
+# exercise 71: with users.csv, replicate the output below:
+
+'''
+find_user("Colt", "Steele") # 1
+find_user("Alan", "Turing") # 3
+find_user("Not", "Here") # 'Not Here not found.'
+'''
+
+# option 1:
+
+# since you need to return and index, the collection needs to be an ordered list object
+from csv import reader
+
+def find_user(first_name, last_name):
+    
+    with open("users.csv") as file:
+        csv_reader = reader(file)
+        # next(csv_reader) # don't remove headers because it will mess up index sequence
+        data = list(csv_reader)
+    
+    for user in data:
+        if user[0] == first_name and user[1] == last_name:
+            return data.index(user)
+    
+    # the not found return string needs to be outside the for loop
+    return 'Not Here not found.'
+                
+# option 2:
+
+import csv
+ 
+def find_user(first_name, last_name):
+    with open("users.csv") as csvfile:
+        csv_reader = csv.reader(csvfile)
+        for (index, row) in enumerate(csv_reader):
+            first_name_match = first_name == row[0]
+            last_name_match = last_name == row[1]
+            if first_name_match and last_name_match:
+                return index
+        return "{} {} not found.".format(first_name, last_name)
