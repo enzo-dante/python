@@ -2057,3 +2057,87 @@ def find_user(first_name, last_name):
             if first_name_match and last_name_match:
                 return index
         return "{} {} not found.".format(first_name, last_name)
+
+# exercise 72: update_users takes an old first name, old last name, new first name, new last name
+    # update_users updates the users.csv file so that nay user whose first and last names match the old first and last names are updated to the new first and last names.
+    # the function should return a count of how many users were updated
+
+'''
+update_users("Grace", "Hopper", "Hello", "World") # Users updated: 1.
+update_users("Colt", "Steele", "Boba", "Fett") # Users updated: 2.
+update_users("Not", "Here", "Still not", "Here") # Users updated: 0.
+'''
+
+# use csv module to import csv list reader & writer
+from csv import reader, writer
+
+def update_users(old_first, old_last, new_first, new_last):
+    
+    csv_file = "users.csv"
+    count = 0
+    
+    # open csv_file to read data
+    with open(csv_file) as file:
+        csv_reader = reader(file)
+        # convert csv as a nested list object/matrix that is accessible outside the scope of the open()
+        data = list(csv_reader)
+    
+    # open new file and write/override existing data to it
+    with open(csv_file, "w") as file:
+        csv_writer = writer(file)
+        # loop through list data aka the rows of the original csv_file
+        for row in data:
+            # use writer object to writerow() if current data matches old data
+            if row[0] == old_first and row[1] == old_last:
+                # since each row is itself a list, you need pass a list object into writer.writerow()
+                csv_writer.writerow([new_first, new_last])
+                count += 1
+            else:
+                # otherwise override row with current row data
+                csv_writer.writerow(row)
+        
+        return "Users updated: {}.".format(count)
+
+ # exercise 73: delete_users takes an first name, last name 
+    # delete_users updates the users.csv file so that any user whose first and last names matches the inputs are removed.
+    # the function should return a count of how many users were removed
+
+'''
+delete_users("Grace", "Hopper") # Users deleted: 1.
+delete_users("Colt", "Steele") # Users deleted: 2.
+delete_users("Not", "Here") # Users deleted: 0.
+'''
+
+# import csv mode for list reader, writer 
+from csv import reader, writer
+
+def delete_users(first_name, last_name):
+    
+    csv_file = "users.csv"
+    count = 0
+    
+    # open and use reader to read data
+    with open(csv_file) as file:
+        
+        csv_reader = reader(file)
+        # convert csv into a nested lists/matrix object that is accessible outside of open() scope
+        rows = list(csv_reader)
+    
+    # open csv_file, remove rows first, than write/override to csv_file
+    with open(csv_file, "w") as file:
+
+        # prepare writer object with csv file
+        csv_writer = writer(file)
+        
+        for row in rows:
+            # row = ["Peter", "Parker"]
+            # remove row if row data matches inputs
+            if row[0] == first_name and row[1] == last_name:
+                # rows.remove(row)
+                count += 1
+            else:
+                # otherwise, simply override row with current row data
+                csv_writer.writerow(row)
+        
+        return "Users deleted: {}.".format(count)
+        

@@ -290,7 +290,6 @@ __loop through list (that includes headers) and writerow(["a", "b"]) will add a 
     for fighter in fighters:
         csv_writer.writerow(fighter)
 
-
 # writing CSV files (DICTIONARIES)
 
 > example 1
@@ -343,6 +342,7 @@ with open("inches_fighters.csv", "w") as file:
     csv_writer.writeheader()
 
 __loop through each row and set height with defined function__
+
     for f in fighters:
         csv_writer.writerow({
             "Name": f["Name"],
@@ -352,19 +352,40 @@ __loop through each row and set height with defined function__
                 )
         })
 
-# pickling
+# pickle: convert python into unreadable data for storage
 
-> pickle external module will convert into a byte stream -- akin to putting it into a jar for storage
+> pickle external module will serialize into a byte stream -- akin to putting it into a jar for storage and can be deserialized back into a python object on command
 
-ex:
+> example 1:
 
-> pickiling is for dumping data & loading it quickly
+import pickle
 
-__when the data is pickled, it will be unreadable to the human eye__
+class Animal:
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+
+    def __repr__(self):
+        return f"{self.name} is a {self.species}"
+
+    def make_sound(self, sound):
+        print(f"this animal says {sound}")
+
+class Cat(Animal):
+
+    def __init__(self, name, breed, toy):
+        super().__init__(name, species="Cat")
+        self.breed = breed
+        self.toy = toy
 
 blue = Cat("Blue", "Scottish Fold", "String")
 
+__wb = write binary for serialized byte stream__
+
 with open("pets.pickle", "wb")as file:
+
+__pickle.dump() will pickle the python__
+
     pickle.dump(blue, file)
 
 __when the data uses tuples and is pickled, it will be returned in that order__
@@ -372,16 +393,68 @@ __when the data uses tuples and is pickled, it will be returned in that order__
 blue = Cat("Blue", "Scottish Fold", "String")
 
 with open("pets.pickle", "wb")as file:
+
+__pickle.dump() can pickle tuple objects__
+
     pickle.dump(("Blue", "Rusty"), file)
+
+__rb = read binary for serialized byte stream to load back into python__
 
 with open("pets.pickle", "rb") as file:
     zombie_blue, zombie_rusty = pickle.load(file)
     print(zombie_blue)
     print(zombie_blue.play())
 
-> unpickiling
+> unpickling: deserialize the byte data back into a python object
 
 with open("pets.pickle", "rb") as file:
+
+__pickle.load() will deserialize byte data back into a python__
+
     zombie_blue = pickle.load(file)
     print(zombie_blue)
     print(zombie_blue.play())
+
+# json pickling
+
+> jsonpickle is an external module that serializes and deserializes python objects to and from json
+
+__pip install jsonpickle in the terminal__
+
+python3 -m pip install jsonpickle
+
+import jsonpickle
+
+class Cat:
+
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+c = Cat("Charlie", "Tabby")
+
+> serialize python obj with jsonpickle encode()
+
+__open and write the content of the file first__
+
+with open("cat.json", "w") as file:
+    serialized_c = jsonpickle.encode(c)
+    file.write(serialized_c)
+
+> deserialize python obj with jsonpickle decode()
+
+with open("cat.json", "r") as file:
+
+__open and read the content of the file first__
+
+    contents = file.read()
+    deserialized_c = jsonpickle.decode(contents)
+    print(deserialized_c)
+
+> json.dumps() converts a python object as a str of json
+
+import json
+
+j = json.dumps(['foo', {'bar': ('bas', None, 1.0, 2)}])
+
+print(j)
