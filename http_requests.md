@@ -51,3 +51,117 @@ apis allows users to get data from another application without needing to unders
 
 apis can often send data back in different formats: JSON or XML
 
+# requests Module
+
+> requests is a popular external module for handling https requests
+
+__in terminal, execute:__
+
+python3 -m pip install requests
+
+> example 1: http request
+
+import requests
+
+url = "https://www.google.com"
+response = requests.get(url)
+
+print(response.ok) # True
+
+print(f"your request to {url} came back w/ status code {response.status_code}")
+
+print(response.text) # html source
+
+# JSON requests w/ headers
+
+> request header
+
+import requests
+
+response = requests.get(
+    "http://www.example.com",
+    headers={
+        "header1": "value1",
+        "header2": "value2"
+    }
+)
+
+> request headers boilerplate
+
+import requests
+
+url = "https://icanhazdadjoke.com/"
+
+response = requests.get(
+        url,
+        # get plain text version
+        # just joke for this URL, but not all URLs are have plain text headers setup
+        # headers={"Accept": "text/plain"}
+
+        # get html version
+        # headers={"Accept": "text/html"}
+
+        # get json version
+        headers={"Accept": "application/json"}
+
+    )
+
+print(response.text)
+
+json_data = response.json() # when header accepts json response
+
+print(type(json_data)) # takes json and converts into python dictionary
+
+print(json_data["joke"])
+
+> sending requests with a query string params
+
+__QUERY STRING: a way to pass data to the server as part of a GET request__
+
+> option 1
+
+import requests
+
+response = requests.get(
+    "http://www.example.com?key1=value1&key2=value2"
+)
+
+> option 2
+
+import requests
+
+response = requests.get(
+    "http://www.example.com",
+    params={
+        "key1": "value1",
+        "key2": "value2"
+    }
+)
+
+> example 1
+
+import requests
+
+url = "https://icanhazdadjoke.com/"
+
+response = requests.get(
+        url,
+        # get plain text version
+        # just joke for this URL, but not all URLs are have plain text headers setup
+        # headers={"Accept": "text/plain"} 
+
+        # get html version
+        # headers={"Accept": "text/html"} 
+
+        # get json version
+        headers={"Accept": "application/json"}
+
+    )
+
+print(response.text)
+
+json_data = response.json() # when header accepts json response
+
+print(type(json_data)) # takes json and converts into python
+
+print(json_data["joke"])

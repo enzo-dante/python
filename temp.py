@@ -1,25 +1,24 @@
+import requests
 
-from functools import wraps
-from time import time
-def speed_test(fn):
-    
-    @wraps(fn) # wraps preserve "fn" metadata
-    def wrapper(*args, **kwargs):
-        start_time = time()
-        result = fn(*args, **kwargs)
-        end_time = time()
-        print(f"Time Elapsed: {end_time - start_time}")
-        return result
-        
-    return wrapper
+# search endpoint to programatically get jokes
+url = "https://icanhazdadjoke.com/search"
 
-@speed_test
-def sum_nums_generator():
-    return sum(x for x in range(1000000))
+response = requests.get(
+        url,
+        # get json version
+        headers={"Accept": "application/json"},
+        # review websites api documentation for specific domain params
+            # equivalent: https://icanhazdadjoke.com/search?term=cat&limit=1
+        params={
+            "term": "cat",
+            "limit": 1
+        }
+    )
 
-@speed_test
-def sum_nums_list():
-    return sum([x for x in range(1000000)])
+# when header accepts json response
+    # takes json and converts into python dictionary
 
-print(sum_nums_generator())
-print(sum_nums_list())
+json_data = response.json()
+
+# print(json_data) # review data structure
+print(json_data["results"])
