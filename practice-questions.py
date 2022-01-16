@@ -2140,4 +2140,55 @@ def delete_users(first_name, last_name):
                 csv_writer.writerow(row)
         
         return "Users deleted: {}.".format(count)
-        
+
+ # exercise 73: OOP Quiz 
+
+'''
+
+# ! Say we have a class Pet, what is the best way to call the parent __init__ methods?
+
+    class Pet(Animal, Friend):
+        def __init__(self, name)
+            self.name = name
+
+In the init method, call super().__init__
+Super is the preferred way to reference the parent since it follows MRO automatically
+
+# ! what is MRO in python?
+
+The order in which python looks up (aka resolves) methods on a class, influenced by inheritance
+
+# ! what are three ways to look up MRO for the class Penguin?
+
+Penguin.__mro__
+Penguin.mro()
+help(Penguin)
+
+# ! why is it considered good OOP practice for Animal to raise a NotImplementedError?
+
+    class Animal:
+    
+        def speak():
+            raise NotImplementedError
+
+It's impossible to generalize a sound that all animals make, therefore it's best left up to the subclasses to implement
+
+# ! how does python know how to interpret the + operator differently in these cases?
+
+    5 + 5 = 10
+    "5" + "5" = "55"
+
+The first argument has a special method that defines what to do with the + operator, python actually performs x.__add__(y)
+
+# ! how can i make it so that len(cart) returns the count of items in my shopping cart, provided cart is an instance of ShoppingCart?
+
+    class ShoppingCart:
+        def __init__(self):
+            self.items = []
+            self.count = 0
+
+implement the special/magic/dunder method __len__() which the builtin len calls.
+
+in other words, add self.__len__(self) as a new method on ShoppingCart that returns self.count
+
+'''
