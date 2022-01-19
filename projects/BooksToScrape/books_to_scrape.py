@@ -1,5 +1,5 @@
-# make sure to pip install these dependencies 
-import sqlite3 # database 
+# make sure to pip install these dependencies
+import sqlite3 # database
 import requests # request url module
 from bs4 import BeautifulSoup # html extraction
 

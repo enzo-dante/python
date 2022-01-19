@@ -67,7 +67,7 @@ ex) on_fire = false
 int = integer
 ex) a = 2
 
-str = string (can use single or double quotes, just be consisten)
+str = string (can use single or double quotes, just be consistent)
 ex) name = 'test'
 
 list = ordered sequence
@@ -78,8 +78,8 @@ ex) person = {'name': 'test', 'age': 2}
 
 # converting data types
 
-string interpolation implicitely converts data types into strings
-you can explicitely convert by using the builtin type as a function
+string interpolation implicitly converts data types into strings
+you can explicitly convert by using the builtin type as a function
 
 ex:
 
@@ -150,7 +150,7 @@ first, last = 'Enzo', 'Vernon'
 
 formatted = "First Name: {}, Last Name: {}".format(first, last)
 
-# strings and indicies
+# strings and indices
 
 each string has a number associated and be accessed via the index
 

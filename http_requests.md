@@ -148,10 +148,10 @@ response = requests.get(
         url,
         # get plain text version
         # just joke for this URL, but not all URLs are have plain text headers setup
-        # headers={"Accept": "text/plain"} 
+        # headers={"Accept": "text/plain"}
 
         # get html version
-        # headers={"Accept": "text/html"} 
+        # headers={"Accept": "text/html"}
 
         # get json version
         headers={"Accept": "application/json"}

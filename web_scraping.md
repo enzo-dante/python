@@ -53,11 +53,11 @@ help(soup)
 
 __beautiful soup process__
 
-1. parse (must be html.parser, and not xml.parser)
+# 1. parse (must be html.parser, and not xml.parser)
 
 BeautifulSoup(html_string, 'html.parser')
 
-2. navigate parsed data
+# 2. navigate parsed data
 
 Navigation options return an array
 - via tag
@@ -68,7 +68,7 @@ print(data) # a list of items with new lines
 
 - using find - returns one matching tag
 - using find_all - returns a list of matching tags
-        - to access a class attribute in HTML must use: class_= 
+        - to access a class attribute in HTML must use: class_=
 
 Navigating with CSS, execute syntax:
 
@@ -94,36 +94,43 @@ __find all elements with a data attribute of baz__
 soup.find_all(attrs={'data-baz: True})
 soup.select('[data-baz]')
 
-3. handle return data
+# 3. handle return data
 
-accessing data in elements:
+__access the inner text in an element__
 
-- get_text - access the inner text in an element
+{element}.get_text()
 
 ex:
 
 el = soup.select('.special')[0]
 print(el.get_text())
 
-- name - name tag
+__name tag__
+
+{element}.name
 
 ex:
 
 for el in data:
         print(el.name)
 
-- attrs - dictionary of attributes
-        - you can also access attribute values using brackets
+__dictionary of attributes__
+
+{soup.element}.attrs
 
 ex:
 
 attrs = soup.find('div').attrs
 attrs = soup.find('div')['id']
 
+__you can also access attribute values using brackets__
+
+{soup.element}.attrs["key"]
+
 # SQLite commands
 
 to run SQLite, execute:
-sql3 
+sql3
 
 to view tables, execute:
 .tables
