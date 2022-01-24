@@ -73,7 +73,6 @@ class DeckTests(unittest.TestCase):
 
     def test_shuffle_full_deck(self):
         """shuffle should shuffle the deck if the deck is full"""
-
         cards = self.deck.cards[:] # copy, that is pointing to different memory space
         self.deck.shuffle()
         self.assertNotEqual(cards, self.deck.cards)
