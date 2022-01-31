@@ -2192,3 +2192,141 @@ implement the special/magic/dunder method __len__() which the builtin len calls.
 in other words, add self.__len__(self) as a new method on ShoppingCart that returns self.count
 
 '''
+
+ # exercise 74: Regular Expressions (regex) Quiz 
+
+''' 
+
+# ! given the following regular expression (just focus on what is in between the slashes):
+
+    /h/
+
+Which of the following strings will have matches in them?
+
+1. "hello world"
+2. "I'm happy"
+3. "Hi you!"
+4. "apple juice"
+
+answer:
+    1 & 2: The regex matches any string containing a lowercase "h"
+
+# ! What of the following does \w  NOT match?
+
+    uppercase letters
+    lowercase letters
+    numbers 0-9
+    spaces
+    underscores
+
+answer:
+    whitespace: \w will match any letter number, dash, or underscore but NOT spaces!
+
+# ! Given the following pattern:
+
+    9\d\d
+
+Which of the following contain matches?
+
+1. "987"
+2. "912345"
+3. "Hello this is 911"
+4. "My lucky number is 345"
+5. "4567891111"
+
+answer:
+    options 1, 2, 3, and 5
+
+# ! Given the following regex:
+
+    7{3}
+    
+Which of the following contains a match:
+
+1. "73"
+2. "7-7-7"
+3. "Your score is 777"
+4. "1234567777789"
+
+answer:
+    options 3 and 4
+
+# ! What does the following regular expression mean:
+
+    hi{2,}
+
+answer:
+    a single 'h' and then 'i' repeated tow or more times! The {2,} only applies to the "i"
+
+# ! Given the following regular expression:
+
+    0?\d
+
+Which of the following contain matches?
+
+1. "00"
+2. "9"
+3. "0"
+4. "03"
+
+answer:
+    all of the above
+
+# ! What is an alternative way of writing \d 
+
+1. [0-9]
+2. [0123456789]
+
+answer:
+    both options work
+
+# ! What does the following regex match?
+
+    [a-z0-9]{3}
+
+answer:
+    exactly three lowercase letters or digits
+
+# ! What does the following regex mean?
+
+    [^@$]
+
+answer:
+    any character that is NOT (specified by ^) a commercial at sign (@) or a dollar sign ($)
+    The ^ applies to both characters in the brackets
+
+# ! What does the $  character signify in a regex?
+
+answer:
+    denotes the end of a string
+
+# ! Given the following regex:
+
+    ^\d{3}$
+
+Which of the following contains a match:
+
+1. "aaa"
+2. "23456"
+3. "987"
+4. "Yay I got 777"
+
+answer:
+    ^ = start of string
+    \d{3} = exactly any 3 digits 
+    $ = end of string
+
+    only option 3 fulfills the regex
+
+
+
+
+
+
+
+
+
+
+
+
+'''
