@@ -2318,15 +2318,112 @@ answer:
 
     only option 3 fulfills the regex
 
+# ! Given the following regex:
+
+    Mr.|Mister Holmes
+
+Which of the following CONTAIN matches? It's a little tricky!!
+
+1. "Mr. Davis"
+2. "Mister Holmes"
+3. "Mr."
+4. "Mister"
+
+answer:
+    Because of the lack of parens, this regex matches either "Mr." OR "Mister Holmes".
+
+# ! Which regex would match both of the following strings
+
+    "cat(s)"
+
+AND
+
+    "dog(s)"
+
+answer:
+    \w{3}\(s\)
+
+    Remember, we have to escape parens with \
 
 
+'''
 
+# exercise 74: 
+    # use a regular expression module with python to validate phone numbers
 
+# import regex module
+import re
 
+search_string1 = "my number is 818 412-6890"
+search_string2 = "818 412-6890"
+search_string3 = "818 412-6890 abdfdfsdf"
+search_string4 = "my number is 818 412-6890 or call me at 345 666-1234"
+invalid_search_string1 = "my number is 818 4120-68909"
+invalid_search_string2 = "my number is 818 412-689077 or call me at 345 66643-1234"
 
+regex = r"\b\d{3} \d{3}-\d{4}\b"
+regex_validator = r"^\d{3} \d{3}-\d{4}$"
+regex_fullmatch = r"\b\d{3} \d{3}-\d{4}\b"
 
+def extract_phone(input, regex):
+    phone_regex = re.compile(regex)
+    match = phone_regex.search(input)
+    if match:
+        return match.group() 
+    
+    # implied else block
+    return None
 
+def extract_all_phones(input, regex):
+    phone_regex = re.compile(regex)
+    return phone_regex.findall(input)
 
+# print(extract_phone(search_string1, regex))
+# print(extract_phone(search_string2, regex))
+# print(extract_phone(search_string3, regex))
+# print(extract_phone(invalid_search_string1, regex))
 
+# print(extract_all_phones(search_string4, regex))
+# print(extract_all_phones(invalid_search_string2, regex))
 
+def is_valid_phone(input):
+    phone_regex = re.compile(regex_validator)
+    match = phone_regex.search(input)
+    if match:
+        return True
+    return False
+
+def is_full_valid_match(input):
+    phone_regex = re.compile(regex_validator)
+    match = phone_regex.fullmatch(input)
+    if match:
+        return True
+    return False
+
+print(is_valid_phone(search_string2))
+print(is_valid_phone(invalid_search_string1))
+print(is_valid_phone(invalid_search_string1))
+    
+print(is_full_valid_match(search_string2))
+
+# exercise 75: 
+ # Write a function called is_valid_time that accepts a single string argument. 
+ # It should return True; if the string is formatted correctly as a time, like 3:15 or 12:48 and return False otherwise.
+ # Note that times can start with a single number (2:30) or two (11:18).
+
+import re 
+ 
+def is_valid_time(input):
+    pattern = re.compile(r'^\d\d?:\d\d$')
+    match = pattern.search(input)
+    if match:
+        return True
+    return False
+
+'''
+The regular expression I used is: 
+
+    ^\d\d?:\d\d$
+
+The time must start with a digit, and there can be a second optional digit before the colon.  Then there's the colon and two mandatory digits.  I used ^ and $ to make sure the time was the only thing in the input string.
 '''

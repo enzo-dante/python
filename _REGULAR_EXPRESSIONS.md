@@ -64,9 +64,17 @@ __quantifiers: specify how many times something should occur in a pattern__
 
 \b = word boundary
 
-ex: \b\w+\b = select only and every word
+    ex: \b\w+\b = select only and every word
 
-    'hello world I am typing'
+        'hello world I am typing'
+
+| = the pipe character in regex denotes logical or 
+
+    "Mr|Mrs|Ms"
+
+() = parenthesis represent whole group
+
+    (\(\d{3}\)|\d{3}) \d{3} \d{4}
 
 > validating emails
 
@@ -118,3 +126,33 @@ __pattern explanation:__
 3. advanced find/replace in text
 4. formatting text/output
 5. syntax highlighting
+
+# using REGEX with python
+
+> option 1
+
+__import regex module__
+import re
+
+__compile & define raw (r) regex string__
+pattern = re.compile(r{regex_string})
+
+__search for a single match in a string with our regex__
+result = pattern.search(r{search_string})
+
+__result.group() will return 1st match due pattern.search()__
+print(result.group())
+
+__find multiple matches in a string with our regex__
+result = pattern.findall(r{search_string})
+print(result) ['match1', 'match2']
+
+__return full match of a string with our regex__
+
+result = pattern.fullmatch(r{search_string})
+
+> option 2 (less readable though)
+
+import re
+
+result = re.search(r{regex_string}, {search_string}).group()
