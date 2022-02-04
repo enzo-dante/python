@@ -1,57 +1,22 @@
 import re
 
-search_string1 = "my number is 818 412-6890"
-search_string2 = "818 412-6890"
-search_string3 = "818 412-6890 abdfdfsdf"
-search_string4 = "my number is 818 412-6890 or call me at 345 666-1234"
-invalid_search_string1 = "my number is 818 4120-68909"
-invalid_search_string2 = "my number is 818 412-689077 or call me at 345 66643-1234"
+# original regex
+# regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) ([A-Za-z]+) ([A-Za-z]+)$"
 
-regex = r"\b\d{3} \d{3}-\d{4}\b"
-regex_validator = r"^\d{3} \d{3}-\d{4}$"
-regex_fullmatch = r"\b\d{3} \d{3}-\d{4}\b"
+# regex with defined with label and accessed by label (instead of index) using group():
+    # paranthesis and ?P<{label}>
 
-def extract_phone(input, regex):
-    phone_regex = re.compile(regex)
-    match = phone_regex.search(input)
-    if match:
-        return match.group() 
-    
-    # implied else block
+regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) (?P<first>[A-Za-z]+) ([A-Za-z]+)$"
+
+def parse_name(test):
+    pattern = re.compile(regex_name)
+    matches = pattern.search(test)
+    if matches:
+        # return matches.groups()
+
+        # accessed by label using group():
+        return matches.group("first")
     return None
 
-def extract_all_phones(input, regex):
-    phone_regex = re.compile(regex)
-    return phone_regex.findall(input)
-
-# print(extract_phone(search_string1, regex))
-# print(extract_phone(search_string2, regex))
-# print(extract_phone(search_string3, regex))
-# print(extract_phone(invalid_search_string1, regex))
-
-# print(extract_all_phones(search_string4, regex))
-# print(extract_all_phones(invalid_search_string2, regex))
-
-def is_valid_phone(input):
-    phone_regex = re.compile(regex_validator)
-    match = phone_regex.search(input)
-    if match:
-        return True
-    return False
-
-def is_full_valid_match(input):
-    phone_regex = re.compile(regex_validator)
-    match = phone_regex.fullmatch(input)
-    if match:
-        return True
-    return False
-
-
-print(is_valid_phone(search_string2))
-print(is_valid_phone(invalid_search_string1))
-print(is_valid_phone(invalid_search_string1))
-    
-print(is_full_valid_match(search_string2))
-
-
-
+result = parse_name("Mrs. Tilda Swinton")
+print(result)

@@ -156,3 +156,58 @@ result = pattern.fullmatch(r{search_string})
 import re
 
 result = re.search(r{regex_string}, {search_string}).group()
+
+# parsing URLs with python
+
+    # regex module
+import re
+
+url_search1 = "http://www.youtube.com/videos"
+url_search2 = "http://www.youtube.com/videos/asd/das/asd"
+
+url_search3 = "http://www.youtube.com/videos/"
+query_string = "bio?data=blah&dog=yes"
+
+    # define raw (r) regex string & compile
+    # use parenthesis to group items in a regex string to access individually
+regex = r"(https?)://(www\.[A-za-z-]{2,256}\.[a-z]{2,6})([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+url_regex = re.compile(regex)
+
+    # search for a single match in a string with our regex
+
+    # match = url_regex.search(url_search2)
+match = url_regex.search(url_search3+query_string)
+    # print(match.group())
+
+    # you can pass int for the respective parenthesis group in a regex
+print(match.group(0))
+print(match.group(1))
+print(match.group(2))
+print(match.group(3))
+
+__.groups(), plural of group, returns a tuple of the different components separated by parenthesis__
+print(match.groups())
+
+# regex access using labels instead of index
+
+import re
+
+    # original regex
+    # regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) ([A-Za-z]+) ([A-Za-z]+)$"
+
+    # regex with defined with label and accessed by label (instead of index) using group():
+        # paranthesis and ?P<{label}>
+regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) (?P<first>[A-Za-z]+) ([A-Za-z]+)$"
+
+def parse_name(test):
+    pattern = re.compile(regex_name)
+    matches = pattern.search(test)
+    if matches:
+        # return matches.groups()
+
+        # accessed by label using group():
+        return matches.group("first")
+    return None
+
+result = parse_name("Mrs. Tilda Swinton")
+print(result)

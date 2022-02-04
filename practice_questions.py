@@ -2411,14 +2411,36 @@ print(is_full_valid_match(search_string2))
  # It should return True; if the string is formatted correctly as a time, like 3:15 or 12:48 and return False otherwise.
  # Note that times can start with a single number (2:30) or two (11:18).
 
-import re 
- 
-def is_valid_time(input):
-    pattern = re.compile(r'^\d\d?:\d\d$')
-    match = pattern.search(input)
+# option 1:
+
+''' Don't forget to import re!'''
+import re
+
+'''
+^ = starts with
+\d{2} = 2 digit number
+| = or
+\d{1} = 1 digit number
+$ = ends with
+'''
+regex_time = r"^((\d{2})|(\d{1})):(\d{2})$"
+
+'''Define is_valid_time below:'''
+def is_valid_time(time):
+    '''compile & define raw regex string'''
+    pattern = re.compile(regex_time)
+    '''search for a single match in a string with our regex'''
+    match = pattern.search(time)
+    
     if match:
         return True
+    '''implied else statement'''
     return False
+
+# option 2:
+
+''' Don't forget to import re!'''
+import re 
 
 '''
 The regular expression I used is: 
@@ -2427,3 +2449,64 @@ The regular expression I used is:
 
 The time must start with a digit, and there can be a second optional digit before the colon.  Then there's the colon and two mandatory digits.  I used ^ and $ to make sure the time was the only thing in the input string.
 '''
+ 
+def is_valid_time(input):
+    pattern = re.compile(r'^\d\d?:\d\d$')
+    match = pattern.search(input)
+    if match:
+        return True
+    return False
+
+# exercise 76: Write a function called parse_bytes that accepts a single string.
+    # It should return a list of the binary bytes contained in the string.
+    # Each byte is just a combination of eight 1's or 0's. 
+
+# don't forget to import re
+import re
+'''
+My regex looks like this: 
+
+    '\b[10]{8}\b'   
+
+[10] = It consists of eight 1s or 0s
+\b = surrounded by word boundaries on either side. Remember a word boundary is either a space or the start/end of a line.
+
+I then used findall rather than search, to return a list of all matches. 
+'''
+regex_bytes = r"\b[10]{8}"
+# define parse_bytes below:
+def parse_bytes(bstring):
+    # compile & define regex pattern
+    pattern = re.compile(regex_bytes)
+    # find all pattern matches in arg and return as a list
+    return pattern.findall(bstring)
+
+# exercise 77: 
+    # Define a function called parse_date that accepts a single string Your code should check to see if the string matches a date format
+    # We're going to use the format of "dd/mm/yyyy" but it should also work with "dd.mm.yyyy" and "dd,mm,yyyy".
+    # However, rather than simply returning True or False if the string matches...you should instead return a dictionary containing the three parts of the date with the keys "d", "m" and "y" like so:
+        # Note: the string should be an EXACT match, containing the date and nothing else. If there is no match, return None
+
+        # parse_date("01/22/1999") # {'d': '01', 'm': '22', 'y': '1999'}
+
+import re
+'''
+Date Parsing Solution
+    My regex for dates looks like this: 
+
+    ^(\d\d)[,/.](\d\d)[,/.](\d{4})$ 
+
+    Two digits followed by either a comma, slash, or period.  Then two more digits followed by either a comma, slash, or period.  And then 4 more digits.  I used parens to form capture groups for the 3 sections.
+
+    Then, I simply referenced those capture groups using match.group(1) or match.group(2), etc.
+'''
+def parse_date(input):
+    pattern = re.compile("^(\d\d)[,/.](\d\d)[,/.](\d{4})$")
+    match = pattern.search(input)
+    if match:
+        return {
+            "d": match.group(1),
+            "m": match.group(2),
+            "y": match.group(3),
+        }
+    return None
