@@ -68,7 +68,7 @@ __quantifiers: specify how many times something should occur in a pattern__
 
         'hello world I am typing'
 
-| = the pipe character in regex denotes logical or 
+| = the pipe character in regex denotes logical or
 
     "Mr|Mrs|Ms"
 
@@ -211,3 +211,35 @@ def parse_name(test):
 
 result = parse_name("Mrs. Tilda Swinton")
 print(result)
+
+# compilation flags
+
+> IGNORECASE = do case-insensitive matches (ignore capital or lowercase designation)
+>
+> VERBOSE = organizes regex patterns into a more readable format
+
+import re
+
+test_email = "tom123@yahoo.com"
+case_test_email = "TOM123@yahoo.com"
+bad_test_email = "my email is tom123@yahoo.com"
+
+verbose_regex = r"""
+    ^([a-z0-9_\.-]+) # starts with first part of email
+    @                # single @ sign
+    ([\da-z\.-]+)    # email provider
+    \.               # single period
+    ([a-z\.]{2,6})$  # ends with com, org, net etc.
+"""
+
+pattern = re.compile(verbose_regex, re.X | re.I) # X = verbose and I = ignore case too
+
+match = pattern.search(case_test_email)
+
+if match:
+    print(f"match: {match.group()}")
+    print(f"match: {match.groups()}")
+else: print(None)
+
+# regex substitution 
+

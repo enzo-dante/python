@@ -1704,7 +1704,7 @@ def delay(timer):
         return wrapper
 
     return inner_decorator
-    
+
 # exercise 61: write a Robot class that utilizes a before test hook
 
 # Robot.py
@@ -1713,25 +1713,25 @@ class Robot:
         self.name = name
         self.battery=battery
         self.skills = skills
-    
+
     def charge(self):
         self.battery = 100
         return self
-    
+
     def say_name(self):
         if self.battery > 0:
             self.battery -= 1
             return f"I am {self.name}"
         return "low power. Please charge"
-    
+
     def learn_skill(self, new_skill, cost_to_learn):
         if self.battery >= cost_to_learn:
             self.battery -= cost_to_learn
             self.skills.append(new_skill)
             return f"whoah! i know {new_skill}".upper()
         return "insufficient battery."
-            
-    
+
+
 # RobotTests.py
 
 import unittest
@@ -1746,7 +1746,7 @@ class RobotTests(unittest.TestCase):
     def test_charge(self):
         self.mega_man.charge()
         self.assertEqual(self.mega_man.battery, 100)
-    
+
     def test_say_name(self):
         self.assertEqual(
             self.mega_man.say_name(),
@@ -1756,10 +1756,10 @@ class RobotTests(unittest.TestCase):
             self.mega_man.battery,
             49
         )
-    
+
 if __name__ == "__main__":
     unittest.main()
-    
+
 # exercise 62: using TDD (test driven development) and unittest, write out deck of cards application
 
 # exercise 63: file management quiz
@@ -1792,16 +1792,16 @@ copy('story.txt', 'story_copy.txt') # None
 # option 1: INFERIOR
 
 def copy(file_name, new_file_name):
-    
+
     # do not nest multiple open commands: open and close asynchronously for computational optimzation
     with open(file_name) as file_one:
         data = file_one.read()
-    
+
     # w = override existing content
     with open(new_file_name, "w") as new_file:
         new_file.write(data)
-        
-    
+
+
 # exercise 65: copy_and_reverse takes in a file name and a new file name and copies the reversed contents of the first file to the second file
 
 '''
@@ -1810,44 +1810,44 @@ copy_and_reverse('story.txt', 'story_reversed.txt') # None
 '''
 
 def copy_and_reverse(file_name, new_file_name):
-    
+
     # do not nest multiple open commands: open and close asynchronously for computational optimzation
     with open(file_name) as original_file:
         data = original_file.read()
-    
+
     # String reverse with Slices [from_start:from_end:backwards_direction_from_end_start]
         r = data[::-1]
 
     # w = override existing content
     with open(new_file_name, "w") as new_file:
         new_file.write(r)
-        
+
 # exercise 66: the statistics function takes in a file name and returns a dictionary with the num_lines, words, chars in the file
 
 '''
-statistics('story.txt') 
+statistics('story.txt')
 # {'lines': 172, 'words': 2145, 'characters': 11227}
 '''
 
 # option 1:
 
 def statistics(file_name):
-    
+
     with open(file_name) as file:
         data = file.read()
-        
+
     num_chars = len(data)
     num_words = len(data.split())
     num_lines = len(data.split("\n"))
-    
-    return {'lines': num_lines, 'words': num_words, 'characters': num_chars} 
+
+    return {'lines': num_lines, 'words': num_words, 'characters': num_chars}
 
 # option 2:
 
 def statistics(file_name):
     with open(file_name) as file:
         lines = file.readlines()
- 
+
     return { "lines": len(lines),
              "words": sum(len(line.split(" ")) for line in lines),
              "characters": sum(len(line) for line in lines) }
@@ -1856,13 +1856,13 @@ def statistics(file_name):
 # exercise 67: replace all instances of the word in the file with the replacement word
 
 '''
-find_and_replace('story.txt', 'Alice', 'Colt') 
+find_and_replace('story.txt', 'Alice', 'Colt')
 # story.txt now contains the first chapter of my new book,
 # Colt's Adventures in Wonderland
 '''
 
 def find_and_replace(file_name, search_word, replacement_word):
-    
+
     # "r+" = read and write in pre-existing file
     with open(file_name, "r+") as file:
         # read file content and store to data var
@@ -1873,22 +1873,22 @@ def find_and_replace(file_name, search_word, replacement_word):
         updated_data = data.replace(search_word, replacement_word)
         # write the new content over the old content
         file.write(updated_data)
-        # Truncate() method truncate the file’s size. If the optional size argument is present, the file is truncated to (at most) that size. The size defaults to the current position. The current file position is not changed. 
+        # Truncate() method truncate the file’s size. If the optional size argument is present, the file is truncated to (at most) that size. The size defaults to the current position. The current file position is not changed.
         file.truncate()
-        
+
  # exercise 65: file management quiz 2
 
 '''
-# ! what csv method lets you read csv rows into memory as lists? 
+# ! what csv method lets you read csv rows into memory as lists?
 
     from csv import reader
 
     with open("example.csv") as file:
         csv_reader = reader(file)
 
-# ! what csv method lets you read csv rows into memory as dictionaries? 
+# ! what csv method lets you read csv rows into memory as dictionaries?
 
- 
+
     from csv import DictReader
 
     with open("example.csv") as file:
@@ -1898,23 +1898,23 @@ def find_and_replace(file_name, search_word, replacement_word):
 # ! what is a delimiter?
 
     a character used to separate values
-    
-# ! what csv method creates an object that lets you take lists of data & write rows into a csv? 
+
+# ! what csv method creates an object that lets you take lists of data & write rows into a csv?
 
     from csv import writer
-    
+
     with open("example.csv", "w") as file:
         csv_writer = writer(file)
-    
-# ! what csv method creates an object that lets you take dictionaries of data & write rows into a csv? 
+
+# ! what csv method creates an object that lets you take dictionaries of data & write rows into a csv?
 
     from csv import DictWriter
-    
+
     with open("example.csv", "w") as file:
         csv_writer = DictWriter(file)
 '''
-                
-# exercise 68: with users.csv, write add_user function that replicates the below output 
+
+# exercise 68: with users.csv, write add_user function that replicates the below output
 
 '''
 add_user("Dwayne", "Johnson") # None
@@ -1925,11 +1925,11 @@ add_user("Dwayne", "Johnson") # None
 # Dwayne,Johnson
 '''
 
-# superior solution: 
+# superior solution:
 
 # import external csv module
 import csv
- 
+
 def add_user(first_name, last_name):
 
     # a - append to a file (previous content will NOT be removed)
@@ -1943,26 +1943,26 @@ def add_user(first_name, last_name):
 from csv import reader, writer
 
 def add_user(first_name, last_name):
-    
+
     f_column = "First Name"
     l_column = "Last Name"
     file_name = "users.csv"
-    
+
     # read csv with reader_ojbect to get existing data, convert data into nested list, add new list/row
     with open(file_name) as file:
-        
+
         csv_reader = reader(file)
         users = [user for user in csv_reader]
         users.append([first_name, last_name])
 
     # write to csv with writer_object by looping through the created reader list
     with open(file_name, "w") as file:
-        
+
         csv_writer = writer(file)
         for user in users:
             csv_writer.writerow(user)
 
-# exercise 69: with users.csv, write print_users function that replicates the below output 
+# exercise 69: with users.csv, write print_users function that replicates the below output
 
 '''
 print_users() # None
@@ -1976,25 +1976,25 @@ print_users() # None
 from csv import reader
 
 def print_users():
-    
+
     with open("users.csv") as file:
         csv_reader = reader(file)
-        
+
         # skip headers row with next()
         next(csv_reader)
         # since user name is broken up by first and last in a list, need to format into full name string
         for user in csv_reader:
             print("{first_name} {last_name}".format(first_name=user[0], last_name=user[1]))
-    
+
 # option 2: using dictionaries with DictReader
 
-from csv import DictReader 
+from csv import DictReader
 
 def print_users():
     with open("users.csv") as csvfile:
         csv_reader = DictReader(csvfile)
-        for row in csv_reader: 
-            print("{} {}".format(row['First Name'], row['Last Name'])) 
+        for row in csv_reader:
+            print("{} {}".format(row['First Name'], row['Last Name']))
 
 
 # exercise 70: with users.csv, replicate the output below:
@@ -2006,7 +2006,7 @@ find_user("Not", "Here") # 'Not Here not found.'
 '''
 
 import csv
- 
+
 def find_user(first_name, last_name):
     with open("users.csv") as csvfile:
         csv_reader = csv.reader(csvfile)
@@ -2031,23 +2031,23 @@ find_user("Not", "Here") # 'Not Here not found.'
 from csv import reader
 
 def find_user(first_name, last_name):
-    
+
     with open("users.csv") as file:
         csv_reader = reader(file)
         # next(csv_reader) # don't remove headers because it will mess up index sequence
         data = list(csv_reader)
-    
+
     for user in data:
         if user[0] == first_name and user[1] == last_name:
             return data.index(user)
-    
+
     # the not found return string needs to be outside the for loop
     return 'Not Here not found.'
-                
+
 # option 2:
 
 import csv
- 
+
 def find_user(first_name, last_name):
     with open("users.csv") as csvfile:
         csv_reader = csv.reader(csvfile)
@@ -2072,16 +2072,16 @@ update_users("Not", "Here", "Still not", "Here") # Users updated: 0.
 from csv import reader, writer
 
 def update_users(old_first, old_last, new_first, new_last):
-    
+
     csv_file = "users.csv"
     count = 0
-    
+
     # open csv_file to read data
     with open(csv_file) as file:
         csv_reader = reader(file)
         # convert csv as a nested list object/matrix that is accessible outside the scope of the open()
         data = list(csv_reader)
-    
+
     # open new file and write/override existing data to it
     with open(csv_file, "w") as file:
         csv_writer = writer(file)
@@ -2095,10 +2095,10 @@ def update_users(old_first, old_last, new_first, new_last):
             else:
                 # otherwise override row with current row data
                 csv_writer.writerow(row)
-        
+
         return "Users updated: {}.".format(count)
 
- # exercise 73: delete_users takes an first name, last name 
+ # exercise 73: delete_users takes an first name, last name
     # delete_users updates the users.csv file so that any user whose first and last names matches the inputs are removed.
     # the function should return a count of how many users were removed
 
@@ -2108,27 +2108,27 @@ delete_users("Colt", "Steele") # Users deleted: 2.
 delete_users("Not", "Here") # Users deleted: 0.
 '''
 
-# import csv mode for list reader, writer 
+# import csv mode for list reader, writer
 from csv import reader, writer
 
 def delete_users(first_name, last_name):
-    
+
     csv_file = "users.csv"
     count = 0
-    
+
     # open and use reader to read data
     with open(csv_file) as file:
-        
+
         csv_reader = reader(file)
         # convert csv into a nested lists/matrix object that is accessible outside of open() scope
         rows = list(csv_reader)
-    
+
     # open csv_file, remove rows first, than write/override to csv_file
     with open(csv_file, "w") as file:
 
         # prepare writer object with csv file
         csv_writer = writer(file)
-        
+
         for row in rows:
             # row = ["Peter", "Parker"]
             # remove row if row data matches inputs
@@ -2138,10 +2138,10 @@ def delete_users(first_name, last_name):
             else:
                 # otherwise, simply override row with current row data
                 csv_writer.writerow(row)
-        
+
         return "Users deleted: {}.".format(count)
 
- # exercise 73: OOP Quiz 
+ # exercise 73: OOP Quiz
 
 '''
 
@@ -2167,7 +2167,7 @@ help(Penguin)
 # ! why is it considered good OOP practice for Animal to raise a NotImplementedError?
 
     class Animal:
-    
+
         def speak():
             raise NotImplementedError
 
@@ -2193,9 +2193,9 @@ in other words, add self.__len__(self) as a new method on ShoppingCart that retu
 
 '''
 
- # exercise 74: Regular Expressions (regex) Quiz 
+ # exercise 74: Regular Expressions (regex) Quiz
 
-''' 
+'''
 
 # ! given the following regular expression (just focus on what is in between the slashes):
 
@@ -2240,7 +2240,7 @@ answer:
 # ! Given the following regex:
 
     7{3}
-    
+
 Which of the following contains a match:
 
 1. "73"
@@ -2272,7 +2272,7 @@ Which of the following contain matches?
 answer:
     all of the above
 
-# ! What is an alternative way of writing \d 
+# ! What is an alternative way of writing \d
 
 1. [0-9]
 2. [0123456789]
@@ -2313,7 +2313,7 @@ Which of the following contains a match:
 
 answer:
     ^ = start of string
-    \d{3} = exactly any 3 digits 
+    \d{3} = exactly any 3 digits
     $ = end of string
 
     only option 3 fulfills the regex
@@ -2348,7 +2348,7 @@ answer:
 
 '''
 
-# exercise 74: 
+# exercise 74:
     # use a regular expression module with python to validate phone numbers
 
 # import regex module
@@ -2369,8 +2369,8 @@ def extract_phone(input, regex):
     phone_regex = re.compile(regex)
     match = phone_regex.search(input)
     if match:
-        return match.group() 
-    
+        return match.group()
+
     # implied else block
     return None
 
@@ -2403,11 +2403,11 @@ def is_full_valid_match(input):
 print(is_valid_phone(search_string2))
 print(is_valid_phone(invalid_search_string1))
 print(is_valid_phone(invalid_search_string1))
-    
+
 print(is_full_valid_match(search_string2))
 
-# exercise 75: 
- # Write a function called is_valid_time that accepts a single string argument. 
+# exercise 75:
+ # Write a function called is_valid_time that accepts a single string argument.
  # It should return True; if the string is formatted correctly as a time, like 3:15 or 12:48 and return False otherwise.
  # Note that times can start with a single number (2:30) or two (11:18).
 
@@ -2431,7 +2431,7 @@ def is_valid_time(time):
     pattern = re.compile(regex_time)
     '''search for a single match in a string with our regex'''
     match = pattern.search(time)
-    
+
     if match:
         return True
     '''implied else statement'''
@@ -2440,16 +2440,16 @@ def is_valid_time(time):
 # option 2:
 
 ''' Don't forget to import re!'''
-import re 
+import re
 
 '''
-The regular expression I used is: 
+The regular expression I used is:
 
     ^\d\d?:\d\d$
 
 The time must start with a digit, and there can be a second optional digit before the colon.  Then there's the colon and two mandatory digits.  I used ^ and $ to make sure the time was the only thing in the input string.
 '''
- 
+
 def is_valid_time(input):
     pattern = re.compile(r'^\d\d?:\d\d$')
     match = pattern.search(input)
@@ -2459,19 +2459,19 @@ def is_valid_time(input):
 
 # exercise 76: Write a function called parse_bytes that accepts a single string.
     # It should return a list of the binary bytes contained in the string.
-    # Each byte is just a combination of eight 1's or 0's. 
+    # Each byte is just a combination of eight 1's or 0's.
 
 # don't forget to import re
 import re
 '''
-My regex looks like this: 
+My regex looks like this:
 
-    '\b[10]{8}\b'   
+    '\b[10]{8}\b'
 
 [10] = It consists of eight 1s or 0s
 \b = surrounded by word boundaries on either side. Remember a word boundary is either a space or the start/end of a line.
 
-I then used findall rather than search, to return a list of all matches. 
+I then used findall rather than search, to return a list of all matches.
 '''
 regex_bytes = r"\b[10]{8}"
 # define parse_bytes below:
@@ -2481,7 +2481,7 @@ def parse_bytes(bstring):
     # find all pattern matches in arg and return as a list
     return pattern.findall(bstring)
 
-# exercise 77: 
+# exercise 77:
     # Define a function called parse_date that accepts a single string Your code should check to see if the string matches a date format
     # We're going to use the format of "dd/mm/yyyy" but it should also work with "dd.mm.yyyy" and "dd,mm,yyyy".
     # However, rather than simply returning True or False if the string matches...you should instead return a dictionary containing the three parts of the date with the keys "d", "m" and "y" like so:
@@ -2489,24 +2489,31 @@ def parse_bytes(bstring):
 
         # parse_date("01/22/1999") # {'d': '01', 'm': '22', 'y': '1999'}
 
+#import re
 import re
 '''
-Date Parsing Solution
-    My regex for dates looks like this: 
-
-    ^(\d\d)[,/.](\d\d)[,/.](\d{4})$ 
-
-    Two digits followed by either a comma, slash, or period.  Then two more digits followed by either a comma, slash, or period.  And then 4 more digits.  I used parens to form capture groups for the 3 sections.
-
-    Then, I simply referenced those capture groups using match.group(1) or match.group(2), etc.
+    ^ = all matches start with
+    () = character group
+    \d\d or \d{2} = two digits ex: 01
+    [/.,] = any one of the 3 chars in the brackets would suffice
+    $ = all matches end with
+    ?P<{label}> = access label
 '''
-def parse_date(input):
-    pattern = re.compile("^(\d\d)[,/.](\d\d)[,/.](\d{4})$")
-    match = pattern.search(input)
+# use labels to access individual components (d,m,y) of regex
+
+# regex_date = r"(?P<d>^\d\d)[/.,](?P<m>\d\d)[/.,](?P<y>\d{4})"
+regex_date = r"(?P<d>^\d{2})[/.,](?P<m>\d{2})[/.,](?P<y>\d{4})"
+
+#define parse_date below
+def parse_date(date):
+    # compile & define raw regex pattern
+    pattern = re.compile(regex_date)
+    # search for matches in date parameter
+    match = pattern.search(date)
     if match:
+        # access regex label by passing defined label
         return {
-            "d": match.group(1),
-            "m": match.group(2),
-            "y": match.group(3),
+            "d": match.group("d"),
+            "m": match.group("m"),
+            "y": match.group("y")
         }
-    return None
