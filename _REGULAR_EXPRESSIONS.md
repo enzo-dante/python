@@ -190,13 +190,16 @@ print(match.groups())
 
 # regex access using labels instead of index
 
+> regex with defined with label and accessed by label (instead of index) using group():
+    > parenthesis and ?P<{label}>
+
 import re
 
     # original regex
     # regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) ([A-Za-z]+) ([A-Za-z]+)$"
 
     # regex with defined with label and accessed by label (instead of index) using group():
-        # paranthesis and ?P<{label}>
+        # parenthesis and ?P<{label}>
 regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) (?P<first>[A-Za-z]+) ([A-Za-z]+)$"
 
 def parse_name(test):
@@ -241,5 +244,46 @@ if match:
     print(f"match: {match.groups()}")
 else: print(None)
 
-# regex substitution 
+# regex substitution
 
+import re
+
+text = "Last night Mrs. Daisy and Mr. White murdered Mr. Chow"
+
+'''
+    \. = escape special functionality of .
+    [a-z] = all letters a through z are valid
+    ([a-z])[a-z]+ = capture group first letter followed any number of letters
+    + = 1 or more instances
+'''
+replace_regex = r"(Mr\.|Mrs\.|Ms\.) ([a-z])[a-z]+"
+
+__compile and define raw regex pattern that ignores letter-casing__
+pattern = re.compile(replace_regex, re.I)
+
+'''result = pattern.findall(text)'''
+'''result = pattern.search(text).group()'''
+
+__substitute matching regex patterns in text string with REDACTED__
+
+'''result = pattern.sub("redacted".upper(), text)'''
+'''print(result)'''
+
+'''
+using CAPTURE GROUPS,
+    substitute matching regex patterns in text string with REDACTED
+
+    \g<1> = first matched regex pattern returned
+
+    *doesn't seem to work when you call .upper()
+'''
+
+'''result = pattern.sub('\g<1> REDACTED', text)'''
+'''print(result)'''
+
+'''
+using CAPTURE GROUPS
+    substitute the last name with only the first letter captured
+'''
+result = pattern.sub('\g<1> \g<2>', text)
+print(result)
