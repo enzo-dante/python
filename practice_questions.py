@@ -2,11 +2,11 @@
 
 # exercise 1: print out string based on input
 
-# num_requests = input('How many times do I have to tell you\n')
-# num_requests = int(num_requests)
-#
-# for num_requests in range(num_requests):
-#     print(f'{num_requests + 1}: clean up your room!'.upper())
+num_requests = input('How many times do I have to tell you\n')
+num_requests = int(num_requests)
+
+for num_requests in range(num_requests):
+    print(f'{num_requests + 1}: clean up your room!'.upper())
 
 # exercise 2: loop through 1-20
 
@@ -14,79 +14,79 @@
 # if even, print 'x is even'
 # if odd, print 'x is odd'
 
-# for x in range(1, 21):
-#     remainder = x % 2
-#     if x == 4 or x == 13:
-#         print(f'{x} is unlucky')
-#     elif remainder:
-#         print(f'{x} is odd')
-#     else:
-#         print(f'{x} is even')
+for x in range(1, 21):
+    remainder = x % 2
+    if x == 4 or x == 13:
+        print(f'{x} is unlucky')
+    elif remainder:
+        print(f'{x} is odd')
+    else:
+        print(f'{x} is even')
 
 # alternative solution
 
-# for num in range(1,21):
-#     if num == 4 or num == 13:
-#         state = 'unlucky'
-#     elif num % 2:
-#         state = 'odd'
-#     else:
-#         state = 'even'
-#     print(f'{num} is {state}')
+for num in range(1,21):
+    if num == 4 or num == 13:
+        state = 'unlucky'
+    elif num % 2:
+        state = 'odd'
+    else:
+        state = 'even'
+    print(f'{num} is {state}')
 
-# while loop exercise
+# WHILE/FOR loop exercises
 
 # exercise 1: capture input to stop while loop
 
-# user_res = None
-# while user_res != 'please':
-#     user_res = input('what is the magic word to stop the while loop?\n')
-#     user_res = user_res.lower()
+user_res = None
+while user_res != 'please':
+    user_res = input('what is the magic word to stop the while loop?\n')
+    user_res = user_res.lower()
 
 # exercise 2: print X with BOTH while and for loops
 
-# for num in range(1, 11):
-#     print(f'num_prints: {num}\n'+'x'.upper()*num)
-#
-# # ugly nested loop solution without string multiplication
-#
-# num_prints = 0
-#
-# while num_prints < 10:
-#     print(f'num_prints: {num_prints + 1}')
-#     num_prints += 1
-#     x = ''
-#     for num in range(num_prints):
-#         x += 'x'
-#     print(x.upper())
+for num in range(1, 11):
+    print(f'num_prints: {num}\n'+'x'.upper()*num)
+
+# ugly nested loop solution without string multiplication
+
+num_prints = 0
+
+while num_prints < 10:
+    print(f'num_prints: {num_prints + 1}')
+    num_prints += 1
+    x = ''
+    for num in range(num_prints):
+        x += 'x'
+    print(x.upper())
 
 # exercise 3: repeat everything until the user says 'stop copying me'
 
-# sentence = input('How is it going?\n')
-# solution = 'stop copying me'
-#
-# while sentence != solution:
-#     print(sentence)
-#     sentence = input()
-#
-#     if sentence == solution:
-#         print('Ugh fine you win...')
+sentence = input('How is it going?\n')
+solution = 'stop copying me'
+
+while sentence != solution:
+    print(sentence)
+    sentence = input()
+
+    if sentence == solution:
+        print('Ugh fine you win...')
 
 # alternative solution
 
-# is_copying = True
-# sentence = input('How is it going?\n')
-#
-# print(sentence)
-#
-# while is_copying:
-#     if sentence == 'stop copying me':
-#         print('Ugh fine you win')
-#         is_coping = False
-#         break
-#     else:
-#         sentence = input()
-#         print(sentence)
+is_copying = True
+sentence = input('How is it going?\n')
+
+print(sentence)
+
+while is_copying:
+    if sentence == 'stop copying me':
+        print('Ugh fine you win')
+        is_coping = False
+        break
+    else:
+        sentence = input()
+        print(sentence)
 
 # exercise 4: create list called nums that contains 1-99 (including 99)
 
@@ -161,7 +161,6 @@ answer = [n for n in nums1 if n in nums1 and n in nums2]
 
 names = ["Elie", "Tim", "Matt"]
 answer2 = [name[::-1].lower() for name in names]
-
 
 # exercise 9 for loop alt solution
 
@@ -290,10 +289,12 @@ stock_list.pop("cake")
 list1 = ["CA", "NJ", "RI"]
 list2 = ["California", "New Jersey", "Rhode Island"]
 
-# exercise 18: use the game_properties list and dict.fromkeys() to generate a dictionary with all values set to 0. Save the result to a variable called initial_game_state
+# exercise 18: 
+    # use the game_properties list and dict.fromkeys() to generate a dictionary with all values set to 0. 
+    # Save the result to a variable called initial_game_state
 
-# make sure your solution is assigned to the answer variable so the tests can work!
-# {key@index : value@index iterate for each index starting at 0 to length of list 1
+    # make sure your solution is assigned to the answer variable so the tests can work!
+    # {key@index : value@index iterate for each index starting at 0 to length of list 1
 
 answer = {list1[i]: list2[i] for i in range(0,len(list1))}
 
@@ -301,8 +302,8 @@ person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
 
 # exercise 19:
 
-# use the person variable in your answer to get this output:
-#   {'name': 'Jared', 'job': 'Musician', 'city': 'Bern'}
+    # use the person variable in your answer to get this output:
+    #   {'name': 'Jared', 'job': 'Musician', 'city': 'Bern'}
 
 # option 1
 answer = {person[i][0] : person[i][1] for i in range(0, len(person))}
@@ -317,8 +318,8 @@ answer = dict(person)
 
 # exercise 20:
 
-# make sure your solution is assigned to the answer variable so the tests can work!
-# get this output: {'a': 0, 'e':0, 'i':0, 'o':0, 'u':0}
+    # make sure your solution is assigned to the answer variable so the tests can work!
+    # get this output: {'a': 0, 'e':0, 'i':0, 'o':0, 'u':0}
 
 # option 1
 answer = {}.fromkeys("aeiou", 0)
@@ -329,7 +330,8 @@ answer = dict.fromkeys("aeiou", 0)
 # option 2
 answer = {key : 0 for key in "aeiou"}
 
-# exercise 21: use chr(num) to get ASCII uppercase letter value A-Z (65-90) and create dictionary with corresponding ASCII code - letter value
+# exercise 21: 
+    # use chr(num) to get ASCII uppercase letter value A-Z (65-90) and create dictionary with corresponding ASCII code - letter value
 
 # make sure your solution is assigned to the answer variable so the tests can work!
 answer = {count: chr(count) for count in range(65,91)}
