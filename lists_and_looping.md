@@ -456,3 +456,7 @@ print(board) # [[1,2,3],[1,2,3]],[1,2,3]]
 > nested list comprehension with conditional logic
 
 [["x" if num % 2 != 0 else "o" for num in range(1,4)] for val in range(1,4)] # [["x", "o", "x"]["x", "o", "x"]["x", "o", "x"]]
+
+> The .all() function returns True if all items in an iterable are true, otherwise it returns False.
+
+> The .any() function returns True if any item in an iterable are true, otherwise it returns False.

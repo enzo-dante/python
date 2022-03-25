@@ -190,3 +190,5 @@ string = "This is fun!"
 
 string[::-1] # "!nuf si sihT"
 
+
+# .strip() = removes whitespace
