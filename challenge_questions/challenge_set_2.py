@@ -3,15 +3,16 @@
     ?   returns a {}
 
     * example & output:
-        vowel_count('awesome') # {'a': 1, 'e': 2, 'o': 1}
+
 """
+
+
+print("------------------------------------------------------------------------------------------")
+
 
 """ 
     ? write at least 4 different expression (using different operators) that equals 100 
 """
-
-import numbers
-from typing import List
 
 def print_four_expressions():
     print(99 + 1)
@@ -451,3 +452,370 @@ def find_the_duplicate(nums):
 # print(find_the_duplicate([1,2,1,4,3,12])) # 1
 # print(find_the_duplicate([6,1,9,5,3,4,9])) # 9
 # print(find_the_duplicate([2,1,3,4])) # None
+
+"""
+    ? write a function called sum_up_diagonals that takes a NxN list of lists (2D array) as parameter(s)
+    ?   returns a sum of the two main diagonals in the array
+    ?       the 1 from the upper left to the lower right
+    ?       the 1 from the upper right to the lower left
+
+    * example & output:
+
+        list1 = [
+          [ 1, 2 ],
+          [ 3, 4 ]
+        ]
+
+        sum_up_diagonals(list1) # 10
+
+        list2 = [
+          [ 1, 2, 3 ],
+          [ 4, 5, 6 ],
+          [ 7, 8, 9 ]
+        ]
+
+        sum_up_diagonals(list2) # 30
+
+        list3 = [
+          [ 4, 1, 0 ],
+          [ -1, -1, 0],
+          [ 0, 0, 9]
+        ]
+
+        sum_up_diagonals(list3) # 11
+
+        list4 = [
+          [ 1, 2, 3, 4 ],
+          [ 5, 6, 7, 8 ],
+          [ 9, 10, 11, 12 ],
+          [ 13, 14, 15, 16 ]
+        ]
+
+        sum_up_diagonals(list4) # 68
+"""
+
+list1 = [
+    [1,2],
+    [3,4]
+]
+
+list2 = [
+  [ 1, 2, 3 ],
+  [ 4, 5, 6 ],
+  [ 7, 8, 9 ]
+]
+
+# INFERIOR solution
+# def sum_up_diagonals(array_2d):
+
+#     d1 = 0
+#     d2 = len(array_2d) - 1
+#     sum = 0
+
+#     for l in array_2d:
+
+#         sum += l[d1]
+#         sum += l[d2]
+
+#         if d1 != (len(l) - 1):
+#             d1 += 1
+#             d2 -= 1
+    
+#     return sum
+        
+# SUPERIOR solution
+def sum_up_diagonals(arr):
+    total = 0
+    
+    for i,val in enumerate(arr):
+        total += arr[i][i]
+        total += arr[i][-1-i]
+    return total
+
+# print(sum_up_diagonals(list1))
+# print(sum_up_diagonals(list2))
+
+"""
+    ? write a function called min_max_key_in_dictionary that takes a dict as parameter(s)
+    ?   returns a list with lowest and highest key in the arg
+
+    * example & output:
+        min_max_key_in_dictionary({2:'a', 7:'b', 1:'c',10:'d',4:'e'}) # [1,10]
+        min_max_key_in_dictionary({1: "Ellie", 4:"Matt", 2: "Tim"}) # [1,4]
+"""
+
+d1 = {2:'a', 7:'b', 1:'c',10:'d',4:'e'}
+d2 = {1: "Ellie", 4:"Matt", 2: "Tim"}
+
+# INFERIOR solution 
+# def min_max_key_in_dictionary(d):
+    
+#     min_k = 0
+#     max_k = 0
+
+#     for k in d.keys():
+#         if min_k == 0 or max_k == 0:
+#             min_k = k
+#             max_k = k
+#         elif min_k > k:
+#             min_k = k
+#         elif max_k < k:
+#             max_k = k
+
+#     return [min_k, max_k]
+
+# SUPERIOR solution
+def min_max_key_in_dictionary(d):
+    keys = d.keys()
+    return [min(keys), max(keys)]
+
+# print(min_max_key_in_dictionary(d1))
+
+"""
+    ? write a function called find_greater_numbers that takes a list as parameter(s)
+    ?   returns the number of times a number is followed by a larger number across the entire list 
+
+    * example & output:
+        find_greater_numbers([1,2,3]) # 3 
+        find_greater_numbers([6,1,2,7]) # 4
+        find_greater_numbers([5,4,3,2,1]) # 0
+        find_greater_numbers([]) # 0
+"""
+
+def find_greater_numbers(nums):
+
+    count = 0
+    i = 0
+    j = 1
+    
+    while i < len(nums):
+        
+        while j < len(nums):
+
+            if nums[j] > nums[i]:
+                count += 1
+            
+            j += 1
+        
+        j = i + 1
+        i += 1
+
+    return count
+
+# print(find_greater_numbers([1,2,3])) # 3 
+
+"""
+    ? write a function called two_oldest_ages that takes a list of numbers as parameter(s)
+    ?   returns the two highest numbers within the list in the format [second_oldest_age, oldest_age]
+
+    * example & output:
+        two_oldest_ages( [1, 2, 10, 8] ) # [8, 10]
+        two_oldest_ages( [6,1,9,10,4] ) # [9,10]
+        two_oldest_ages( [4,25,3,20,19,5] ) # [20,25]
+"""
+
+# INFERIOR solution
+# def two_oldest_ages(nums):
+
+#     sorted_nums = sorted(nums)
+#     return [sorted_nums[-2], sorted_nums[-1]] 
+
+# SUPERIOR solution
+def two_oldest_ages(ages):
+    return sorted(ages)[-2:]
+
+# print(two_oldest_ages( [1, 2, 10, 8])) # [8, 10]
+
+"""
+    ? write a function called is_odd_string that takes a str as parameter(s)
+    ?   returns True if sum of each character's position in the alphabet is odd
+    ?           False if the sum is even
+
+    !   NOTE: index start starts at 1            
+
+    * example & output:
+        is_odd_string('a') # True
+        is_odd_string('aaaa') # False
+        is_odd_string('amazing') # True
+        is_odd_string('veryfun') # True
+        is_odd_string('veryfunny') # False
+"""
+
+# SUPERIOR solution
+
+import string # for alphabet
+
+def is_odd_string(letters):
+    
+    sum = 0
+    n_list = [n for n in range(1, 27)]
+    a_list = list(string.ascii_lowercase)
+
+    # create dictionary of with nums as keys and values as letters in the alphabet via zip
+    d = dict(zip(n_list, a_list))
+
+    for (k, v) in d.items():
+        
+        for l in letters:
+
+            if l == v:
+                sum += k
+        
+    if sum % 2 != 0:
+        return True
+
+    return False
+
+# INFERIOR solution
+def is_odd_string(string):
+    total = sum((ord(c) - 96) for c in string.lower()) or 0
+    return total % 2 == 1
+
+# print(is_odd_string('a')) # True
+# print(is_odd_string('aaaa')) # False
+# print(is_odd_string('veryfun')) # True
+
+"""
+    ? write a function called valid_paranthesis that takes a string as parameter(s)
+    ?   returns a boolean if the string is valid
+
+    * example & output:
+        valid_parentheses("()") # True 
+        valid_parentheses(")(()))") # False 
+        valid_parentheses("(") # False 
+        valid_parentheses("(())((()())())") # True 
+        valid_parentheses('))((') # False
+        valid_parentheses('())(') # False
+        valid_parentheses('()()()()())()(') # False
+"""
+
+# def valid_parentheses(parens):
+
+#     count = 0
+#     i = 0
+
+#     while i < len(parens):
+
+#         if (parens[i] == '('):
+#             count += 1
+#         elif (parens[i] == ')'):
+#             count -= 1
+
+#         if (count < 0):
+#             return False
+
+#         i += 1
+
+#     return count == 0
+
+def valid_parentheses(p):
+
+    '''only valid pairs if count is 0'''
+    p = p.strip()
+    count = 0
+    i = 0
+    
+    while i < len(p):
+        
+        if p[i] == "(":
+
+            count += 1
+
+        elif p[i] == ")":
+
+            count -= 1
+        
+        if count < 0:
+            return False
+        
+        i += 1
+    
+    return count == 0
+
+# print(valid_parentheses("()")) # True 
+# print(valid_parentheses(")(()))")) # False 
+# print(valid_parentheses("(")) # False 
+
+# print(valid_parentheses("(())((()())())")) # True 
+# print(valid_parentheses('))((')) # False
+# print(valid_parentheses('())(')) # False
+
+# print(valid_parentheses('()()()()())()(')) # False
+
+"""
+    ? write a function called reverse_vowels that takes a str as parameter(s)
+    ?   returns a string where the vowels re reversed
+    
+    ! do not consider 'y' to be a vowel
+
+    * example & output:
+        reverse_vowels("Hello!") # "Holle!" 
+        reverse_vowels("Tomatoes") # "Temotaos" 
+        reverse_vowels("Reverse Vowels In A String") # "RivArsI Vewols en e Streng"
+        reverse_vowels("aeiou") # "uoiea"
+        reverse_vowels("why try, shy fly?") # "why try, shy fly?"
+"""
+
+def swap_vowels(i, j, s):
+
+    s[i], s[j] = s[j], s[i]
+    i += 1
+    j -= 1
+    return (s, i, j)
+    
+def reverse_vowels(s):
+
+    vowels = "aeiou"
+    s_list = list(s)
+    i, j = 0, len(s_list) - 1
+
+    while i < j:
+        
+        if s_list[i].lower() not in vowels:
+
+            i += 1
+
+        elif s_list[j].lower() not in vowels:
+
+            j -= 1
+
+        else:
+
+            s_list, i, j = swap_vowels(i, j, s_list)
+    
+    return "".join(s_list)
+    
+# print(reverse_vowels("Hello!"))
+# print(reverse_vowels("Tomatoes")) # "Temotaos" 
+
+"""
+    ? write a function called three_odd_numbers that takes a list of numbers as parameter(s)
+    ?   returns True if any three consecutive numbers sum to an odd number 
+
+    * example & output:
+        three_odd_numbers([1,2,3,4,5]) # True
+        three_odd_numbers([0,-2,4,1,9,12,4,1,0]) # True
+        three_odd_numbers([5,2,1]) # False
+        three_odd_numbers([1,2,3,3,2]) # False
+"""
+
+def three_odd_numbers(nums):
+
+    sum = 0
+
+    for i in nums:
+
+        if(i + 2 <= len(nums) - 2):
+
+            sum = nums[i] + nums[(i + 1)] + nums[(i + 2)]
+
+            if sum % 2 != 0:
+                return True
+            
+            sum = 0
+
+    return False 
+
+print(three_odd_numbers([1,2,3,4,5])) # True
+print(three_odd_numbers([0,-2,4,1,9,12,4,1,0])) # True
+print(three_odd_numbers([5,2,1])) # False
