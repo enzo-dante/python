@@ -6,6 +6,8 @@
 
 """
 
+print("function_name() was called")
+
 
 print("------------------------------------------------------------------------------------------")
 
@@ -643,6 +645,7 @@ def two_oldest_ages(ages):
 
 # SUPERIOR solution
 
+from decimal import Decimal
 import string # for alphabet
 
 def is_odd_string(letters):
@@ -816,6 +819,72 @@ def three_odd_numbers(nums):
 
     return False 
 
-print(three_odd_numbers([1,2,3,4,5])) # True
-print(three_odd_numbers([0,-2,4,1,9,12,4,1,0])) # True
-print(three_odd_numbers([5,2,1])) # False
+# print(three_odd_numbers([1,2,3,4,5])) # True
+# print(three_odd_numbers([0,-2,4,1,9,12,4,1,0])) # True
+# print(three_odd_numbers([5,2,1])) # False
+
+"""
+    ? write a function called mode that takes a list of numbers as parameter(s)
+    ?   returns the mode (most frequent number), can assume mode is unique in challenge
+
+    * example & output:
+        mode([2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]) # 4
+"""
+
+print("mode() was called")
+
+numbers = [2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]
+
+def mode(numbers):
+
+    d = {n : numbers.count(n) for n in numbers}
+
+    # in given dict, get the k with max value and return it
+    return max(d, key = d.get) 
+
+result = mode([2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]) # 4
+# print(result)
+
+"""
+    ? write a function called running_average that takes a function as parameter(s)
+
+    ?   returns a function
+    ?       when function returned is passed a value, the function returns the current average of all precious function calls
+
+    !       round all answers to the 2nd decimal place
+
+    * example & output:
+        rAvg = running_average()
+        rAvg(10) # 10.0
+        rAvg(11) # 10.5
+        rAvg(12) # 11
+
+        rAvg2 = running_average()
+        rAvg2(1) # 1
+        rAvg2(3) # 2
+"""
+
+print("rAvg() & running_average() were called")
+
+def running_average():
+
+    running_average.total = 0
+    running_average.size = 0
+
+    def rAvg(n):
+
+        running_average.total += n
+        running_average.size += 1
+
+        return running_average.total / running_average.size
+    
+    return rAvg
+
+rAvg = running_average()
+print(rAvg(10)) # 10.0
+print(rAvg(11)) # 10.5
+print(rAvg(12)) # 11
+
+
+
+
