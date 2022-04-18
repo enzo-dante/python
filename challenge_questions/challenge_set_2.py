@@ -6,14 +6,14 @@
 
 """
 
-print("function_name() was called")
+# print("function_name() was called")
 
 
-print("------------------------------------------------------------------------------------------")
+# print("------------------------------------------------------------------------------------------")
 
 
-""" 
-    ? write at least 4 different expression (using different operators) that equals 100 
+"""
+    ? write at least 4 different expression (using different operators) that equals 100
 """
 
 def print_four_expressions():
@@ -34,7 +34,7 @@ def get_letter_r(word="Hello World"):
 # print(f"r = {get_letter_r()} in 'Hello World'")
 
 """
-    ? use string slicing in python to grab the word "ink" in from inside the overall word "tinker" 
+    ? use string slicing in python to grab the word "ink" in from inside the overall word "tinker"
 
     * HINT: when slicing, you only go up to but not include the end index
 """
@@ -45,7 +45,7 @@ def get_ink(word="tinker"):
 # print(f"{get_ink()} = 'ink' slice in 'tinker'")
 
 """
-    ? write reverse_string function that takes string parameter and returns string with all characters reversed 
+    ? write reverse_string function that takes string parameter and returns string with all characters reversed
 """
 
 def reverse_string(input):
@@ -54,7 +54,7 @@ def reverse_string(input):
 # print(reverse_string("tHis is a tEst"))
 
 """
-    ? write list_check function that takes a list parameter 
+    ? write list_check function that takes a list parameter
     ?   returns True if each value in the list is a list, else returns false
 """
 
@@ -72,8 +72,8 @@ list_test_3 = [[], [1], [2,3]]
 # print(list_check(list_test_3))
 
 """
-    ? write remove_every_other function that takes a list parameter 
-    ?   returns a new list with every second value removed 
+    ? write remove_every_other function that takes a list parameter
+    ?   returns a new list with every second value removed
 """
 
 list_test_1 = [1,2,3,4,5]
@@ -88,7 +88,7 @@ def remove_every_other(p_list):
 
 """
     ? write sum_pairs function that takes a list and a number as parameters
-    ?   returns first pair of numbers that sum to the number pass as a parameter 
+    ?   returns first pair of numbers that sum to the number pass as a parameter
 
     # sum_pairs([4,2,10,5,1], 6) # [4,2]
 """
@@ -102,7 +102,7 @@ def sum_pairs(num_list, number):
         for j in num_list:
             if j + i == number:
                 return [i, j]
-        
+
     return []
 
 # print(sum_pairs(numbers_1, 6))
@@ -110,7 +110,7 @@ def sum_pairs(num_list, number):
 
 """
     ? write vowel_count function that takes a str as parameters
-    ?   returns a dictionary with the key as vowels & values as the count of times that vowel appears in the str 
+    ?   returns a dictionary with the key as vowels & values as the count of times that vowel appears in the str
 
     vowel_count('awesome') # {'a': 1, 'e': 2, 'o': 1}
 """
@@ -125,7 +125,7 @@ def vowel_count(word):
                 v_count[letter] = 1
             else:
                 v_count[letter] += 1
-    
+
     return v_count
 
 # d = vowel_count("awesome")
@@ -149,7 +149,7 @@ def titleize(sentence):
     for word in sentence.split(" "):
         word = word[0].upper() + word[1:] + " "
         capitalized += word
-    
+
     return capitalized.strip()
 
 # print(titleize("this is awesome"))
@@ -178,8 +178,8 @@ def find_factors(number):
 
     # for f in range(1, number + 1):
     #     if number % f == 0:
-    #         factors.append(f) 
-    
+    #         factors.append(f)
+
     # return factors
 
 # print(find_factors(111)) # [1,3,37,111 ]
@@ -194,8 +194,8 @@ def find_factors(number):
     ?   if a dictionary, the function searches for the value among the values in a dictionary, since dictionary's have no sorted order, the 3rd parameter would be ignored
 
     * example & output:
-        includes([1, 2, 3], 1) # True 
-        includes([1, 2, 3], 1, 2) # False 
+        includes([1, 2, 3], 1) # True
+        includes([1, 2, 3], 1, 2) # False
 """
 
 def includes(collection, value=0, start_index=0):
@@ -204,14 +204,14 @@ def includes(collection, value=0, start_index=0):
 
         if value in collection[start_index:]:
             return True
-        
+
     elif type(collection) == dict:
-        
+
         for k, v in collection.items():
 
             if v == value:
                 return True
-            
+
     return False
 
 # print(includes([1,2,3], 1))
@@ -223,7 +223,7 @@ def includes(collection, value=0, start_index=0):
     ?       repeated the number amount of times
 
     * example & output:
-        repeat('abc', 2) # 'abcabc' 
+        repeat('abc', 2) # 'abcabc'
 """
 
 def repeat(my_str, my_num):
@@ -232,13 +232,13 @@ def repeat(my_str, my_num):
 
     for n in range(0, my_num):
         new_str += my_str
-    
+
     return new_str
 
-# print(repeat('abc', 2)) # 'abcabc' 
+# print(repeat('abc', 2)) # 'abcabc'
 
 """
-    ? write a function called truncate takes a string and a number n, truncate the string to a shorter string containing at most n characters 
+    ? write a function called truncate takes a string and a number n, truncate the string to a shorter string containing at most n characters
     ?   truncation must be at least 3 characters long
     ?   returns a string
 
@@ -254,15 +254,15 @@ def truncate(string, n):
     if n >= 3:
         # python ternary operator
         return string[:target_length] + "..." if len(string) > len(string[:target_length]) else string[:n]
-    
+
     return "Truncation must be at least 3 characters."
-    
+
 # print(truncate("Problem solving is the best!", 10)) # "Problem..."
 # print(truncate("Super cool", 2)) # "Truncation must be at least 3 characters."
 
 """
     ? write a function called two_list_dictionary that takes 2 lists of varying length as parameter(s)
-    ?   the first list contains keywords and the second list contains values 
+    ?   the first list contains keywords and the second list contains values
     ?   returns a dictionary of the keywords and respective values
     ?       if there are not enough values per key, the remaining keys should have a value of null
     ?       if there are not enough keys per value, than just ignore the remaining values
@@ -272,7 +272,7 @@ def truncate(string, n):
         two_list_dictionary(['a', 'b', 'c']  , [1, 2, 3, 4]) # {'a': 1, 'b': 2, 'c': 3}
         two_list_dictionary(['x', 'y', 'z']  , [1,2]) # {'x': 1, 'y': 2, 'z': None}
 
-    HINT: use built-in function zip() & then convert into dict: 
+    HINT: use built-in function zip() & then convert into dict:
         pairs up two values from two different lists in sequential order respective of index position in each list
             lists have different length, zip will stop once there are no more pairs to zip
 """
@@ -280,7 +280,7 @@ def truncate(string, n):
 def two_list_dictionary(keywords, values):
 
     """
-    use built-in function zip() & then convert into dict: 
+    use built-in function zip() & then convert into dict:
         pairs up two values from two different lists in sequential order respective of index position in each list
             lists have different length, zip will stop once there are no more pairs to zip
     """
@@ -298,9 +298,9 @@ def two_list_dictionary(keywords, values):
 """
     ? write a function called range_in_list that takes a list, start_index, and end_index as parameter(s)
     ?   returns the sum of the values between the start_index and end_index in the list (inclusive)
-    ?       if start_index not passed as arg, default to 0 
+    ?       if start_index not passed as arg, default to 0
     ?       if end_index not passed as arg, default to last value index
-    ?       if end_index is too large, sum should still go through end of list 
+    ?       if end_index is too large, sum should still go through end of list
 
     * example & output:
         range_in_list([1,2,3,4],0,2) #  6
@@ -316,11 +316,11 @@ def range_in_list(nums, start=0, end=None):
     sum = 0
 
     if type(nums) == list:
-        
+
         if end is None or end > len(nums):
 
             end = len(nums) - 1
-        
+
         for n in nums[start:(end + 1)]:
 
             sum += n
@@ -350,35 +350,35 @@ def range_in_list(nums, start=0, end=None):
 #     is_same = False
 
 #     for n in str(nums1):
-        
+
 #         if d_one.get(n) == None:
 #             d_one[n] = 1
 #         else:
 #             d_one[n] += 1
-    
+
 #     for n in str(nums2):
-        
+
 #         if d_two.get(n) == None:
 #             d_two[n] = 1
 #         else:
 #             d_two[n] += 1
-    
+
 #     for k, v in d_one.items():
 
 #         if d_two[k] == v:
-#             is_same = True 
+#             is_same = True
 #         else:
 #             is_same = False
 #             break
-        
+
 #     return is_same
-        
+
 # superior solution
 
 def same_frequency(num1,num2):
     d1 = {letter:str(num1).count(letter) for letter in str(num1)}
     d2 = {letter:str(num2).count(letter) for letter in str(num2)}
-  
+
     for key,val in d1.items():
         if not key in d2.keys():
             return False
@@ -394,10 +394,10 @@ def same_frequency(num1,num2):
     ? write a function called nth() that takes a list and a number as parameter(s)
     ?   returns the element at whatever index is the number in the list
     ?       if the number is negative, the nth element from the end is returned
-    ?       you cannot always assume that number will always be between the negative value of the list length and the list length minus 1  
+    ?       you cannot always assume that number will always be between the negative value of the list length and the list length minus 1
 
     * example & output:
-        nth(['a', 'b', 'c', 'd'], 1)  # 'b' 
+        nth(['a', 'b', 'c', 'd'], 1)  # 'b'
         nth(['a', 'b', 'c', 'd'], -2) #  'c'
         nth(['a', 'b', 'c', 'd'], 0)  # 'a'
         nth(['a', 'b', 'c', 'd'], -4) #  'a'
@@ -407,14 +407,14 @@ def same_frequency(num1,num2):
 
 def nth(my_list, num):
     return my_list[num]
-    
+
     # traditional else/if
     # if num < 0:
     #     return my_list[-1]
 
     # return my_list[num]
 
-# print(nth(['a', 'b', 'c', 'd'], 1))  # 'b' 
+# print(nth(['a', 'b', 'c', 'd'], 1))  # 'b'
 # print(nth(['a', 'b', 'c', 'd'], -2)) #  'c'
 
 """
@@ -428,7 +428,7 @@ def nth(my_list, num):
 """
 
 def find_the_duplicate(nums):
-    
+
     # dictionary comprehension that uses list count to get duplicate
 
     d = {n : nums.count(n) for n in nums}
@@ -448,7 +448,7 @@ def find_the_duplicate(nums):
 
         if v > 1:
             return k
-        
+
     return None
 
 # print(find_the_duplicate([1,2,1,4,3,12])) # 1
@@ -522,13 +522,13 @@ list2 = [
 #         if d1 != (len(l) - 1):
 #             d1 += 1
 #             d2 -= 1
-    
+
 #     return sum
-        
+
 # SUPERIOR solution
 def sum_up_diagonals(arr):
     total = 0
-    
+
     for i,val in enumerate(arr):
         total += arr[i][i]
         total += arr[i][-1-i]
@@ -549,9 +549,9 @@ def sum_up_diagonals(arr):
 d1 = {2:'a', 7:'b', 1:'c',10:'d',4:'e'}
 d2 = {1: "Ellie", 4:"Matt", 2: "Tim"}
 
-# INFERIOR solution 
+# INFERIOR solution
 # def min_max_key_in_dictionary(d):
-    
+
 #     min_k = 0
 #     max_k = 0
 
@@ -575,10 +575,10 @@ def min_max_key_in_dictionary(d):
 
 """
     ? write a function called find_greater_numbers that takes a list as parameter(s)
-    ?   returns the number of times a number is followed by a larger number across the entire list 
+    ?   returns the number of times a number is followed by a larger number across the entire list
 
     * example & output:
-        find_greater_numbers([1,2,3]) # 3 
+        find_greater_numbers([1,2,3]) # 3
         find_greater_numbers([6,1,2,7]) # 4
         find_greater_numbers([5,4,3,2,1]) # 0
         find_greater_numbers([]) # 0
@@ -589,22 +589,22 @@ def find_greater_numbers(nums):
     count = 0
     i = 0
     j = 1
-    
+
     while i < len(nums):
-        
+
         while j < len(nums):
 
             if nums[j] > nums[i]:
                 count += 1
-            
+
             j += 1
-        
+
         j = i + 1
         i += 1
 
     return count
 
-# print(find_greater_numbers([1,2,3])) # 3 
+# print(find_greater_numbers([1,2,3])) # 3
 
 """
     ? write a function called two_oldest_ages that takes a list of numbers as parameter(s)
@@ -620,7 +620,7 @@ def find_greater_numbers(nums):
 # def two_oldest_ages(nums):
 
 #     sorted_nums = sorted(nums)
-#     return [sorted_nums[-2], sorted_nums[-1]] 
+#     return [sorted_nums[-2], sorted_nums[-1]]
 
 # SUPERIOR solution
 def two_oldest_ages(ages):
@@ -633,7 +633,7 @@ def two_oldest_ages(ages):
     ?   returns True if sum of each character's position in the alphabet is odd
     ?           False if the sum is even
 
-    !   NOTE: index start starts at 1            
+    !   NOTE: index start starts at 1
 
     * example & output:
         is_odd_string('a') # True
@@ -649,7 +649,7 @@ from decimal import Decimal
 import string # for alphabet
 
 def is_odd_string(letters):
-    
+
     sum = 0
     n_list = [n for n in range(1, 27)]
     a_list = list(string.ascii_lowercase)
@@ -658,12 +658,12 @@ def is_odd_string(letters):
     d = dict(zip(n_list, a_list))
 
     for (k, v) in d.items():
-        
+
         for l in letters:
 
             if l == v:
                 sum += k
-        
+
     if sum % 2 != 0:
         return True
 
@@ -683,10 +683,10 @@ def is_odd_string(string):
     ?   returns a boolean if the string is valid
 
     * example & output:
-        valid_parentheses("()") # True 
-        valid_parentheses(")(()))") # False 
-        valid_parentheses("(") # False 
-        valid_parentheses("(())((()())())") # True 
+        valid_parentheses("()") # True
+        valid_parentheses(")(()))") # False
+        valid_parentheses("(") # False
+        valid_parentheses("(())((()())())") # True
         valid_parentheses('))((') # False
         valid_parentheses('())(') # False
         valid_parentheses('()()()()())()(') # False
@@ -717,9 +717,9 @@ def valid_parentheses(p):
     p = p.strip()
     count = 0
     i = 0
-    
+
     while i < len(p):
-        
+
         if p[i] == "(":
 
             count += 1
@@ -727,19 +727,19 @@ def valid_parentheses(p):
         elif p[i] == ")":
 
             count -= 1
-        
+
         if count < 0:
             return False
-        
+
         i += 1
-    
+
     return count == 0
 
-# print(valid_parentheses("()")) # True 
-# print(valid_parentheses(")(()))")) # False 
-# print(valid_parentheses("(")) # False 
+# print(valid_parentheses("()")) # True
+# print(valid_parentheses(")(()))")) # False
+# print(valid_parentheses("(")) # False
 
-# print(valid_parentheses("(())((()())())")) # True 
+# print(valid_parentheses("(())((()())())")) # True
 # print(valid_parentheses('))((')) # False
 # print(valid_parentheses('())(')) # False
 
@@ -748,52 +748,60 @@ def valid_parentheses(p):
 """
     ? write a function called reverse_vowels that takes a str as parameter(s)
     ?   returns a string where the vowels re reversed
-    
+
     ! do not consider 'y' to be a vowel
 
     * example & output:
-        reverse_vowels("Hello!") # "Holle!" 
-        reverse_vowels("Tomatoes") # "Temotaos" 
+        reverse_vowels("Hello!") # "Holle!"
+        reverse_vowels("Tomatoes") # "Temotaos"
         reverse_vowels("Reverse Vowels In A String") # "RivArsI Vewols en e Streng"
         reverse_vowels("aeiou") # "uoiea"
         reverse_vowels("why try, shy fly?") # "why try, shy fly?"
 """
 
-def swap_vowels(i, j, s):
+def reverse_swap_vowels(string, i, j):
 
-    s[i], s[j] = s[j], s[i]
+    if i == j:
+        return
+
+    temp = string[i]
+    string[i] = string[j]
+    string[j] = temp
+
+    # evaluate next char if not vowel or swapped vowel
     i += 1
     j -= 1
-    return (s, i, j)
-    
-def reverse_vowels(s):
+
+    return (string, i, j)
+
+def reverse_vowels(string):
+
+    # in-place algorithm
+    # O(n^2) = quadratic time complexity
 
     vowels = "aeiou"
-    s_list = list(s)
-    i, j = 0, len(s_list) - 1
+    i = 0
+    j = len(string) - 1
+    str_list = list(string)
 
+    # iterate over list of chars from both directions
     while i < j:
-        
-        if s_list[i].lower() not in vowels:
 
+        # continue traversal forward if char at index i not a vowel
+        if str_list[i].lower() not in vowels:
             i += 1
-
-        elif s_list[j].lower() not in vowels:
-
+        # continue traversal backwards if char at index j not a vowel
+        elif str_list[j].lower() not in vowels:
             j -= 1
-
+        # after finding vowels for both indices, swap
         else:
+            str_list, i, j = reverse_swap_vowels(str_list, i, j)
 
-            s_list, i, j = swap_vowels(i, j, s_list)
-    
-    return "".join(s_list)
-    
-# print(reverse_vowels("Hello!"))
-# print(reverse_vowels("Tomatoes")) # "Temotaos" 
+    return "".join(str_list)
 
 """
     ? write a function called three_odd_numbers that takes a list of numbers as parameter(s)
-    ?   returns True if any three consecutive numbers sum to an odd number 
+    ?   returns True if any three consecutive numbers sum to an odd number
 
     * example & output:
         three_odd_numbers([1,2,3,4,5]) # True
@@ -802,26 +810,20 @@ def reverse_vowels(s):
         three_odd_numbers([1,2,3,3,2]) # False
 """
 
-def three_odd_numbers(nums):
+def three_odd_numbers(numbers):
 
-    sum = 0
+    i = 0
 
-    for i in nums:
+    while (i + 2) < len(numbers):
 
-        if(i + 2 <= len(nums) - 2):
+        # check if consecutive numbers sum in list equals odd value
+        if((numbers[i] + numbers[i + 1] + numbers[i + 2]) % 2 != 0):
+            return True
 
-            sum = nums[i] + nums[(i + 1)] + nums[(i + 2)]
+        i += 1
 
-            if sum % 2 != 0:
-                return True
-            
-            sum = 0
+    return False
 
-    return False 
-
-# print(three_odd_numbers([1,2,3,4,5])) # True
-# print(three_odd_numbers([0,-2,4,1,9,12,4,1,0])) # True
-# print(three_odd_numbers([5,2,1])) # False
 
 """
     ? write a function called mode that takes a list of numbers as parameter(s)
@@ -831,27 +833,18 @@ def three_odd_numbers(nums):
         mode([2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]) # 4
 """
 
-print("mode() was called")
-
-numbers = [2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]
-
-def mode(numbers):
-
-    d = {n : numbers.count(n) for n in numbers}
-
-    # in given dict, get the k with max value and return it
-    return max(d, key = d.get) 
-
-result = mode([2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]) # 4
-# print(result)
+def mode(nums):
+    # build dict: {value: numFrequency}
+    d = {n : nums.count(n) for n in nums}
+    # get max key with highest numFrequency
+    return max(d, key=d.get)
 
 """
     ? write a function called running_average that takes a function as parameter(s)
+    ?       when returned parameter function is passed a value,
+    ?           the parameter function returns the current average of all precious function calls
 
-    ?   returns a function
-    ?       when function returned is passed a value, the function returns the current average of all precious function calls
-
-    !       round all answers to the 2nd decimal place
+    ! HINT: use closure, round all answers to the 2nd decimal place
 
     * example & output:
         rAvg = running_average()
@@ -864,27 +857,15 @@ result = mode([2,4,1,2,3,3,4,4,5,4,4,6,4,6,7,4]) # 4
         rAvg2(3) # 2
 """
 
-print("rAvg() & running_average() were called")
-
 def running_average():
 
-    running_average.total = 0
-    running_average.size = 0
+    running_average.sum = 0
+    running_average.num_divisors = 0
 
     def rAvg(n):
+        running_average.sum += n
+        running_average.num_divisors += 1
 
-        running_average.total += n
-        running_average.size += 1
+        return (running_average.sum / running_average.num_divisors)
 
-        return running_average.total / running_average.size
-    
     return rAvg
-
-rAvg = running_average()
-print(rAvg(10)) # 10.0
-print(rAvg(11)) # 10.5
-print(rAvg(12)) # 11
-
-
-
-
