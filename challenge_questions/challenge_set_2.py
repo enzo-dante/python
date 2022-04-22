@@ -643,43 +643,26 @@ def two_oldest_ages(ages):
         is_odd_string('veryfunny') # False
 """
 
-# SUPERIOR solution
+import string
 
-from decimal import Decimal
-import string # for alphabet
+def is_odd_string(s):
+    '''return True if letter index in english radix sums odd'''
 
-def is_odd_string(letters):
-
+    s = s.lower()
+    alphabet = list(string.ascii_lowercase)
     sum = 0
-    n_list = [n for n in range(1, 27)]
-    a_list = list(string.ascii_lowercase)
 
-    # create dictionary of with nums as keys and values as letters in the alphabet via zip
-    d = dict(zip(n_list, a_list))
-
-    for (k, v) in d.items():
-
-        for l in letters:
-
-            if l == v:
-                sum += k
-
-    if sum % 2 != 0:
-        return True
-
-    return False
-
-# INFERIOR solution
-def is_odd_string(string):
-    total = sum((ord(c) - 96) for c in string.lower()) or 0
-    return total % 2 == 1
-
-# print(is_odd_string('a')) # True
-# print(is_odd_string('aaaa')) # False
-# print(is_odd_string('veryfun')) # True
+    for i, v in enumerate(alphabet):
+        
+        for character in s:
+            
+            if character == v:
+                sum += (i + 1)
+    
+    return sum % 2 != 0
 
 """
-    ? write a function called valid_paranthesis that takes a string as parameter(s)
+    ? write a function called valid_parentheses that takes a string as parameter(s)
     ?   returns a boolean if the string is valid
 
     * example & output:
@@ -687,45 +670,26 @@ def is_odd_string(string):
         valid_parentheses(")(()))") # False
         valid_parentheses("(") # False
         valid_parentheses("(())((()())())") # True
-        valid_parentheses('))((') # False
-        valid_parentheses('())(') # False
-        valid_parentheses('()()()()())()(') # False
+        valid_parentheses("))((") # False
+        valid_parentheses("())(") # False
+        valid_parentheses("()()()()())()(") # False
+        valid_parentheses("") # False
 """
 
-# def valid_parentheses(parens):
-
-#     count = 0
-#     i = 0
-
-#     while i < len(parens):
-
-#         if (parens[i] == '('):
-#             count += 1
-#         elif (parens[i] == ')'):
-#             count -= 1
-
-#         if (count < 0):
-#             return False
-
-#         i += 1
-
-#     return count == 0
-
 def valid_parentheses(p):
-
     '''only valid pairs if count is 0'''
-    p = p.strip()
     count = 0
     i = 0
 
-    while i < len(p):
+    if len(p) <= 0:
+        return False
+
+    while i < len(p.strip()):
 
         if p[i] == "(":
-
             count += 1
 
         elif p[i] == ")":
-
             count -= 1
 
         if count < 0:
@@ -734,16 +698,6 @@ def valid_parentheses(p):
         i += 1
 
     return count == 0
-
-# print(valid_parentheses("()")) # True
-# print(valid_parentheses(")(()))")) # False
-# print(valid_parentheses("(")) # False
-
-# print(valid_parentheses("(())((()())())")) # True
-# print(valid_parentheses('))((')) # False
-# print(valid_parentheses('())(')) # False
-
-# print(valid_parentheses('()()()()())()(')) # False
 
 """
     ? write a function called reverse_vowels that takes a str as parameter(s)

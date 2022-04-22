@@ -1,11 +1,58 @@
 import unittest
-from challenge_set_2 import mode, reverse_vowels, reverse_swap_vowels, running_average, three_odd_numbers
+from challenge_set_2 import is_odd_string, mode, reverse_vowels, reverse_swap_vowels, running_average, three_odd_numbers, valid_parentheses
 
 # python3 challenge_set_2_tests.py -v
 class ChallengeSet2Tests(unittest.TestCase):
 
     def setUp(self):
         self.vowels = "aeiou"
+
+    def test_truthy_is_odd_string(self):
+
+        test_one = is_odd_string('a')
+        self.assertTrue(test_one)
+
+        test_two = is_odd_string('amazing')
+        self.assertTrue(test_two)
+
+        test_three = is_odd_string('veryfun')
+        self.assertTrue(test_three)
+
+    def test_truthy_valid_parentheses(self):
+
+        test_one = valid_parentheses("()")
+        self.assertTrue(test_one)
+
+        test_two = valid_parentheses("(())((()())())")
+        self.assertTrue(test_two)
+
+    def test_falsy_valid_parentheses(self):
+
+        test_one = is_odd_string('aaaa') # False
+        self.assertFalse(test_one)
+
+        test_two = is_odd_string('veryfunny') # False
+        self.assertFalse(test_two)
+        
+    def test_falsy_valid_parentheses(self):
+
+        test_one = valid_parentheses(")(()))")
+        self.assertFalse(test_one)
+
+        test_two = valid_parentheses("(")
+        self.assertFalse(test_two)
+
+        test_three = valid_parentheses("))((")
+        self.assertFalse(test_three)
+
+        test_four = valid_parentheses("())(")
+        self.assertFalse(test_four)
+
+        test_five = valid_parentheses("()()()()())()(")
+        self.assertFalse(test_five)
+
+        test_six = valid_parentheses("")
+        self.assertFalse(test_six)
 
     def test_reverse_swap_vowels(self):
         """assert a == b, returns string with swapped vowels & incremented & decremented indices"""
@@ -26,7 +73,7 @@ class ChallengeSet2Tests(unittest.TestCase):
     def test_reverse_uppercase_vowels(self):
         """assert a == b, returns reverse vowel string that preserves casing"""
 
-        a = reverse_vowels("Reverse Vowels In A String") 
+        a = reverse_vowels("Reverse Vowels In A String")
         b = "RivArsI Vewols en e Streng"
         self.assertEqual(a, b)
 
@@ -88,4 +135,3 @@ class ChallengeSet2Tests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    
