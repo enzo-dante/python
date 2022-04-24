@@ -616,18 +616,12 @@ def find_greater_numbers(nums):
         two_oldest_ages( [4,25,3,20,19,5] ) # [20,25]
 """
 
-# INFERIOR solution
-# def two_oldest_ages(nums):
-
-#     sorted_nums = sorted(nums)
-#     return [sorted_nums[-2], sorted_nums[-1]]
-
-# SUPERIOR solution
-def two_oldest_ages(ages):
-    return sorted(ages)[-2:]
-
-# print(two_oldest_ages( [1, 2, 10, 8])) # [8, 10]
-
+def two_oldest_ages(nums):
+    """
+    returns a list with the two highest numbers within the list in the format [second_oldest_age, oldest_age]
+    """
+    return [sorted(nums)[-2], sorted(nums)[-1]]
+    
 """
     ? write a function called is_odd_string that takes a str as parameter(s)
     ?   returns True if sum of each character's position in the alphabet is odd

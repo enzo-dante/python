@@ -1,5 +1,5 @@
 import unittest
-from challenge_set_2 import is_odd_string, mode, reverse_vowels, reverse_swap_vowels, running_average, three_odd_numbers, valid_parentheses
+from challenge_set_2 import is_odd_string, mode, reverse_vowels, reverse_swap_vowels, running_average, three_odd_numbers, two_oldest_ages, valid_parentheses
 
 # python3 challenge_set_2_tests.py -v
 class ChallengeSet2Tests(unittest.TestCase):
@@ -7,6 +7,20 @@ class ChallengeSet2Tests(unittest.TestCase):
     def setUp(self):
         self.vowels = "aeiou"
 
+    def test_two_oldest_ages(self):
+
+        a = two_oldest_ages( [1, 2, 10, 8] )
+        b = [8, 10]
+        self.assertEqual(a, b)
+
+        a = two_oldest_ages( [6,1,9,10,4] )
+        b = [9,10]
+        self.assertEqual(a, b)
+
+        a = two_oldest_ages( [4,25,3,20,19,5] )
+        b = [20,25]
+        self.assertEqual(a, b)
+    
     def test_truthy_is_odd_string(self):
 
         test_one = is_odd_string('a')
