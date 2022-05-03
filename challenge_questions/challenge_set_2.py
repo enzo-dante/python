@@ -6,9 +6,6 @@
 
 """
 
-# print("function_name() was called")
-
-
 # print("------------------------------------------------------------------------------------------")
 
 
@@ -341,55 +338,20 @@ def range_in_list(nums, start=0, end=None):
         same_frequency(1212, 2211) # True
 """
 
-# inferior solution
+def same_frequency(n1, n2):
 
-# def same_frequency(nums1, nums2):
-#     d_one = {}
-#     d_two = {}
+    d1 = {n:str(n1).count(n) for n in str(n1)}
+    d2 = {n:str(n2).count(n) for n in str(n2)}
 
-#     is_same = False
-
-#     for n in str(nums1):
-
-#         if d_one.get(n) == None:
-#             d_one[n] = 1
-#         else:
-#             d_one[n] += 1
-
-#     for n in str(nums2):
-
-#         if d_two.get(n) == None:
-#             d_two[n] = 1
-#         else:
-#             d_two[n] += 1
-
-#     for k, v in d_one.items():
-
-#         if d_two[k] == v:
-#             is_same = True
-#         else:
-#             is_same = False
-#             break
-
-#     return is_same
-
-# superior solution
-
-def same_frequency(num1,num2):
-    d1 = {letter:str(num1).count(letter) for letter in str(num1)}
-    d2 = {letter:str(num2).count(letter) for letter in str(num2)}
-
-    for key,val in d1.items():
-        if not key in d2.keys():
+    for k, v in d1.items():
+        
+        if not k in d2.keys():
             return False
-        elif d2[key] != d1[key]:
+        elif d2[k] != d1[k]:
             return False
+
     return True
-
-# print(same_frequency(551122,221515)) # True
-# print(same_frequency(321142,3212215)) # False
-# print(same_frequency(1212, 2211)) # True
-
+    
 """
     ? write a function called nth() that takes a list and a number as parameter(s)
     ?   returns the element at whatever index is the number in the list
@@ -405,18 +367,9 @@ def same_frequency(num1,num2):
         nth(['a', 'b', 'c', 'd'], 3)  # 'd'
 """
 
-def nth(my_list, num):
-    return my_list[num]
-
-    # traditional else/if
-    # if num < 0:
-    #     return my_list[-1]
-
-    # return my_list[num]
-
-# print(nth(['a', 'b', 'c', 'd'], 1))  # 'b'
-# print(nth(['a', 'b', 'c', 'd'], -2)) #  'c'
-
+def nth(my_list, n):
+    return my_list[n]
+    
 """
     ? write a function called find_the_duplicate that takes an array of numbers (that contains a single duplicate) as parameter(s)
     ?   returns the duplicate number or None
@@ -427,22 +380,23 @@ def nth(my_list, num):
         find_the_duplicate([2,1,3,4]) # None
 """
 
-def find_the_duplicate(nums):
+def find_the_duplicate(a):
 
-    # dictionary comprehension that uses list count to get duplicate
+    # OPTION 1
+    sorted_a = sorted(a) 
+    i = 0
 
-    d = {n : nums.count(n) for n in nums}
+    while i < len(sorted_a):
+        
+        if (i + 1) < len(sorted_a) and (sorted_a[i] == sorted_a[i + 1]):
+            return sorted_a[i]
 
-    # traditional dictionary creation
+        i += 1
+    
+    return None
 
-    # d = {}
-
-    # for n in nums:
-
-    #     if d.get(n) == None:
-    #         d[n] = 1
-    #     else:
-    #         d[n] += 1
+    # OPTION 2
+    d = {n : nums.count(n) for n in nums} # dictionary comprehension that uses list count to get duplicate
 
     for k, v in d.items():
 
@@ -450,10 +404,6 @@ def find_the_duplicate(nums):
             return k
 
     return None
-
-# print(find_the_duplicate([1,2,1,4,3,12])) # 1
-# print(find_the_duplicate([6,1,9,5,3,4,9])) # 9
-# print(find_the_duplicate([2,1,3,4])) # None
 
 """
     ? write a function called sum_up_diagonals that takes a NxN list of lists (2D array) as parameter(s)
@@ -496,46 +446,16 @@ def find_the_duplicate(nums):
         sum_up_diagonals(list4) # 68
 """
 
-list1 = [
-    [1,2],
-    [3,4]
-]
+def sum_up_diagonals(array_2d):
 
-list2 = [
-  [ 1, 2, 3 ],
-  [ 4, 5, 6 ],
-  [ 7, 8, 9 ]
-]
+    sum = 0
 
-# INFERIOR solution
-# def sum_up_diagonals(array_2d):
+    for i, v in enumerate(array_2d):
 
-#     d1 = 0
-#     d2 = len(array_2d) - 1
-#     sum = 0
+        sum += array_2d[i][i]
+        sum += array_2d[i][-1-i]
 
-#     for l in array_2d:
-
-#         sum += l[d1]
-#         sum += l[d2]
-
-#         if d1 != (len(l) - 1):
-#             d1 += 1
-#             d2 -= 1
-
-#     return sum
-
-# SUPERIOR solution
-def sum_up_diagonals(arr):
-    total = 0
-
-    for i,val in enumerate(arr):
-        total += arr[i][i]
-        total += arr[i][-1-i]
-    return total
-
-# print(sum_up_diagonals(list1))
-# print(sum_up_diagonals(list2))
+    return sum
 
 """
     ? write a function called min_max_key_in_dictionary that takes a dict as parameter(s)
@@ -546,32 +466,9 @@ def sum_up_diagonals(arr):
         min_max_key_in_dictionary({1: "Ellie", 4:"Matt", 2: "Tim"}) # [1,4]
 """
 
-d1 = {2:'a', 7:'b', 1:'c',10:'d',4:'e'}
-d2 = {1: "Ellie", 4:"Matt", 2: "Tim"}
-
-# INFERIOR solution
-# def min_max_key_in_dictionary(d):
-
-#     min_k = 0
-#     max_k = 0
-
-#     for k in d.keys():
-#         if min_k == 0 or max_k == 0:
-#             min_k = k
-#             max_k = k
-#         elif min_k > k:
-#             min_k = k
-#         elif max_k < k:
-#             max_k = k
-
-#     return [min_k, max_k]
-
-# SUPERIOR solution
 def min_max_key_in_dictionary(d):
-    keys = d.keys()
-    return [min(keys), max(keys)]
 
-# print(min_max_key_in_dictionary(d1))
+    return [min(d.keys()), max(d.keys())]
 
 """
     ? write a function called find_greater_numbers that takes a list as parameter(s)
@@ -586,25 +483,23 @@ def min_max_key_in_dictionary(d):
 
 def find_greater_numbers(nums):
 
-    count = 0
     i = 0
-    j = 1
-
-    while i < len(nums):
+    j = 1 
+    count = 0
+    
+    while i <= len(nums):
 
         while j < len(nums):
 
             if nums[j] > nums[i]:
                 count += 1
-
+            
             j += 1
-
-        j = i + 1
+        
         i += 1
-
+        j = i + 1
+    
     return count
-
-# print(find_greater_numbers([1,2,3])) # 3
 
 """
     ? write a function called two_oldest_ages that takes a list of numbers as parameter(s)
@@ -817,3 +712,31 @@ def running_average():
         return (running_average.sum / running_average.num_divisors)
 
     return rAvg
+
+"""
+    ? write a function called letter_counter that takes a str as parameter(s)
+    ?   letter_counter returns a function
+    ?       write an inner case-insensitive function that takes a letter as parameter(s)
+    ?           inner function returns frequency of letter in str from letter_counter function
+
+    ! HINT: use closure
+
+    * example & output:
+        counter = letter_counter('Amazing')
+        counter('a') # 2
+        counter('m') # 1
+
+        counter2 = letter_counter('This Is Really Fun!')
+        counter2('i') # 2
+        counter2('t') # 1 
+"""
+
+def letter_counter(s):
+
+    letter_counter.s = s.lower()
+    
+    def counter(l):
+        return letter_counter.s.count(l)
+    
+    return counter
+    

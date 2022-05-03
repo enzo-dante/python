@@ -50,7 +50,7 @@ def eat(foot, is_healthy):
     pass
 
 
-# ? STEP 2: import unittest module and method you want to test into test.py
+# ? STEP 2: import method and unittest module you want to test into test.py
 
 import unittest
 from activities import eat
