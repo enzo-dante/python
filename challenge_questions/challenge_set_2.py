@@ -10,25 +10,27 @@
 
 
 """
-    ? write at least 4 different expression (using different operators) that equals 100
+    ? write print_four_expressions function that takes no parameters 
+    ? returns an array with at least 4 different expression (using different operators) that equals 100
 """
 
 def print_four_expressions():
-    print(99 + 1)
-    print(101 - 1)
-    print(25 * 4)
-    print(f"{10000/100:.0f}")
 
-# print_four_expressions();
+    return [
+        99 + 1,
+        101 - 1,
+        50 * 2,
+        200 / 2
+    ]
 
 """
-    ? write a string index that returns the letter "r" from "Hello World"
+    ? write get_letter_r function that takes a default parameter: "Hello World" 
+    ? returns the letter "r" from "Hello World"
 """
 
-def get_letter_r(word="Hello World"):
-    return word[-3]
+def get_letter_r(w= "Hello World"):
 
-# print(f"r = {get_letter_r()} in 'Hello World'")
+    return w.lower()[-3]
 
 """
     ? use string slicing in python to grab the word "ink" in from inside the overall word "tinker"
@@ -71,39 +73,32 @@ list_test_3 = [[], [1], [2,3]]
 """
     ? write remove_every_other function that takes a list parameter
     ?   returns a new list with every second value removed
+    
+    * HINT:
+        list comprehension
+        enumerate gives you access to the index
 """
 
-list_test_1 = [1,2,3,4,5]
-list_test_2 = [5,1,2,4,1]
-
-def remove_every_other(p_list):
-    # list comprehension
-    # If you use enumerate, you do have access to the index
-    return [x for index, x in enumerate(p_list) if index % 2 == 0]
-
-# print(remove_every_other(list_test_2))
+def remove_every_other(values):
+    return [v for index, v in enumerate(values) if index % 2 == 0]
 
 """
     ? write sum_pairs function that takes a list and a number as parameters
-    ?   returns first pair of numbers that sum to the number pass as a parameter
+    ?   returns list of first pair of numbers that sum to the number pass as a parameter
 
     # sum_pairs([4,2,10,5,1], 6) # [4,2]
 """
 
-numbers_1 = [4,2,10,5,1]
-numbers_2 = [11,20,4,2,1,5]
+def sum_pairs(nums, sum):
 
-def sum_pairs(num_list, number):
+    for i in nums:
 
-    for i in num_list:
-        for j in num_list:
-            if j + i == number:
-                return [i, j]
+        for j in nums:
 
+            if j + i == sum:
+                return [i,j]
+    
     return []
-
-# print(sum_pairs(numbers_1, 6))
-# print(sum_pairs(numbers_2, 100))
 
 """
     ? write vowel_count function that takes a str as parameters
@@ -112,24 +107,20 @@ def sum_pairs(num_list, number):
     vowel_count('awesome') # {'a': 1, 'e': 2, 'o': 1}
 """
 
-def vowel_count(word):
-    v_count = {}
+def vowel_count(s):
     vowels = ["a", "e", "i", "o", "u"]
+    v_count = {}
 
-    for letter in word.lower():
-        if(letter in vowels):
-            if(letter not in v_count):
+    for letter in s.strip().lower():
+
+        if letter in vowels:
+
+            if letter not in v_count:
                 v_count[letter] = 1
             else:
                 v_count[letter] += 1
 
     return v_count
-
-# d = vowel_count("awesome")
-d = vowel_count("Elie")
-# d = vowel_count("Colt")
-
-# print(d)
 
 """
     ? write a function called titleize that takes a string of words as parameters
@@ -139,18 +130,14 @@ d = vowel_count("Elie")
         titleize('this is awesome') # "This Is Awesome"
 """
 
-def titleize(sentence):
+def titleize(s):
 
-    capitalized = ""
+    cap_s = ""
 
-    for word in sentence.split(" "):
-        word = word[0].upper() + word[1:] + " "
-        capitalized += word
-
-    return capitalized.strip()
-
-# print(titleize("this is awesome"))
-# print(titleize('oNLy cAPITALIZe fIRSt')) # "ONLy CAPITALIZe FIRSt"
+    for word in s.split(" "):
+        cap_s += word.capitalize() + " "
+    
+    return cap_s.strip()
 
 """
     ? write a function called find_factors that takes a number as parameter(s)
@@ -158,29 +145,12 @@ def titleize(sentence):
     ?   divisible numbers for that number from 1 up to that number
 
     * example & output:
-        find_factors(111) # [1,3,37,111 ]
+        find_factors(111) # [1,3,37,111]
 """
 
-def find_factors(number):
+def find_factors(n):
 
-    """
-        * list comprehension solution
-    """
-    return [factor for factor in range(1, number + 1) if number % factor == 0]
-
-    """
-        * for loop solution
-    """
-    # factors = []
-
-    # for f in range(1, number + 1):
-    #     if number % f == 0:
-    #         factors.append(f)
-
-    # return factors
-
-# print(find_factors(111)) # [1,3,37,111 ]
-# print(find_factors(321421)) # [1,293,1097,321421 ]
+    return [f for f in range(1, (n + 1)) if n % f == 0]
 
 """
     ? write a function called includes that takes a collection, a value, and an optional starting index as parameter(s)
@@ -195,24 +165,21 @@ def find_factors(number):
         includes([1, 2, 3], 1, 2) # False
 """
 
-def includes(collection, value=0, start_index=0):
+def includes(c, v, start=None):
 
-    if type(collection) == str or type(collection) == list:
+    if type(c) is not dict:
 
-        if value in collection[start_index:]:
-            return True
-
-    elif type(collection) == dict:
-
-        for k, v in collection.items():
-
-            if v == value:
+        for e in c[start:]:
+            if e == v:
                 return True
 
+        return False
+    
+    for e in c.items():
+        if e == v:
+            return True
+    
     return False
-
-# print(includes([1,2,3], 1))
-# print(includes([1,2,3], 1, 2))
 
 """
     ? write a function called repeat that takes a string and a number as parameter(s)
@@ -223,39 +190,32 @@ def includes(collection, value=0, start_index=0):
         repeat('abc', 2) # 'abcabc'
 """
 
-def repeat(my_str, my_num):
-
-    new_str = ""
-
-    for n in range(0, my_num):
-        new_str += my_str
-
-    return new_str
-
-# print(repeat('abc', 2)) # 'abcabc'
+def repeat(s, n):
+    return s.strip() * n
 
 """
-    ? write a function called truncate takes a string and a number n, truncate the string to a shorter string containing at most n characters
+    ? write a function called truncate takes a string and a number n, 
+    ?   truncate the string to a shorter string containing at most n characters
     ?   truncation must be at least 3 characters long
-    ?   returns a string
+    ?   returns a string with "..." if n is less than length of string
 
     * example & output:
         truncate("Problem solving is the best!", 10) # "Problem..."
         truncate("Super cool", 2) # "Truncation must be at least 3 characters."
 """
 
-def truncate(string, n):
+def truncate(s, n):
+    
+    min_length = len(s) - 3
 
-    target_length = n - 3
+    if n < 3:
+        return "Truncation must be at least 3 characters."
+    elif n < min_length:
+        # use slice to create a substring
+        return s[:n-3] + "..."
 
-    if n >= 3:
-        # python ternary operator
-        return string[:target_length] + "..." if len(string) > len(string[:target_length]) else string[:n]
-
-    return "Truncation must be at least 3 characters."
-
-# print(truncate("Problem solving is the best!", 10)) # "Problem..."
-# print(truncate("Super cool", 2)) # "Truncation must be at least 3 characters."
+    # implied else-statement
+    return s[:n]
 
 """
     ? write a function called two_list_dictionary that takes 2 lists of varying length as parameter(s)
@@ -269,28 +229,21 @@ def truncate(string, n):
         two_list_dictionary(['a', 'b', 'c']  , [1, 2, 3, 4]) # {'a': 1, 'b': 2, 'c': 3}
         two_list_dictionary(['x', 'y', 'z']  , [1,2]) # {'x': 1, 'y': 2, 'z': None}
 
-    HINT: use built-in function zip() & then convert into dict:
+    ! HINT: use built-in function zip() & then convert into dict:
         pairs up two values from two different lists in sequential order respective of index position in each list
             lists have different length, zip will stop once there are no more pairs to zip
 """
 
 def two_list_dictionary(keywords, values):
 
-    """
-    use built-in function zip() & then convert into dict:
-        pairs up two values from two different lists in sequential order respective of index position in each list
-            lists have different length, zip will stop once there are no more pairs to zip
-    """
-    zipped_dict = dict(zip(keywords, values))
+    z_dict = dict(zip(keywords, values))
 
-    for keyword in keywords:
+    for k in keywords:
 
-        if zipped_dict.get(keyword) == None:
-            zipped_dict[keyword] = None
+        if z_dict.get(k) == None:
+            z_dict[k] = None
 
-    return zipped_dict
-
-# print(two_list_dictionary(['x', 'y', 'z']  , [1,2])) # {'x': 1, 'y': 2, 'z': None}
+    return z_dict
 
 """
     ? write a function called range_in_list that takes a list, start_index, and end_index as parameter(s)
@@ -321,13 +274,9 @@ def range_in_list(nums, start=0, end=None):
         for n in nums[start:(end + 1)]:
 
             sum += n
-
+    
     return sum
-
-# print(range_in_list([1,2,3,4],0,2)) #  6
-# print(range_in_list([1,2,3,4],0,100)) # 10
-# print(range_in_list([1,2,3,4],1)) #  9
-
+    
 """
     ? write a function called same_frequency that takes two numbers as parameter(s)
     ?   returns True if they contain the same frequency of digits, else return False
@@ -337,7 +286,6 @@ def range_in_list(nums, start=0, end=None):
         same_frequency(321142,3212215) # False
         same_frequency(1212, 2211) # True
 """
-
 def same_frequency(n1, n2):
 
     d1 = {n:str(n1).count(n) for n in str(n1)}

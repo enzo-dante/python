@@ -1,11 +1,156 @@
 import unittest
-from challenge_set_2 import find_the_duplicate, find_greater_numbers, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, nth, reverse_vowels, reverse_swap_vowels, running_average, same_frequency, sum_up_diagonals, three_odd_numbers, two_oldest_ages, valid_parentheses
+from challenge_set_2 import find_factors, find_the_duplicate, find_greater_numbers, get_letter_r, includes, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, nth, range_in_list, remove_every_other, repeat, reverse_vowels, reverse_swap_vowels, running_average, print_four_expressions, same_frequency, sum_pairs, sum_up_diagonals, titleize, truncate, three_odd_numbers, two_oldest_ages, two_list_dictionary, valid_parentheses, vowel_count
 
 # python3 challenge_set_2_tests.py -v
 class ChallengeSet2Tests(unittest.TestCase):
 
     def setUp(self):
         self.vowels = "aeiou"
+        self.sumP1 = [4,2,10,5,1]
+        self.sumP2 = [11,20,4,2,1,5]
+
+    def test_print_four_expressions(self):
+        """assert a==b; returns at least 4 different expression (using different operators) that equals 100"""
+
+        a = print_four_expressions()
+        b = [100 for v in range(0,4)]
+
+        self.assertEqual(a,b)
+    
+    def test_get_letter_r(self):
+        """assert a==b; returns the letter "r" from the default "Hello World" string"""
+
+        a = get_letter_r()
+        b = "r"
+
+        self.assertEqual(a,b)
+
+    def test_remove_every_other(self):
+        """assert a==b; returns a new list with every second value removed"""
+        
+        t1 = [1,2,3,4,5]
+        a = remove_every_other(t1)
+        b = [1,3,5]
+        self.assertEqual(a,b)
+
+        t2 = [5,1,2,4,1]
+        a = remove_every_other(t2)
+        b = [5,2,1]
+        self.assertEqual(a,b)
+
+    def test_sum_pairs(self):
+        """assert a==b;
+        returns list of first pair of numbers that sum to the number pass as a parameter
+        """
+
+        a = sum_pairs(self.sumP1, 6)
+        b = [4,2]
+        self.assertEqual(a,b)
+
+        a = sum_pairs(self.sumP2, 100)
+        b = []
+        self.assertEqual(a,b)
+
+    def test_two_list_dictionary(self):
+        """assert a==b;
+        returns a dictionary of the keywords and respective values
+            if there are not enough values per key, the remaining keys should have a value of null
+            if there are not enough keys per value, than just ignore the remaining values
+        """
+
+        a = two_list_dictionary(['a', 'b', 'c', 'd'], [1, 2, 3])
+        b = {'a': 1, 'b': 2, 'c': 3, 'd': None}
+        self.assertEqual(a,b)
+
+        a = two_list_dictionary(['a', 'b', 'c']  , [1, 2, 3, 4])
+        b = {'a': 1, 'b': 2, 'c': 3}
+        self.assertEqual(a,b)
+
+        a = two_list_dictionary(['x', 'y', 'z']  , [1,2])
+        b = {'x': 1, 'y': 2, 'z': None}
+        self.assertEqual(a,b)
+
+    def test_vowel_count(self):
+        """assert a ==b; returns a dictionary with the key as vowels & values as the count of times that vowel appears in the str"""
+
+        a = vowel_count('awesome')
+        b = {'a': 1, 'e': 2, 'o': 1}
+        self.assertEqual(a, b)
+        
+    def test_titleize(self):
+        """assert a == b; returns new string with every word capitalized"""
+
+        a = titleize('this is awesome') 
+        b = "This Is Awesome"
+        self.assertEqual(a, b)
+        
+    def test_find_factors(self):
+        """assert a == b; returns a list of all the factors of that number"""
+
+        a = find_factors(111) 
+        b = [1,3,37,111 ]
+
+        self.assertEqual(a,b)
+
+    def test_truthy_includes(self):
+        """assert True; returns True if the value exists in the collection when we are starting from the starting_index"""
+
+        is_truthy = includes([1,2,3], 1) # True
+        self.assertTrue(is_truthy)
+        
+    def test_falsy_includes(self):
+        """assert False; returns False if the value does NOT exist in the collection when we are starting from the starting_index"""
+
+        is_falsy = includes([1,2,3], 1, 2) # False
+        self.assertFalse(is_falsy)
+      
+    def test_repeat(self):
+        """assert a==b; returns a new string with the string passed to the function repeated the number amount of times"""
+
+        a =repeat('abc', 2) 
+        b = 'abcabc'
+        self.assertEqual(a,b)
+
+    def test_truncate(self):
+        """assert a == b; 
+        returns a shorter string containing at most n characters
+        truncation must be at least 3 characters long
+        """
+
+        a = truncate("Problem solving is the best!", 10) 
+        b = "Problem..."
+        self.assertEqual(a, b)
+
+        a = truncate("Super cool", 2) 
+        b = "Truncation must be at least 3 characters."
+        self.assertEqual(a, b)
+
+    def test_range_in_list(self):
+        """assert a == b; returns the sum of the values between the start_index and end_index in the list (inclusive)"""
+
+        a = range_in_list([1,2,3,4],0,2)
+        b = 6
+        self.assertEqual(a, b)
+
+        a = range_in_list([1,2,3,4],0,3) 
+        b = 10
+        self.assertEqual(a, b)
+
+        a = range_in_list([1,2,3,4],1) 
+        b = 9
+        self.assertEqual(a, b)
+
+        a = range_in_list([1,2,3,4]) 
+        b = 10
+        self.assertEqual(a, b)
+
+        a = range_in_list([1,2,3,4],0,100) 
+        b = 10
+        self.assertEqual(a, b)
+
+        a = range_in_list([],0,1) 
+        b = 0
+        self.assertEqual(a, b)
 
     def test_true_same_frequency(self):
         """assert is truthy, returns True if they contain the same frequency of digits, else return False"""
