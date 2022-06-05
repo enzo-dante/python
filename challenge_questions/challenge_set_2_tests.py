@@ -1,5 +1,5 @@
 import unittest
-from challenge_set_2 import find_factors, find_the_duplicate, find_greater_numbers, get_letter_r, includes, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, nth, range_in_list, remove_every_other, repeat, reverse_vowels, reverse_swap_vowels, running_average, print_four_expressions, same_frequency, sum_pairs, sum_up_diagonals, titleize, truncate, three_odd_numbers, two_oldest_ages, two_list_dictionary, valid_parentheses, vowel_count
+from challenge_set_2 import find_factors, find_the_duplicate, find_greater_numbers, get_ink, get_letter_r, includes, list_check, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, nth, range_in_list, reverse_string, remove_every_other, repeat, reverse_vowels, reverse_swap_vowels, running_average, print_four_expressions, same_frequency, sum_pairs, sum_up_diagonals, titleize, truncate, three_odd_numbers, two_oldest_ages, two_list_dictionary, valid_parentheses, vowel_count
 
 # python3 challenge_set_2_tests.py -v
 class ChallengeSet2Tests(unittest.TestCase):
@@ -16,12 +16,43 @@ class ChallengeSet2Tests(unittest.TestCase):
         b = [100 for v in range(0,4)]
 
         self.assertEqual(a,b)
+
+    def test_get_ink(self):
+        """assert a==b; returns the string "ink" substring from the default "tinker" string"""
+
+        a = get_ink()
+        b = "ink"
+
+        self.assertEqual(a,b)
     
     def test_get_letter_r(self):
         """assert a==b; returns the letter "r" from the default "Hello World" string"""
 
         a = get_letter_r()
         b = "r"
+
+        self.assertEqual(a,b)
+
+    def test_list_check_true(self):
+        """assert true; returns True if each value in the list is a list, else returns false"""
+
+        v1 = [[], [1], [2,3]]
+        isTruthy = list_check(v1)
+        self.assertTrue(isTruthy)
+
+    def test_list_check_false(self):
+        """assert false; returns False if at least one value in the list is not a list, else returns true"""
+
+        v1 = [[], 1, [2,3], (1,2)]
+        isFalsy = list_check(v1)
+        self.assertFalse(isFalsy)
+
+    def test_reverse_string(self):
+        """assert a==b; returns string with all characters reversed"""
+
+        t1 = "tHis is a tEst"
+        a = reverse_string(t1)
+        b = "tsEt a si siHt"
 
         self.assertEqual(a,b)
 
@@ -257,19 +288,19 @@ class ChallengeSet2Tests(unittest.TestCase):
     def test_find_greater_numbers(self):
         """assert a == b, returns the number of times a number is followed by a larger number across the entire list"""
 
-        a = find_greater_numbers([1,2,3]) # 3
+        a = find_greater_numbers([1,2,3])
         b = 3
         self.assertEqual(a, b)
 
-        a = find_greater_numbers([6,1,2,7]) # 4
+        a = find_greater_numbers([6,1,2,7]) 
         b = 4
         self.assertEqual(a, b)
 
-        a = find_greater_numbers([5,4,3,2,1]) # 0
+        a = find_greater_numbers([5,4,3,2,1]) 
         b = 0
         self.assertEqual(a, b)
 
-        a = find_greater_numbers([]) # 0
+        a = find_greater_numbers([]) 
         b = 0
         self.assertEqual(a, b)
 

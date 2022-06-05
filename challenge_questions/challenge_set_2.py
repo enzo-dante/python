@@ -33,42 +33,33 @@ def get_letter_r(w= "Hello World"):
     return w.lower()[-3]
 
 """
-    ? use string slicing in python to grab the word "ink" in from inside the overall word "tinker"
+    ? write get_ink function that takes the default string "tinker"
+    ? returns the string "ink" substring from the default "tinker" string
 
     * HINT: when slicing, you only go up to but not include the end index
 """
 
-def get_ink(word="tinker"):
-    return word[1:4:1]
-
-# print(f"{get_ink()} = 'ink' slice in 'tinker'")
+def get_ink(w="tinker"):
+    return w[1:4]
 
 """
     ? write reverse_string function that takes string parameter and returns string with all characters reversed
+
+    reverse_string("tHis is a tEst") # "tsEt a si siHt"
 """
 
-def reverse_string(input):
-    return input[::-1]
-
-# print(reverse_string("tHis is a tEst"))
+def reverse_string(s):
+    return s[::-1]
 
 """
     ? write list_check function that takes a list parameter
     ?   returns True if each value in the list is a list, else returns false
 """
 
-def list_check(list_2d):
-    # list comprehension with conditional logic:
-    my_list = [isinstance(l, list) for l in list_2d]
+def list_check(values):
+    # list comprehension w/ conditional logic
+    my_list = [isinstance(v, list) for v in values]
     return all(my_list)
-
-list_test_1 = [[], 1, [2,3], (1,2)]
-# list_test_2 = [1, True, [], [1] [2,3]]
-list_test_3 = [[], [1], [2,3]]
-
-# print(list_check(list_test_1))
-# ! print(list_check(list_test_2))
-# print(list_check(list_test_3))
 
 """
     ? write remove_every_other function that takes a list parameter
