@@ -1,5 +1,5 @@
 import unittest
-from challenge_set_2 import find_factors, find_the_duplicate, find_greater_numbers, get_ink, get_letter_r, includes, list_check, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, nth, range_in_list, reverse_string, remove_every_other, repeat, reverse_vowels, reverse_swap_vowels, running_average, print_four_expressions, same_frequency, sum_pairs, sum_up_diagonals, titleize, truncate, three_odd_numbers, two_oldest_ages, two_list_dictionary, valid_parentheses, vowel_count
+from challenge_set_2 import find_factors, find_the_duplicate, find_greater_numbers, get_ink, get_letter_r, includes, list_check, letter_counter, is_odd_string, min_max_key_in_dictionary, mode, next_prime, nth, once, range_in_list, reverse_string, remove_every_other, repeat, reverse_vowels, reverse_swap_vowels, running_average, print_four_expressions, same_frequency, sum_pairs, sum_up_diagonals, titleize, truncate, three_odd_numbers, two_oldest_ages, two_list_dictionary, valid_parentheses, vowel_count
 
 # python3 challenge_set_2_tests.py -v
 class ChallengeSet2Tests(unittest.TestCase):
@@ -478,6 +478,33 @@ class ChallengeSet2Tests(unittest.TestCase):
         a = counter('a')
         b = 10
         self.assertNotEqual(a, b)
+    
+    def test_once(self):
+        """assert a==b; returns a new function that can be invoked only once, else return None if invoked more than once"""
+
+        def add(a,b):
+            return a + b
+
+        inner_func = once(add)
+        a = inner_func(2, 2)
+        b = 4
+        self.assertEqual(a,b)
+
+        a = inner_func(2, 2)
+        b = None
+        self.assertEqual(a,b)
+
+        a = inner_func(12, 200)
+        b = None
+        self.assertEqual(a,b)
+
+    def test_next_prime(self):
+        """assert a == b; returns a generator that will yield unlimited number of primes starting from 2"""
+
+        primes = next_prime()
+        a = [next(primes) for i in range(25)]
+        b = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+        self.assertEqual(a,b)
 
 if __name__ == "__main__":
     unittest.main()

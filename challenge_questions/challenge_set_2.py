@@ -678,4 +678,48 @@ def letter_counter(s):
         return letter_counter.s.count(l)
     
     return counter
-    
+
+"""
+    ? write a function called once that takes a function as parameter(s)
+    ?   returns a new function that can be invoked only once, else return None if invoked more than once
+
+    * example & output:
+        def add(a,b):
+            return a+b
+
+        oneAddition = once(add)
+        
+        oneAddition(2,2) # 4
+        oneAddition(2,2) # None
+        oneAddition(12,200) # None
+"""
+
+def once(func):
+
+    once.count = 0
+
+    def inner(a, b):
+        once.count += 1
+
+        if once.count > 1:
+            return None
+        else:
+            return func(a,b)
+
+    return inner
+
+"""
+    ? write a function called next_prime that takes no parameter(s)
+    ?   returns a generator that will yield unlimited number of primes starting from 2
+
+    * HINT: recall that a prime number is any whole number that has exactly two divisors: one & the number itself
+
+    * example & output:
+
+    primes = next_prime()
+    [next(primes) for i in range(25)]
+    # [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+"""
+
+def next_prime():
+    pass
