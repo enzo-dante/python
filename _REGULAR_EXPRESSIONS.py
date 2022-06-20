@@ -2,7 +2,11 @@
 
     ! regular expressions (REGEX)
     
-        describing patterns withing search strings
+        describing patterns within search strings
+
+            https://www.rexegg.com/regex-quickstart.html
+
+            https://pythex.org/
 
     * REGEX potential use cases
     
@@ -20,7 +24,7 @@
 """
 
 """
-    
+
     ! REGEX character class 
     character classes allow us to specify characters to filter in a pattern
 
@@ -42,7 +46,7 @@
 
         \S = not a whitespace character
 
-    ! REGEX boundaries
+    ! REGEX boundary matchers
     character classes allow us to specify characters in a GROUP/RANGE to filter in a pattern
 
         [] = character classes allow us to specify groups/ranges of characters
@@ -157,4 +161,92 @@ result = pattern.fullmatch(search_str)
 
 # ! parsing URLs with python
 
+import re
 
+url_one = "http://www.youtube.com/videos"
+url_two = "http://www.youtube.com/videos/asd/das/asd"
+url_three = "http://www.youtube.com/videos/"
+
+query_string = "bio?data=blah&dog=yes"
+
+# define raw (r) regex string & compile
+regex = r"(https?)://(www\.[A-za-z-]{2,256}\.[a-z]{2,6})([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+
+# use parenthesis to group items in a regex string to access individually
+url_regex = re.compile(regex)
+
+# search for a single match in a string with our regex
+match = url_regex.search(url_search3+query_string)
+print(match.group())
+
+# you can pass int for the respective parenthesis group in a regex
+print(match.group(0))
+print(match.group(1))
+print(match.group(2))
+print(match.group(3))
+
+# .groups(), plural of group, returns a tuple of the different components separated by parenthesis
+print(match.groups())
+
+"""
+! regex labels 
+
+    regex with defined label and accessed by label (instead of index) using group():
+
+        parenthesis and ?P<{label}>
+"""
+
+import re
+
+regex_name = r"^(Mr\.|Mrs\.|Ms\.|Mdme\.) (?P<first>[A-Za-z]+) ([A-Za-z]+)$"
+
+def parse_name(test):
+
+    pattern = re.compile(regex_name)
+    matches = pattern.search(test)
+
+    if matches:
+        matches.group("first")
+
+    return None
+
+result = parse_name("Mrs. Tilda Swinton")
+print(result)
+
+# ! compilation flags
+
+""" 
+    ! compilation flags
+
+        IGNORECASE = do case-insensitive matches (ignore capital or lowercase designation)
+        
+        VERBOSE = organizes regex patterns into a more readable format
+"""
+
+import re
+
+test_email = "tom123@yahoo.com"
+case_test_email = "TOM123@yahoo.com"
+bad_test_email = "my email is tom123@yahoo.com"
+
+"""
+    ^([a-z0-9_\.-]+) # starts with first part of email
+    @                # single @ sign
+    ([\da-z\.-]+)    # email provider
+    \.               # single period
+    ([a-z\.]{2,6})$  # ends with com, org, net etc.
+"""
+
+regex_verbose = "^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$"
+
+# re.X = verbose
+# re.I = ignore case too
+pattern = re.compile(regex_verbose, re. X | re.I)
+
+match = pattern.search(case_test_email)
+
+if match:
+    print(f"match: {match.group()}")
+    print(f"match: {match.groups()}")
+else:
+    print(None)
