@@ -250,3 +250,49 @@ if match:
     print(f"match: {match.groups()}")
 else:
     print(None)
+
+# ! REGEX Substitution
+
+import re
+
+text = "Las night Mrs. Daisy and Mr. White murdered Mr. Chow"
+
+"""
+    * regex logic
+
+        \. = escape special functionality of .
+        [a-z] = all letter a - z are valid
+        ([a-z])[a-z]+ = capture group first letter followed any number of letters
+        + = 1 or more instances
+"""
+
+regex_replace = r"(Mr\.|Mrs\.|Ms\.) ([a-z])[a-z]+"
+
+# re.I = case insensitive
+pattern = re.compile(regex_replace, re.I)
+
+REDACTED = "redacted".upper()
+
+result = pattern.sub(REDACTED, text)
+print(result)
+
+"""
+    ! Capture Groups
+
+        substitute the last name with only the first letter captured
+
+        \g<1> = first matched regex pattern returned
+"""
+
+import re
+
+REDACTED = "redacted".upper()
+text = "Las night Mrs. Daisy and Mr. White murdered Mr. Chow"
+
+regex_substitute = r"(Mr\.|Mrs\.|Ms\.) ([a-z])[a-z]+"
+
+pattern = re.compile(regex_substitute, text)
+
+result = pattern.sub(f"\g<1> {REDACTED}", text)
+print(result)
+
