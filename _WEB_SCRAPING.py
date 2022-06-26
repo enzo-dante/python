@@ -128,7 +128,7 @@ soup.find(id='foo')
 soup.select('#foo')[0]
 
 # find an element with a class of bar
-soup.find_all(class='bar')
+soup.find_all(class_='bar')
 soup.select('.bar')
 
 # find all elements with a data attribute of baz
