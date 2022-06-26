@@ -30,21 +30,124 @@
             requires a pre-existing file
 
             r+ by default adds to beginning/seek(0)
-"""
 
-# ! open(file_name) + opened_file.read()
-
-#   read files in python
-#       after reading a file, you need return cursor back to the start of the file
-
-#       default -r flag is included in open(file_name)
-"""
-* story.txt
+* ex) story.txt
 
     "this story is really short
     This is awkward"
+"""
 
-* read_file.py
+story_file = "story.txt"
+new_file = "newly_created.txt"
+
+"""
+    ? SUPERIOR READING FILES: Block statements 
+
+! with open(file_name) as file:
+
+    * with open(file_name) =  file.__exit__() / file.close() automatically called after use
+
+    default -r flag is included in with open(file_name)
+
+* ex) read_file.py
+"""
+
+with open(story_file) as file:
+    data = file.read()
+
+print(file.closed) # True
+
+"""
+! WRITE ("w")
+
+    overriding existing content in target file
+
+    to write to a pre-existing or non-existing (will be created) files
+        * still requires open() a file
+"""
+
+with open(story_file, "w") as file:
+    file.write("Writing files is great\n")
+    file.write("Closing now, bye!\n")
+
+"""
+
+! APPEND ("a")
+
+    overriding existing content in target file
+
+    to append (always to end) to a pre-existing or non-existing (will be created) files
+
+        generally, include \n for new line at end w/ APPEND flag
+
+        * still requires open() a file
+
+    ? APPEND flag DOES NOT remove/override original content
+"""
+
+with open(new_file, "a") as file:
+    file.write("Writing files is great\n")
+    file.write("Closing now, bye!\n")
+
+"""
+
+! READ & WRITE ("r+") 
+
+    read and write based on cursor position in PRE-EXISTING file
+
+    ? r+ (read & write default at beginning) REQUIRES a pre-existing 
+        * still requires open() a file
+
+    ! r+ flag will REMOVE/override original content cursor position already has content
+"""
+
+search_word = "awkward"
+replacement_word = "super"
+
+with open(story_file, "r+") as file:
+    # read file content and store to data variable
+    data = file.read()
+
+    # cursor seek beginning of file to prepare for write
+    file.seek(0)
+
+    # replace the searched_word with replacement_word
+    updated_data = data.replace(search_word, replacement_word)
+
+    # write the new content over the old content
+    file.write(updated_data)
+
+    # Truncate() method truncate the file’s size (optional flag) 
+    # The current file position is not changed & the size defaults to the current position. 
+    file.truncate()
+
+# ! TARGET WRITING r+
+
+#   use file_object.seek(position) with "r+" for target writing
+
+with open(story_file, "r+") as file:
+    file.write("The beginning by default\n")
+    file.seek(10)
+    file.write("went to position 10\n")
+
+# ! copy
+
+#   copy contents from one file to another
+
+copy(story_file, new_file)
+
+"""
+    ? INFERIOR READING FILES: open() statements 
+
+! open(file_name) + opened_file.read()
+
+    read files in python
+
+        after reading a file, you need return cursor back to the start of the file
+
+    default -r flag is included in open(file_name)
+
+* ex) read_file.py
 """
 
 my_file = open("story.txt")
